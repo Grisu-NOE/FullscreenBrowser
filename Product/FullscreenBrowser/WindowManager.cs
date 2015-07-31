@@ -33,12 +33,14 @@ namespace At.FF.Krems.FullscreenBrowser
     using System.Timers;
     using System.Windows.Controls;
 
-    using At.FF.Krems.FullscreenBrowser.Properties;
-    using At.FF.Krems.Interfaces;
-    using At.FF.Krems.Utils.Bootstrapper;
-
     using Gecko;
     using Gecko.Cache;
+
+    using Interfaces;
+
+    using Properties;
+
+    using Utils.Bootstrapper;
 
     using Cookie = System.Net.Cookie;
 

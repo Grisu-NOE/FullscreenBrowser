@@ -231,34 +231,13 @@ namespace At.FF.Krems.FullscreenBrowser
         }
 
         /// <summary>Gets a value indicating whether system allows hibernation.</summary>
-        public bool CanHibernate
-        {
-            get
-            {
-                // return IsPwrHibernateAllowed api
-                return NativeMethods.IsPwrHibernateAllowed();
-            }
-        }
+        public bool CanHibernate => NativeMethods.IsPwrHibernateAllowed();
 
         /// <summary>Gets a value indicating whether system allows the shutdown operation.</summary>
-        public bool CanShutdown
-        {
-            get
-            {
-                // return IsPwrShutdownAllowed api
-                return NativeMethods.IsPwrShutdownAllowed();
-            }
-        }
+        public bool CanShutdown => NativeMethods.IsPwrShutdownAllowed();
 
         /// <summary>Gets a value indicating whether system allows suspend.</summary>
-        public bool CanSuspend
-        {
-            get
-            {
-                // return IsPwrSuspendAllowed api
-                return NativeMethods.IsPwrSuspendAllowed();
-            }
-        }
+        public bool CanSuspend => NativeMethods.IsPwrSuspendAllowed();
 
         #endregion
 

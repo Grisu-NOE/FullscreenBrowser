@@ -84,10 +84,7 @@ namespace At.FF.Krems.FullscreenBrowser
             }
 
             var log = Bootstrapper.TryGetInstance<IProcessStateLogging>();
-            if (log != null)
-            {
-                log.LogProcessExited();
-            }
+            log?.LogProcessExited();
 
             return exitcode;
         }

@@ -108,11 +108,11 @@ namespace At.FF.Krems.FullscreenBrowser
 
             if (!this.CheckAccess())
             {
-                Dispatcher.BeginInvoke(new Action(this.HideScreenRefresher));
+                this.Dispatcher.BeginInvoke(new Action(this.HideScreenRefresher));
                 return;
             }
 
-            Dispatcher.BeginInvoke(new Action(this.eventHook.Stop));
+            this.Dispatcher.BeginInvoke(new Action(this.eventHook.Stop));
             this.Hide();
             this.StartTimer();
         }
@@ -134,7 +134,7 @@ namespace At.FF.Krems.FullscreenBrowser
                         Thread.CurrentThread.Name = ThreadName;
                     }
 
-                    Dispatcher.BeginInvoke(new Action(this.eventHook.Start));
+                    this.Dispatcher.BeginInvoke(new Action(this.eventHook.Start));
                     this.StartAnimation(this.cycleColors.First());
                 },
                 CancellationToken.None,
@@ -181,8 +181,8 @@ namespace At.FF.Krems.FullscreenBrowser
 
             this.initializeCalled = true;
             this.config = Bootstrapper.GetInstance<IBrowserConfiguration>().Config.ScreenRefresher;
-            Canvas.SetTop(RectangleAnimation, this.config.Height * -1);
-            RectangleAnimation.Height = this.config.Height;
+            Canvas.SetTop(this.RectangleAnimation, this.config.Height * -1);
+            this.RectangleAnimation.Height = this.config.Height;
 
             if (this.config.RunAtStartup)
             {
@@ -219,24 +219,24 @@ namespace At.FF.Krems.FullscreenBrowser
                 return;
             }
 
-            WindowAnimation.Width = SystemParameters.VirtualScreenWidth;
-            WindowAnimation.Height = SystemParameters.VirtualScreenHeight;
-            RectangleAnimation.Fill = new SolidColorBrush(color);
-            var currentPositionY = Canvas.GetTop(RectangleAnimation);
+            this.WindowAnimation.Width = SystemParameters.VirtualScreenWidth;
+            this.WindowAnimation.Height = SystemParameters.VirtualScreenHeight;
+            this.RectangleAnimation.Fill = new SolidColorBrush(color);
+            var currentPositionY = Canvas.GetTop(this.RectangleAnimation);
             var moveAnimY = new DoubleAnimation(
                 currentPositionY,
-                currentPositionY > 0 ? RectangleAnimation.Height * -1 : WindowAnimation.Height,
+                currentPositionY > 0 ? this.RectangleAnimation.Height * -1 : this.WindowAnimation.Height,
                 new Duration(TimeSpan.FromSeconds(this.config.Duration)));
-            if (this.cycleColors.Last() != ((SolidColorBrush)RectangleAnimation.Fill).Color)
+            if (this.cycleColors.Last() != ((SolidColorBrush)this.RectangleAnimation.Fill).Color)
             {
-                moveAnimY.Completed += (sender, args) => this.StartAnimation(this.cycleColors.SkipWhile(col => col != ((SolidColorBrush)RectangleAnimation.Fill).Color).Skip(1).First());
+                moveAnimY.Completed += (sender, args) => this.StartAnimation(this.cycleColors.SkipWhile(col => col != ((SolidColorBrush)this.RectangleAnimation.Fill).Color).Skip(1).First());
             }
             else
             {
                 moveAnimY.Completed += (sender, args) => this.HideScreenRefresher();
             }
 
-            RectangleAnimation.BeginAnimation(Canvas.TopProperty, moveAnimY);
+            this.RectangleAnimation.BeginAnimation(Canvas.TopProperty, moveAnimY);
         }
 
         #endregion
