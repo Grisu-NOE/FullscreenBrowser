@@ -172,10 +172,7 @@ namespace At.FF.Krems.FullscreenBrowser
             uint dwmsEventTime)
         {
             Logger.DebugFormat("Foreground changed to {0:x8}", hwnd.ToInt32());
-            if (this.EventFired != null)
-            {
-                this.EventFired(hWinEventHook, eventType, hwnd, idObject, idChild, dwEventThread, dwmsEventTime);
-            }
+            this.EventFired?.Invoke(hWinEventHook, eventType, hwnd, idObject, idChild, dwEventThread, dwmsEventTime);
         }
 
         #endregion
