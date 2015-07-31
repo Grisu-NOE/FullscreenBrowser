@@ -238,7 +238,7 @@ namespace At.FF.Krems.FullscreenBrowser
         private void ParseRequest()
         {
             var text = StreamReadLine(this.inputStreamField);
-            this.HttpUrl = text.Split(new[] { ' ' })[1];
+            this.HttpUrl = text.Split(' ')[1];
         }
 
         #endregion Methods
