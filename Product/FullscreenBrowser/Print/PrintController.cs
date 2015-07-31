@@ -257,6 +257,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                                     this.GetData(
                                         $"https://secure.florian10.info/ows/infoscreen/geo/umkreis.ashx?lat={latLng[0]}&lng={latLng[1]}");
                                 item.Area = JsonConvert.DeserializeObject<Area>(areaJson);
+                                item.Area.PointLimit = this.config.MaxHydrants;
                             }
                         }
                     }

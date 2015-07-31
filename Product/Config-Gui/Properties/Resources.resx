@@ -417,4 +417,10 @@ es können damit auch mehrere Fenster auf einem Schirm angzeigt werden.</value>
   <data name="PrintOnEmergency_DE_AT" xml:space="preserve">
     <value>Bei Einsatz automatisch drucken</value>
   </data>
+  <data name="MaxHydrants_DE_AT" xml:space="preserve">
+    <value>Hydranten</value>
+  </data>
+  <data name="MaxHydrants_ToolTip_DE_AT" xml:space="preserve">
+    <value>Maximale Anzahl an Hydranten auf Druckseite</value>
+  </data>
 </root>

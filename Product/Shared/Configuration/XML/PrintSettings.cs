@@ -51,127 +51,33 @@ namespace At.FF.Krems.Configuration.XML
     [Serializable]
     public class PrintSettings
     {
-        /// <summary>The print URL</summary>
-        private string printUrl = "https://infoscreen.florian10.info/ows/infoscreen/einsatz.ashx";
-
-        /// <summary>The print port</summary>
-        private int printPort = 121;
-
-        /// <summary>The print enabled</summary>
-        private bool printEnabled = true;
-
-        /// <summary>The print on emergency</summary>
-        private bool printOnEmergency = true;
-
-        /// <summary>The number of pages per click</summary>
-        private int numberOfPagesPerClick = 1;
-
-        /// <summary>The number of pages on emergency</summary>
-        private int numberOfPagesOnEmergency = 3;
-
-        /// <summary>The map type</summary>
-        private MapType mapType = MapType.Roadmap;
-
         /// <summary>Gets or sets the print URL.</summary>
-        public string PrintUrl
-        {
-            get
-            {
-                return this.printUrl;
-            }
-
-            set
-            {
-                this.printUrl = value;
-            }
-        }
+        public string PrintUrl { get; set; } = "https://infoscreen.florian10.info/ows/infoscreen/einsatz.ashx";
 
         /// <summary>Gets or sets the print port.</summary>
-        public int PrintPort
-        {
-            get
-            {
-                return this.printPort;
-            }
-
-            set
-            {
-                this.printPort = value;
-            }
-        }
+        public int PrintPort { get; set; } = 121;
 
         /// <summary>Gets or sets a value indicating whether print enabled.</summary>
-        public bool PrintEnabled
-        {
-            get
-            {
-                return this.printEnabled;
-            }
-
-            set
-            {
-                this.printEnabled = value;
-            }
-        }
+        public bool PrintEnabled { get; set; } = true;
 
         /// <summary>Gets or sets a value indicating whether [print on emergency].</summary>
         /// <value><c>true</c> if [print on emergency]; otherwise, <c>false</c>.</value>
-        public bool PrintOnEmergency
-        {
-            get
-            {
-                return this.printOnEmergency;
-            }
-
-            set
-            {
-                this.printOnEmergency = value;
-            }
-        }
+        public bool PrintOnEmergency { get; set; } = true;
 
         /// <summary>Gets or sets the number of pages per click.</summary>
         /// <value>The number of pages per click.</value>
-        public int NumberOfPagesPerClick
-        {
-            get
-            {
-                return this.numberOfPagesPerClick;
-            }
-
-            set
-            {
-                this.numberOfPagesPerClick = value;
-            }
-        }
+        public int NumberOfPagesPerClick { get; set; } = 1;
 
         /// <summary>Gets or sets the number of pages on emergency.</summary>
         /// <value>The number of pages on emergency.</value>
-        public int NumberOfPagesOnEmergency
-        {
-            get
-            {
-                return this.numberOfPagesOnEmergency;
-            }
-
-            set
-            {
-                this.numberOfPagesOnEmergency = value;
-            }
-        }
+        public int NumberOfPagesOnEmergency { get; set; } = 3;
 
         /// <summary>Gets or sets the type of the map.</summary>
         /// <value>The type of the map.</value>
-        public MapType MapType
-        {
-            get
-            {
-                return this.mapType;
-            }
-            
-            set
-            {
-                this.mapType = value;
-            }
-        }
+        public MapType MapType { get; set; } = MapType.Roadmap;
+
+        /// <summary>Gets or sets the maximum number of hydrants.</summary>
+        /// <value>The maximum number of hydrants.</value>
+        public int MaxHydrants { get; set; } = 10;
     }
 }

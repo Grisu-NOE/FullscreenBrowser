@@ -53,7 +53,7 @@ namespace At.FF.Krems.Config_Gui
         /// <summary>Initializes a new instance of the <see cref="BrowserConfigViewModel"/> class.</summary>
         public BrowserConfigViewModel()
         {
-            this.Config = new BrowserConfig { PrintSettings = new PrintSettings { PrintEnabled = true, PrintUrl = "https://infoscreen.florian10.info/ows/infoscreen/print/print.ashx", PrintPort = 121 }, ScreenRefresher = new ScreenRefresher { Duration = 30, Enabled = true, Height = 50, Interval = 60, RunAtStartup = true }, ClearCookiesAtStartup = false, Proxy = new WindowProxy { Type = ProxyType.NoProxy } };
+            this.Config = new BrowserConfig { PrintSettings = new PrintSettings(), ScreenRefresher = new ScreenRefresher { Duration = 30, Enabled = true, Height = 50, Interval = 60, RunAtStartup = true }, ClearCookiesAtStartup = false, Proxy = new WindowProxy { Type = ProxyType.NoProxy } };
             this.Windows = new ObservableCollection<Window>();
             this.Windows.CollectionChanged += (sender, args) =>
             {
@@ -248,6 +248,27 @@ namespace At.FF.Krems.Config_Gui
                 }
 
                 this.Config.PrintSettings.NumberOfPagesPerClick = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        /// <summary>Gets or sets the maximum number of hydrants.</summary>
+        /// <value>The maximum number of hydrants.</value>
+        public int MaxHydrants
+        {
+            get
+            {
+                return this.Config.PrintSettings.MaxHydrants;
+            }
+
+            set
+            {
+                if (this.MaxHydrants.Equals(value))
+                {
+                    return;
+                }
+
+                this.Config.PrintSettings.MaxHydrants = value;
                 this.OnPropertyChanged();
             }
         }

@@ -33,19 +33,16 @@ namespace At.FF.Krems.FullscreenBrowser.Print
         /// <summary>The points</summary>
         private List<Point> points;
 
+        /// <summary>Gets or sets the limit of the points.</summary>
+        /// <value>The limit.</value>
+        public int PointLimit { get; set; } = 10;
+
         /// <summary>Gets or sets the points.</summary>
         /// <value>The points.</value>
         public List<Point> Points
         {
-            get
-            {
-                return this.points?.OrderBy(x => x.Dis).ToList();
-            }
-
-            set
-            {
-                this.points = value;
-            }
+            get { return this.points?.OrderBy(x => x.Dis).ToList(); }
+            set { this.points = value; }
         }
 
         /// <summary>Gets the limited points.</summary>
@@ -55,7 +52,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
             get
             {
                 var result = this.Points;
-                return result?.Take(10).ToList();
+                return result?.Take(this.PointLimit).ToList();
             }
         }
 
