@@ -1,34 +1,33 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MainWindow.xaml.cs" company="Freiwillige Feuerwehr Krems/Donau">
-//     Freiwillige Feuerwehr Krems/Donau
-//     Austraße 33
-//     A-3500 Krems/Donau
-//     Austria
-// 
-//     Tel.:   +43 (0)2732 85522
-//     Fax.:   +43 (0)2732 85522 40
-//     E-mail: office@feuerwehr-krems.at
-// 
-//     This software is furnished under a license and may be
-//     used  and copied only in accordance with the terms of
-//     such  license  and  with  the  inclusion of the above
-//     copyright  notice.  This software or any other copies
-//     thereof   may  not  be  provided  or  otherwise  made
-//     available  to  any  other  person.  No  title  to and
-//     ownership of the software is hereby transferred.
-// 
-//     The information in this software is subject to change
-//     without  notice  and  should  not  be  construed as a
-//     commitment by Freiwillige Feuerwehr Krems/Donau.
-// 
+//   Freiwillige Feuerwehr Krems/Donau
+//   //     Austraße 33
+//   //     A-3500 Krems/Donau
+//   //     Austria
+//   //     Tel.:   +43 (0)2732 85522
+//   //     Fax.:   +43 (0)2732 85522 40
+//   //     E-mail: office@feuerwehr-krems.at
+//   //     This software is furnished under a license and may be
+//   //     used  and copied only in accordance with the terms of
+//   //     such  license  and  with  the  inclusion of the above
+//   //     copyright  notice.  This software or any other copies
+//   //     thereof   may  not  be  provided  or  otherwise  made
+//   //     available  to  any  other  person.  No  title  to and
+//   //     ownership of the software is hereby transferred.
+//   //     The information in this software is subject to change
+//   //     without  notice  and  should  not  be  construed as a
+//   //     commitment by Freiwillige Feuerwehr Krems/Donau.
 // </copyright>
+// <summary>
+//   Interaction logic for MainWindow.XAML
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace At.FF.Krems.Config_Gui
 {
     using System.ComponentModel;
     using System.IO;
     using System.Linq;
-    using System.Reflection;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -36,9 +35,9 @@ namespace At.FF.Krems.Config_Gui
     using System.Xml;
     using System.Xml.Serialization;
 
-    using At.FF.Krems.Configuration.XML;
-    using At.FF.Krems.Utils;
-    using At.FF.Krems.Utils.Extensions;
+    using Configuration.XML;
+    using Utils;
+    using Utils.Extensions;
 
     using KellermanSoftware.CompareNetObjects;
 
@@ -89,33 +88,15 @@ namespace At.FF.Krems.Config_Gui
 
         /// <summary>Gets the view model.</summary>
         /// <value>The view model.</value>
-        private BrowserConfigViewModel ViewModel
-        {
-            get
-            {
-                return (BrowserConfigViewModel)this.DataContext;
-            }
-        }
+        private BrowserConfigViewModel ViewModel => (BrowserConfigViewModel)this.DataContext;
 
         /// <summary>Gets the height of the expander.</summary>
         /// <value>The height of the expander.</value>
-        private double ExpanderHeight
-        {
-            get
-            {
-                return (double)this.Resources["ExpanderHeight"];
-            }
-        }
+        private double ExpanderHeight => (double)this.Resources["ExpanderHeight"];
 
         /// <summary>Gets the width of the expander.</summary>
         /// <value>The width of the expander.</value>
-        private double ExpanderWidth
-        {
-            get
-            {
-                return (double)this.Resources["ExpanderWidth"];
-            }
-        }
+        private double ExpanderWidth => (double)this.Resources["ExpanderWidth"];
 
         #endregion
 
@@ -243,14 +224,14 @@ namespace At.FF.Krems.Config_Gui
         {
             this.ViewModel.Windows.Add(new Configuration.XML.Window
                                        {
-                                           Name = Properties.Resources.EnterName_DE_AT,
-                                           Autostart = true,
-                                           OnTop = true,
-                                           ShowOnScreen = 1,
-                                           Position = new WindowPosition { PosX = 0, PosY = 0 },
-                                           Dimensions = new WindowDimensions { Height = "max", Width = "max2" },
-                                           IsAlternativeWindow = false,
-                                           ReloadInSeconds = 0,
+                                           Name = Properties.Resources.EnterName_DE_AT, 
+                                           Autostart = true, 
+                                           OnTop = true, 
+                                           ShowOnScreen = 1, 
+                                           Position = new WindowPosition { PosX = 0, PosY = 0 }, 
+                                           Dimensions = new WindowDimensions { Height = "max", Width = "max2" }, 
+                                           IsAlternativeWindow = false, 
+                                           ReloadInSeconds = 0, 
                                            ZoomLevel = 1f
                                        });
             this.ViewModel.SelectedWindow = this.ViewModel.Windows.Last();
@@ -297,7 +278,7 @@ namespace At.FF.Krems.Config_Gui
                 return;
             }
 
-            var listBox = sender as ListBox;
+            var listBox = (ListBox)sender;
             var data = GetDataFromListBox(listBox, e.GetPosition(listBox));
 
             if (data != null)
