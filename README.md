@@ -1,5 +1,7 @@
-Grisu NÖ - Infoscreen [![MIT License][license-image]][license-url] [![Build Status][vsonline-image]][vsonline-url]
+Grisu NÖ - Infoscreen
 ============
+[![MIT License][license-image]][license-url] [![Build Status][vsonline-image]][vsonline-url] [![Join the chat at https://gitter.im/Grisu-NOE/Infoscreen](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Grisu-NOE/Infoscreen?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This project aims to build a desktop-based application to improve and extend the functionality of https://infoscreen.florian10.info/.
 
 Licencing
