@@ -237,6 +237,7 @@ namespace At.FF.Krems.Utils.Logging
             }
 
             this.initializeCalled = true;
+            // ReSharper disable once AssignNullToNotNullAttribute
             this.LoggingDirectory = Path.Combine(new FileInfo(ReflectionExtensions.GetEntryAssembly().Location).DirectoryName, "Logging");
             Directory.CreateDirectory(this.LoggingDirectory);
             var configFile = new FileInfo(Path.Combine(this.LoggingDirectory, "Log4NetConfig_" + ReflectionExtensions.GetEntryAssembly().GetName().Name + ".xml"));
@@ -254,9 +255,9 @@ namespace At.FF.Krems.Utils.Logging
             }
 
             GlobalContext.Properties["PATHNAME"] = "Logging";
-            GlobalContext.Properties["FILENAME_TRACE"] = string.Format("{0}_TRACE.log", ReflectionExtensions.GetEntryAssembly().GetName().Name);
-            GlobalContext.Properties["FILENAME_DEBUG"] = string.Format("{0}_DEBUG.log", ReflectionExtensions.GetEntryAssembly().GetName().Name);
-            GlobalContext.Properties["FILENAME_NOTICE"] = string.Format("{0}.log", ReflectionExtensions.GetEntryAssembly().GetName().Name);
+            GlobalContext.Properties["FILENAME_TRACE"] = $"{ReflectionExtensions.GetEntryAssembly().GetName().Name}_TRACE.log";
+            GlobalContext.Properties["FILENAME_DEBUG"] = $"{ReflectionExtensions.GetEntryAssembly().GetName().Name}_DEBUG.log";
+            GlobalContext.Properties["FILENAME_NOTICE"] = $"{ReflectionExtensions.GetEntryAssembly().GetName().Name}.log";
 
             XmlConfigurator.ConfigureAndWatch(configFile);
 

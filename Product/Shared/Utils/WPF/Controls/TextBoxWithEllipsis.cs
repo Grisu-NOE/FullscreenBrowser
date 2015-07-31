@@ -73,7 +73,7 @@ namespace At.FF.Krems.Utils.WPF.Controls
         private bool externalChange = true;
 
         /// <summary>Used to disable ellipsis internally (primarily while the control has the focus).</summary>
-        private bool internalEnabled = true;
+        private bool internalEnabled;
 
         /// <summary>Backer for LongText.</summary>
         private string longText = string.Empty;
@@ -234,13 +234,7 @@ namespace At.FF.Krems.Utils.WPF.Controls
 
         /// <summary>Gets a value indicating whether do ellipsis.</summary>
         /// <value><c>true</c> if [do ellipsis]; otherwise, <c>false</c>.</value>
-        private bool DoEllipsis
-        {
-            get
-            {
-                return this.IsEllipsisEnabled && this.internalEnabled;
-            }
-        }
+        private bool DoEllipsis => this.IsEllipsisEnabled && this.internalEnabled;
 
         #endregion
 

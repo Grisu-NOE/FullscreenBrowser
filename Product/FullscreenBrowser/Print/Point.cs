@@ -63,13 +63,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
 
         /// <summary>Gets the short address.</summary>
         /// <value>The short address.</value>
-        public string ShortAddress
-        {
-            get
-            {
-                return string.IsNullOrWhiteSpace(this.Adr) ? string.Empty : this.Adr.Split(',').FirstOrDefault();
-            }
-        }
+        public string ShortAddress => string.IsNullOrWhiteSpace(this.Adr) ? string.Empty : this.Adr.Split(',').FirstOrDefault();
 
         /// <summary>Gets or sets the EID.</summary>
         /// <value>The EID.</value>

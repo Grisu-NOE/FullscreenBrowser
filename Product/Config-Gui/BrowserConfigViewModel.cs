@@ -78,7 +78,7 @@ namespace At.FF.Krems.Config_Gui
         #region Properties
 
         /// <summary>Gets the windows.</summary>
-        public ObservableCollection<Window> Windows { get; private set; }
+        public ObservableCollection<Window> Windows { get; }
 
         /// <summary>Gets or sets the selected window.</summary>
         public Window SelectedWindow
@@ -101,7 +101,7 @@ namespace At.FF.Krems.Config_Gui
         }
 
         /// <summary>Gets the config.</summary>
-        public BrowserConfig Config { get; private set; }
+        public BrowserConfig Config { get; }
 
         /// <summary>Gets or sets a value indicating whether disable screensaver permanently.</summary>
         /// <value>
@@ -522,7 +522,7 @@ namespace At.FF.Krems.Config_Gui
 
         /// <summary>Gets the cookies.</summary>
         /// <value>The cookies.</value>
-        public ObservableCollection<Cookie> Cookies { get; private set; }
+        public ObservableCollection<Cookie> Cookies { get; }
 
         /// <summary>Gets or sets the selected cookie.</summary>
         /// <value>The selected cookie.</value>

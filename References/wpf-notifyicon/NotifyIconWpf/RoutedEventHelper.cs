@@ -18,13 +18,14 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="args">RoutedEventArgs to use when raising the event</param>
         internal static void RaiseEvent(DependencyObject target, RoutedEventArgs args)
         {
-            if (target is UIElement)
+            var element = target as UIElement;
+            if (element != null)
             {
-                (target as UIElement).RaiseEvent(args);
+                element.RaiseEvent(args);
             }
-            else if (target is ContentElement)
+            else
             {
-                (target as ContentElement).RaiseEvent(args);
+                (target as ContentElement)?.RaiseEvent(args);
             }
         }
 
@@ -37,18 +38,15 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="handler">Event handler to be added</param>
         internal static void AddHandler(DependencyObject element, RoutedEvent routedEvent, Delegate handler)
         {
-            UIElement uie = element as UIElement;
+            var uie = element as UIElement;
             if (uie != null)
             {
                 uie.AddHandler(routedEvent, handler);
             }
             else
             {
-                ContentElement ce = element as ContentElement;
-                if (ce != null)
-                {
-                    ce.AddHandler(routedEvent, handler);
-                }
+                var ce = element as ContentElement;
+                ce?.AddHandler(routedEvent, handler);
             }
         }
 
@@ -61,18 +59,15 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// <param name="handler">Event handler to be removed</param>
         internal static void RemoveHandler(DependencyObject element, RoutedEvent routedEvent, Delegate handler)
         {
-            UIElement uie = element as UIElement;
+            var uie = element as UIElement;
             if (uie != null)
             {
                 uie.RemoveHandler(routedEvent, handler);
             }
             else
             {
-                ContentElement ce = element as ContentElement;
-                if (ce != null)
-                {
-                    ce.RemoveHandler(routedEvent, handler);
-                }
+                var ce = element as ContentElement;
+                ce?.RemoveHandler(routedEvent, handler);
             }
         }
 

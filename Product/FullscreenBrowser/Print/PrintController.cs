@@ -141,7 +141,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
         {
             var data = this.GetData(this.config.PrintUrl);
             var printTemplateViewModel = JsonConvert.DeserializeObject<PrintTemplateViewModel>(data);
-            if (printTemplateViewModel == null || printTemplateViewModel.EinsatzData == null)
+            if (printTemplateViewModel?.EinsatzData == null)
             {
                 return;
             }
@@ -153,6 +153,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                 if (printQueue == null)
                 {
                     // No printer exist, return null PrintTicket
+                    // ReSharper disable once InconsistentlySynchronizedField
                     Logger.Info("No printer exists");
                     return;
                 }
@@ -223,6 +224,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                         }
                     }
 
+                    // ReSharper disable once InconsistentlySynchronizedField
                     Logger.DebugFormat(
                         "Printing '{0}', # of copies={1}",
                         item.EinsatzID,
@@ -232,12 +234,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                     {
                         var mapData =
                             this.GetData(
-                                string.Format(
-                                    "https://secure.florian10.info/ows/infoscreen/geo/staticmap.ashx?address={0}{1},%20{2}%20{3}",
-                                    item.Strasse,
-                                    string.IsNullOrWhiteSpace(item.Nummer1) ? string.Empty : "%20" + item.Nummer1,
-                                    item.Plz,
-                                    item.Ort));
+                                $"https://secure.florian10.info/ows/infoscreen/geo/staticmap.ashx?address={item.Strasse}{(string.IsNullOrWhiteSpace(item.Nummer1) ? string.Empty : "%20" + item.Nummer1)},%20{item.Plz}%20{item.Ort}");
                         if (!string.IsNullOrWhiteSpace(mapData))
                         {
                             var mapUrl =
@@ -246,7 +243,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                                     .Replace("&size=800x400&", "&size=640x640&scale=2&")
                                     .Replace("2.png", ".png")
                                     .Replace("&markers=icon:http://", "&markers=scale:2|icon:http://");
-                            item.MapUrl = string.Format("{0}&maptype={1}", mapUrl, this.config.MapType.ToString().ToLowerInvariant());
+                            item.MapUrl = $"{mapUrl}&maptype={this.config.MapType.ToString().ToLowerInvariant()}";
                             var latLng =
                                 mapData.Split('&')
                                     .First(x => x.StartsWith("center="))
@@ -258,10 +255,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                             {
                                 var areaJson =
                                     this.GetData(
-                                        string.Format(
-                                            "https://secure.florian10.info/ows/infoscreen/geo/umkreis.ashx?lat={0}&lng={1}",
-                                            latLng[0],
-                                            latLng[1]));
+                                        $"https://secure.florian10.info/ows/infoscreen/geo/umkreis.ashx?lat={latLng[0]}&lng={latLng[1]}");
                                 item.Area = JsonConvert.DeserializeObject<Area>(areaJson);
                             }
                         }
@@ -285,16 +279,14 @@ namespace At.FF.Krems.FullscreenBrowser.Print
 
                 if (doc.Pages.Any())
                 {
+                    // ReSharper disable once InconsistentlySynchronizedField
                     Logger.Debug("Printing now");
                     PrintQueue.CreateXpsDocumentWriter(printQueue).Write(doc, printTicket);
                 }
             }
             finally
             {
-                if (printQueue != null)
-                {
-                    printQueue.Dispose();
-                }
+                printQueue?.Dispose();
             }
         }
 

@@ -46,7 +46,7 @@ namespace At.FF.Krems.Utils.WPF.Converters
                 throw new InvalidOperationException("The target must be a visibility enumerator");
             }
 
-            return value == null || string.IsNullOrWhiteSpace(value.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+            return string.IsNullOrWhiteSpace(value?.ToString()) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         /// <summary>Converts the back.</summary>

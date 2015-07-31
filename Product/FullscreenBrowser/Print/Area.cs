@@ -39,7 +39,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
         {
             get
             {
-                return this.points == null ? null : this.points.OrderBy(x => x.Dis).ToList();
+                return this.points?.OrderBy(x => x.Dis).ToList();
             }
 
             set
@@ -55,7 +55,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
             get
             {
                 var result = this.Points;
-                return result == null ? null : result.Take(10).ToList();
+                return result?.Take(10).ToList();
             }
         }
 

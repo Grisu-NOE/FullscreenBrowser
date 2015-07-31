@@ -34,6 +34,8 @@ using Hardcodet.Wpf.TaskbarNotification.Interop;
 
 namespace Hardcodet.Wpf.TaskbarNotification
 {
+    using System.Linq;
+
     /// <summary>
     /// Util and extension methods.
     /// </summary>
@@ -43,15 +45,10 @@ namespace Hardcodet.Wpf.TaskbarNotification
 
         #region IsDesignMode
 
-        private static readonly bool isDesignMode;
-
         /// <summary>
         /// Checks whether the application is currently in design mode.
         /// </summary>
-        public static bool IsDesignMode
-        {
-            get { return isDesignMode; }
-        }
+        public static bool IsDesignMode { get; }
 
         #endregion
 
@@ -59,7 +56,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
 
         static Util()
         {
-            isDesignMode =
+            IsDesignMode =
                 (bool)
                     DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty,
                         typeof (FrameworkElement))
@@ -150,7 +147,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
                 case BalloonIcon.Error:
                     return BalloonFlags.Error;
                 default:
-                    throw new ArgumentOutOfRangeException("icon");
+                    throw new ArgumentOutOfRangeException(nameof(icon));
             }
         }
 
@@ -202,14 +199,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// is a null reference.</exception>
         public static bool Is<T>(this T value, params T[] candidates)
         {
-            if (candidates == null) return false;
-
-            foreach (var t in candidates)
-            {
-                if (value.Equals(t)) return true;
-            }
-
-            return false;
+            return candidates != null && candidates.Contains(value);
         }
 
         #endregion
@@ -240,7 +230,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
                     //return true for everything except mouse movements
                     return me != MouseEvent.MouseMove;
                 default:
-                    throw new ArgumentOutOfRangeException("activationMode");
+                    throw new ArgumentOutOfRangeException(nameof(activationMode));
             }
         }
 
@@ -260,7 +250,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         {
             if (command == null) return;
 
-            RoutedCommand rc = command as RoutedCommand;
+            var rc = command as RoutedCommand;
             if (rc != null)
             {
                 //routed commands work on a target
@@ -302,7 +292,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
         /// is a null reference.</exception>
         public static bool IsDataContextDataBound(this FrameworkElement element)
         {
-            if (element == null) throw new ArgumentNullException("element");
+            if (element == null) throw new ArgumentNullException(nameof(element));
             return element.GetBindingExpression(FrameworkElement.DataContextProperty) != null;
         }
     }
