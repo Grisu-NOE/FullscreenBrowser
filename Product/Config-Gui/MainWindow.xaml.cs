@@ -158,6 +158,7 @@ namespace At.FF.Krems.Config_Gui
             this.ViewModel.NumberOfPagesPerClick = config.PrintSettings.NumberOfPagesPerClick;
             this.ViewModel.NumberOfPagesOnEmergency = config.PrintSettings.NumberOfPagesOnEmergency;
             this.ViewModel.MapType = config.PrintSettings.MapType;
+            this.ViewModel.MaxHydrants = config.PrintSettings.MaxHydrants;
 
             this.ViewModel.Runtime = config.Runtime;
             this.ViewModel.ScreenRefresherDuration = config.ScreenRefresher.Duration;
