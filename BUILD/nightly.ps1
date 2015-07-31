@@ -1,0 +1,1 @@
+ls | cp -Recurse -Destination $BUILD_STAGINGDIRECTORY\drop -Force
