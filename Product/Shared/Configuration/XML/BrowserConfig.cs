@@ -44,7 +44,7 @@ namespace At.FF.Krems.Configuration.XML
         private readonly object showClosedWindowsInMinutesLockObject = new object();
 
         /// <summary>The runtime</summary>
-        private string runtime = "xulrunner_29.0.1";
+        private string runtime = "xulrunner_31.0";
 
         /// <summary>Gets or sets the cookie field.</summary>
         private Cookie[] cookieField;

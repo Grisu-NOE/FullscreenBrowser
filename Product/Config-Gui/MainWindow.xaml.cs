@@ -63,7 +63,7 @@ namespace At.FF.Krems.Config_Gui
             if (File.Exists(Constants.XmlFile))
             {
                 var xmlSerializer = new XmlSerializer(typeof(BrowserConfig));
-                using (var xmlReader = XmlReader.Create("windowConfig.xml"))
+                using (var xmlReader = XmlReader.Create(Constants.XmlFile))
                 {
                     var browserConfig = (BrowserConfig)xmlSerializer.Deserialize(xmlReader);
                     if (browserConfig != null)
@@ -149,9 +149,16 @@ namespace At.FF.Krems.Config_Gui
         private void SetViewModelProperties(BrowserConfig config)
         {
             this.ViewModel.DisableScreensaverPermanently = config.DisableScreensaverPermanently;
-            this.ViewModel.PrintEnabled = config.PrintSettings.PrintEnabled;
-            this.ViewModel.PrintPort = config.PrintSettings.PrintPort;
+
+            // Print settings
             this.ViewModel.PrintUrl = config.PrintSettings.PrintUrl;
+            this.ViewModel.PrintPort = config.PrintSettings.PrintPort;
+            this.ViewModel.PrintEnabled = config.PrintSettings.PrintEnabled;
+            this.ViewModel.PrintOnEmergency = config.PrintSettings.PrintOnEmergency;
+            this.ViewModel.NumberOfPagesPerClick = config.PrintSettings.NumberOfPagesPerClick;
+            this.ViewModel.NumberOfPagesOnEmergency = config.PrintSettings.NumberOfPagesOnEmergency;
+            this.ViewModel.MapType = config.PrintSettings.MapType;
+
             this.ViewModel.Runtime = config.Runtime;
             this.ViewModel.ScreenRefresherDuration = config.ScreenRefresher.Duration;
             this.ViewModel.ScreenRefresherEnabled = config.ScreenRefresher.Enabled;
