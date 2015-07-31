@@ -7,7 +7,7 @@ Licencing
 
 Grisu NÖ - Infoscreen is licenced under the [MIT License (MIT)](LICENSE).
 
-[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
 
 [vsonline-url]: https://grisu-noe.visualstudio.com/DefaultCollection/Infoscreen
