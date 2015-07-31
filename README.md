@@ -1,6 +1,6 @@
 Grisu NÖ - Infoscreen [![MIT License][license-image]][license-url] [![Build Status][vsonline-image]][vsonline-url]
 ============
-This project aims to build a Desktop based application to improve and extend the functionality of https://infoscreen.florian10.info/.
+This project aims to build a desktop-based application to improve and extend the functionality of https://infoscreen.florian10.info/.
 
 Licencing
 ---------
