@@ -468,23 +468,11 @@ namespace At.FF.Krems.Config_Gui
 
         /// <summary>Gets the proxy type list.</summary>
         /// <value>The proxy type list.</value>
-        public IEnumerable<ProxyType> ProxyTypeList
-        {
-            get
-            {
-                return Enum.GetValues(typeof(ProxyType)).Cast<ProxyType>();
-            }
-        }
+        public IEnumerable<ProxyType> ProxyTypeList => Enum.GetValues(typeof(ProxyType)).Cast<ProxyType>();
 
         /// <summary>Gets the map type list.</summary>
         /// <value>The map type list.</value>
-        public IEnumerable<MapType> MapTypeList
-        {
-            get
-            {
-                return Enum.GetValues(typeof(MapType)).Cast<MapType>();
-            }
-        }
+        public IEnumerable<MapType> MapTypeList => Enum.GetValues(typeof(MapType)).Cast<MapType>();
 
         /// <summary>Gets or sets the type of the map.</summary>
         /// <value>The type of the map.</value>
@@ -567,10 +555,7 @@ namespace At.FF.Krems.Config_Gui
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion
