@@ -1,5 +1,5 @@
-# Enable -Verbose option
 [CmdletBinding()]
+# Enable -Verbose option
 
 # Make sure path to source code directory is available
 if (-not $Env:BUILD_SOURCESDIRECTORY)
