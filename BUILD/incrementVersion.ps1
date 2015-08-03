@@ -28,5 +28,5 @@ $body = @{
   "sha"=$serverContent.sha
 }
 
-$postAnswer = Invoke-WebRequest -UseBasicParsing -Uri https://api.github.com/repos/Grisu-NOE/Infoscreen/contents/Version.txt -Method Put -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
+$postAnswer = Invoke-WebRequest -UseBasicParsing -Uri $serverContent.url -Method Put -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
 Write-Host "Update status code is $($postAnswer.StatusCode) $($postAnswer.StatusDescription)"
