@@ -18,3 +18,5 @@ ls $binaries -Recurse
 
 Write-Host """$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe"" a -t7z -mx$Env:CompressionLevel -mmt -ms -sfx ""$Env:BUILD_STAGINGDIRECTORY\$fileVersion.exe"" ""$binaries"""
 & "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" a -t7z -mx$Env:CompressionLevel -mmt -ms -sfx "$Env:BUILD_STAGINGDIRECTORY\$fileVersion.exe" "$binaries"
+
+& "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" -?
