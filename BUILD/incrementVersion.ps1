@@ -7,7 +7,7 @@ Write-Host "Calculated version: $newVersion"
 #$newFileVersion = [version](Get-Content $file | Select -First 1)
 #Write-Host "Stored version: $newFileVersion"
 
-$getAnswer = Invoke-WebRequest -Uri https://api.github.com/repos/Grisu-NOE/Infoscreen/contents/Version.txt -Method Get
+$getAnswer = Invoke-WebRequest -UseBasicParsing -Uri https://api.github.com/repos/Grisu-NOE/Infoscreen/contents/Version.txt -Method Get
 if (-not $getAnswer.StatusCode.Equals(200))
 {
     Write-Error "HTTP status code is not 200! Returned $($getAnswer.StatusCode) $($getAnswer.StatusDescription)"
@@ -26,5 +26,5 @@ $body = @{
   "sha"=$serverContent.sha
 }
 
-$postAnswer = Invoke-WebRequest -Uri https://api.github.com/repos/Grisu-NOE/Infoscreen/contents/Version.txt -Method Put -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
+$postAnswer = Invoke-WebRequest -UseBasicParsing -Uri https://api.github.com/repos/Grisu-NOE/Infoscreen/contents/Version.txt -Method Put -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
 Write-Host "Update status code is $($postAnswer.StatusCode) $($postAnswer.StatusDescription)"
