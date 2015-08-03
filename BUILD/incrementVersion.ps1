@@ -31,5 +31,9 @@ $body = @{
 Write-Host "Committer name is $Env:GitUserName"
 Write-Host "Committer email is $Env:GitUserEmail"
 
-$postAnswer = Invoke-WebRequest -Headers @{"Authorization"="token $($Env:GitToken)"} -UseBasicParsing -Uri $serverContent.url -Method Put -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
+$auth = @{
+  "Authorization"="token " + $Env:GitToken
+}
+
+$postAnswer = Invoke-WebRequest -Headers $auth -UseBasicParsing -Uri $serverContent.url -Method Put -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
 Write-Host "Update status code is $($postAnswer.StatusCode) $($postAnswer.StatusDescription)"
