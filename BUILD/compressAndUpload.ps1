@@ -14,4 +14,4 @@ $binaries = "$Env:BUILD_STAGINGDIRECTORY\$fileVersion"
 Move-Item "$Env:BUILD_STAGINGDIRECTORY\*" $binaries
 
 Write-Host "Compression level is $Env:CompressionLevel"
-& "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" a -t7z -mx$($Env:CompressionLevel) -mmt -ms -sfx "$fileVersion.exe" $binaries -xr!logs
+& "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" a -t7z -mx$Env:CompressionLevel -mmt -ms -sfx "$fileVersion.exe" $binaries -xr!logs
