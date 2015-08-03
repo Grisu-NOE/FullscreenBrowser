@@ -10,4 +10,4 @@ $solutionInfo = $Env:BUILD_SOURCESDIRECTORY + "\SolutionInfo.cs"
 $filecontent = Get-Content($solutionInfo)
 #attrib $solutionInfo -r
 $filecontent -replace $VersionRegex, $fileVersion | Out-File $solutionInfo
-Write-Host "$solutionInfo.FullName - version applied"
+Write-Host "$solutionInfo - version applied"
