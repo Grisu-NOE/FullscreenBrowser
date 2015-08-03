@@ -6,8 +6,8 @@ $file = $Env:BUILD_SOURCESDIRECTORY + "\Version.txt"
 $fileVersion = [version](Get-Content $file | Select -First 1)
 Write-Host "Version is $fileVersion"
 
-$folder = $Env:AGENT_BUILDDIRECTORY + "\drop"
-New-Item -ItemType Directory -Force -Path $folder
+#$folder = $Env:AGENT_BUILDDIRECTORY + "\drop"
+#New-Item -ItemType Directory -Force -Path $folder
 
 Write-Host "Compression level is $Env:CompressionLevel"
-& "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" a -t7z -mx$($Env:CompressionLevel) -mmt -ms -sfx "$fileVersion.exe" "$folder" -xr!logs
+& "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" a -t7z -mx$($Env:CompressionLevel) -mmt -ms -sfx "$fileVersion.exe" "$Env:BUILD_STAGINGDIRECTORY" -xr!logs
