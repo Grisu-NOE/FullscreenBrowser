@@ -16,7 +16,10 @@ Move-Item "$Env:BUILD_STAGINGDIRECTORY\*" $binaries
 Write-Host "Content in $binaries"
 ls $binaries -Recurse
 
-Write-Host """$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe"" a -t7z -mx$Env:CompressionLevel -mmt -ms -sfx ""$Env:BUILD_STAGINGDIRECTORY\$fileVersion.exe"" ""$binaries"""
-& "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" a -t7z -mx$Env:CompressionLevel -mmt -ms -sfx "$Env:BUILD_STAGINGDIRECTORY\$fileVersion.exe" "$binaries"
+#Write-Host """$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe"" a -t7z -mx$Env:CompressionLevel -mmt -ms -sfx ""$Env:BUILD_STAGINGDIRECTORY\$fileVersion.exe"" ""$binaries"""
+#& "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" a -t7z -mx$Env:CompressionLevel -mmt -ms -sfx "$Env:BUILD_STAGINGDIRECTORY\$fileVersion.exe" "$binaries"
+
+Write-Host """$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe"" a -t7z -m0=lzma -mx=$Env:CompressionLevel -mfb=64 -md=128m -ms=on -sfx ""$Env:BUILD_STAGINGDIRECTORY\$fileVersion.exe"" ""$binaries"""
+& "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" a -t7z -m0=lzma -mx=$Env:CompressionLevel -mfb=64 -md=128m -ms=on -sfx "$Env:BUILD_STAGINGDIRECTORY\$fileVersion.exe" "$binaries"
 
 & "$Env:BUILD_SOURCESDIRECTORY\BUILD\7z\7z.exe" -?
