@@ -21,12 +21,15 @@ $newVersionBytes = [System.Text.Encoding]::UTF8.GetBytes($newVersion)
 $body = @{
   "message"="//***NO_CI***//"
   "committer"=@{
-    "name"=$Env:GitUserEmail
-    "email"=$Env:GitUserName
+    "name"=$Env:GitUserName
+    "email"=$Env:GitUserEmail
   }
   "content"=[System.Convert]::ToBase64String($newVersionBytes)
   "sha"=$serverContent.sha
 }
+
+Write-Host "Committer name is $Env:GitUserName"
+Write-Host "Committer email is $Env:GitUserEmail"
 
 $postAnswer = Invoke-WebRequest -UseBasicParsing -Uri $serverContent.url -Method Put -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
 Write-Host "Update status code is $($postAnswer.StatusCode) $($postAnswer.StatusDescription)"
