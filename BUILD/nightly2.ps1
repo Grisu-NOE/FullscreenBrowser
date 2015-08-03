@@ -1,1 +1,0 @@
-Write-Host "Build number is $Env:BUILD_BUILDNUMBER"
