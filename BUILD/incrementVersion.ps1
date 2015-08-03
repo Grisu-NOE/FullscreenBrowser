@@ -16,13 +16,15 @@ if (-not $getAnswer.StatusCode.Equals(200))
 
 $serverContent = $getAnswer.Content | ConvertFrom-Json
 Write-Host "SHA: $($serverContent.sha)"
+
+$newVersionBytes = [System.Text.Encoding]::UTF8.GetBytes($newVersion)
 $body = @{
   "message"="//***NO_CI***//"
   "committer"=@{
     "name"=$Env:GitUserEmail
     "email"=$Env:GitUserName
   }
-  "content"=$newVersion
+  "content"=[System.Convert]::ToBase64String($newVersionBytes)
   "sha"=$serverContent.sha
 }
 
