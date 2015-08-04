@@ -1,8 +1,23 @@
-# List installed software
-#Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* |  Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table
-#Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table
+$baseUri = "https://api.github.com/repos/Grisu-NOE/Infoscreen"
 
-$file = $Env:BUILD_SOURCESDIRECTORY + "\Version.txt"
+$latestRelease = Invoke-WebRequest -Uri "$baseUri/releases/latest" -Method Get
+Write-Host "Latest release status code is $($latestRelease.StatusCode) $($latestRelease.StatusDescription)"
+$latestReleaseContent = $latestRelease.Content | ConvertFrom-Json
+
+$commits = Invoke-WebRequest -UseBasicParsing -Uri "$baseUri/commits?since=$($latestReleaseContent.created_at)" -Method Get
+Write-Host "Commits status code is $($commits.StatusCode) $($commits.StatusDescription)"
+$contents = $commits.Content | ConvertFrom-Json
+
+$targetCommitish = "master"
+foreach ($content in $contents) {
+  if($content.commit.message -eq "//***NO_CI***//")
+  {
+	$targetCommitish = $content.sha
+	break
+  }
+}
+
+$file = "$Env:BUILD_SOURCESDIRECTORY\Version.txt"
 $fileVersion = [version](Get-Content $file | Select -First 1)
 Write-Host "Version is $fileVersion"
 
@@ -16,7 +31,7 @@ Start-Process -FilePath $process -ArgumentList "a -t7z -m0=lzma2 -mx=$Env:Compre
 
 $body = @{
   "tag_name"="v$fileVersion"
-  "target_commitish"="master"
+  "target_commitish"=$targetCommitish
   "name"="v$fileVersion"
   "body"="# NIGHTLY BUILD`n## Visual Studio`n* Name of the Build Definition: $Env:BUILD_DEFINITIONNAME`n* Build number: [$Env:BUILD_BUILDNUMBER]($Env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$Env:SYSTEM_TEAMPROJECT/_build#_a=summary&buildId=$Env:BUILD_BUILDID)"
   "draft"=[System.Convert]::ToBoolean($Env:GitDraft)
@@ -27,8 +42,13 @@ $auth = @{
   "Authorization"="token " + $Env:GitToken
 }
 
-$releaseAnswer = Invoke-WebRequest -Headers $auth -UseBasicParsing -Uri "https://api.github.com/repos/Grisu-NOE/Infoscreen/releases" -Method Post -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
+$releaseAnswer = Invoke-WebRequest -Headers $auth -UseBasicParsing -Uri "$baseUri/releases" -Method Post -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
 Write-Host "Release status code is $($releaseAnswer.StatusCode) $($releaseAnswer.StatusDescription)"
+if (-not $getAnswer.StatusCode.Equals(201))
+{
+    Write-Error "Release status code is not 201! Aborting release creation..."
+    exit 1
+}
 
 $releaseContent = $releaseAnswer.Content | ConvertFrom-Json
 $uri = $releaseContent.upload_url.Replace("{?name}","?name=$compressedFileName")

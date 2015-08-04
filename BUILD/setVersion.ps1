@@ -1,4 +1,4 @@
-$file = $Env:BUILD_SOURCESDIRECTORY + "\Version.txt"
+$file = "$Env:BUILD_SOURCESDIRECTORY\Version.txt"
 $fileVersion = [version](Get-Content $file | Select -First 1)
 Write-Host "Version is $fileVersion"
 
@@ -6,8 +6,7 @@ Write-Host "Version is $fileVersion"
 # and then apply it to the assemblies
 $VersionRegex = "\d+\.\d+\.\d+\.\d+"
 
-$solutionInfo = $Env:BUILD_SOURCESDIRECTORY + "\SolutionInfo.cs"
+$solutionInfo = "$Env:BUILD_SOURCESDIRECTORY\SolutionInfo.cs"
 $filecontent = Get-Content($solutionInfo)
-#attrib $solutionInfo -r
 $filecontent -replace $VersionRegex, $fileVersion | Out-File $solutionInfo
 Write-Host "$solutionInfo - version applied"
