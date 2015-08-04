@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E97D28C2-27B1-46AF-8C9E-3532AE73E58C}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", 
 		References\Settings.StyleCop = References\Settings.StyleCop
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotifyIconWpf", "References\wpf-notifyicon\NotifyIconWpf\NotifyIconWpf.csproj", "{7AC63864-7638-41C4-969C-D3197EF2BED9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gui", "Gui", "{568C622C-56F3-41B8-BF8D-D57A44338809}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{D0630471-C513-4DD0-AE1C-EFF3DC41D6E7}"
@@ -32,36 +30,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Product\Shared\Configuration\Configuration.csproj", "{42FE87AD-CAE1-4710-85B2-E4EB6A7AD6B0}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://nike1:8080/tfs/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Product\\FullscreenBrowser\\FullscreenBrowser.csproj
-		SccProjectTopLevelParentUniqueName1 = MainSolution.sln
-		SccProjectName1 = Product/FullscreenBrowser
-		SccLocalPath1 = Product\\FullscreenBrowser
-		SccProjectUniqueName2 = Product\\Config-Gui\\Config-Gui.csproj
-		SccProjectTopLevelParentUniqueName2 = MainSolution.sln
-		SccProjectName2 = Product/Config-Gui
-		SccLocalPath2 = Product\\Config-Gui
-		SccProjectUniqueName3 = Product\\Shared\\Utils\\Utils.csproj
-		SccProjectTopLevelParentUniqueName3 = MainSolution.sln
-		SccProjectName3 = Product/Shared/Utils
-		SccLocalPath3 = Product\\Shared\\Utils
-		SccProjectUniqueName4 = References\\wpf-notifyicon\\NotifyIconWpf\\NotifyIconWpf.csproj
-		SccProjectTopLevelParentUniqueName4 = MainSolution.sln
-		SccProjectName4 = References/wpf-notifyicon/NotifyIconWpf
-		SccLocalPath4 = References\\wpf-notifyicon\\NotifyIconWpf
-		SccProjectUniqueName5 = Product\\Shared\\Interfaces\\Interfaces.csproj
-		SccProjectTopLevelParentUniqueName5 = MainSolution.sln
-		SccProjectName5 = Product/Shared/Interfaces
-		SccLocalPath5 = Product\\Shared\\Interfaces
-		SccProjectUniqueName6 = Product\\Shared\\Configuration\\Configuration.csproj
-		SccProjectTopLevelParentUniqueName6 = MainSolution.sln
-		SccProjectName6 = Product/Shared/Configuration
-		SccLocalPath6 = Product\\Shared\\Configuration
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -103,16 +71,6 @@ Global
 		{39438C1C-C826-4440-B283-A471648F52B1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{39438C1C-C826-4440-B283-A471648F52B1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{39438C1C-C826-4440-B283-A471648F52B1}.Release|x86.ActiveCfg = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7AC63864-7638-41C4-969C-D3197EF2BED9}.Release|x86.ActiveCfg = Release|Any CPU
 		{79514C08-16E6-47B2-B355-5C1C0DA1398F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79514C08-16E6-47B2-B355-5C1C0DA1398F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79514C08-16E6-47B2-B355-5C1C0DA1398F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -138,11 +96,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{02BDB8D1-9E9A-4EC7-BB99-044A7D282F8F} = {568C622C-56F3-41B8-BF8D-D57A44338809}
 		{9586D487-B8AB-4012-BFC5-B47737A7E763} = {568C622C-56F3-41B8-BF8D-D57A44338809}
+		{02BDB8D1-9E9A-4EC7-BB99-044A7D282F8F} = {568C622C-56F3-41B8-BF8D-D57A44338809}
 		{39438C1C-C826-4440-B283-A471648F52B1} = {D0630471-C513-4DD0-AE1C-EFF3DC41D6E7}
 		{79514C08-16E6-47B2-B355-5C1C0DA1398F} = {D0630471-C513-4DD0-AE1C-EFF3DC41D6E7}
 		{42FE87AD-CAE1-4710-85B2-E4EB6A7AD6B0} = {D0630471-C513-4DD0-AE1C-EFF3DC41D6E7}
-		{7AC63864-7638-41C4-969C-D3197EF2BED9} = {4CE35AD1-00DD-472F-A9E2-85B257681B95}
 	EndGlobalSection
 EndGlobal
