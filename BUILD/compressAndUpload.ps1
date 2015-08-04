@@ -14,15 +14,11 @@ $compressedFileName = "$fileVersion.exe"
 $compressedFilePath = "$Env:BUILD_STAGINGDIRECTORY\$compressedFileName"
 Start-Process -FilePath $process -ArgumentList "a -t7z -m0=lzma2 -mx=$Env:CompressionLevel -mfb=64 -md=128m -ms=on -sfx ""$compressedFilePath"" ""$binaries""" -Wait -NoNewWindow -PassThru
 
-Write-Host "SYSTEM_TEAMFOUNDATIONCOLLECTIONURI: $Env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI"
-Write-Host "SYSTEM_TEAMFOUNDATIONSERVERURI: $Env:SYSTEM_TEAMFOUNDATIONSERVERURI"
-Write-Host "BUILD_BUILDID: $Env:BUILD_BUILDID"
-
 $body = @{
   "tag_name"="v$fileVersion"
   "target_commitish"="master"
   "name"="v$fileVersion"
-  "body"="#NIGHTLY build`n##Visual Studio`n* Name of the Build Definition: $Env:BUILD_DEFINITIONNAME`n* Build number: $Env:BUILD_BUILDNUMBER`n* Build URI: $Env:BUILD_BUILDURI"
+  "body"="# NIGHTLY BUILD`n## Visual Studio`n* Name of the Build Definition: $Env:BUILD_DEFINITIONNAME`n* Build number: $Env:BUILD_BUILDNUMBER`n* Build URI: $Env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$Env:SYSTEM_TEAMPROJECT/_build#_a=summary&buildId=$Env:BUILD_BUILDID"
   "draft"=[System.Convert]::ToBoolean($Env:GitDraft)
   "prerelease"=[System.Convert]::ToBoolean($Env:GitPreRelease)
 }
