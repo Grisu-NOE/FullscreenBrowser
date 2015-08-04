@@ -377,22 +377,21 @@ namespace At.FF.Krems.Config_Gui
         /// <param name="e">The <see cref="CancelEventArgs"/> instance containing the event data.</param>
         private void MainWindowOnClosing(object sender, CancelEventArgs e)
         {
-            var compareObjects = new CompareObjects();
-            if (compareObjects.Compare(this.ViewModel.Config, this.browserConfigDefault))
+            var compareObjects = new CompareLogic();
+            if (compareObjects.Compare(this.ViewModel.Config, this.browserConfigDefault).AreEqual)
             {
                 return;
             }
 
             var result = MessageBox.Show(Properties.Resources.SaveContent_DE_AT, Properties.Resources.Save_DE_AT + "?", MessageBoxButton.YesNoCancel, MessageBoxImage.Question, this.FindResource("MessageBoxStyle") as Style);
-            if (result == MessageBoxResult.Cancel)
+            switch (result)
             {
-                e.Cancel = true;
-                return;
-            }
-
-            if (result == MessageBoxResult.Yes)
-            {
-                this.SaveOnClick(sender, null);
+                case MessageBoxResult.Cancel:
+                    e.Cancel = true;
+                    return;
+                case MessageBoxResult.Yes:
+                    this.SaveOnClick(sender, null);
+                    break;
             }
         }
 
