@@ -1,6 +1,6 @@
 $baseUri = "https://api.github.com/repos/Grisu-NOE/Infoscreen"
 
-$latestRelease = Invoke-WebRequest -Uri "$baseUri/releases/latest" -Method Get
+$latestRelease = Invoke-WebRequest -UseBasicParsing -Uri "$baseUri/releases/latest" -Method Get
 Write-Host "Latest release status code is $($latestRelease.StatusCode) $($latestRelease.StatusDescription)"
 $latestReleaseContent = $latestRelease.Content | ConvertFrom-Json
 
