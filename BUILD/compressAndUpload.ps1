@@ -44,7 +44,7 @@ $auth = @{
 
 $releaseAnswer = Invoke-WebRequest -Headers $auth -UseBasicParsing -Uri "$baseUri/releases" -Method Post -ContentType "application/json; charset=utf-8" -Body $($body | ConvertTo-Json -Depth 5 -Compress)
 Write-Host "Release status code is $($releaseAnswer.StatusCode) $($releaseAnswer.StatusDescription)"
-if (-not $getAnswer.StatusCode.Equals(201))
+if (-not $releaseAnswer.StatusCode.Equals(201))
 {
     Write-Error "Release status code is not 201! Aborting release creation..."
     exit 1
