@@ -18,7 +18,7 @@ $body = @{
   "tag_name"="v$fileVersion"
   "target_commitish"="master"
   "name"="v$fileVersion"
-  "body"="# NIGHTLY BUILD`n## Visual Studio`n* Name of the Build Definition: $Env:BUILD_DEFINITIONNAME`n* Build number: $Env:BUILD_BUILDNUMBER`n* Build URI: $Env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$Env:SYSTEM_TEAMPROJECT/_build#_a=summary&buildId=$Env:BUILD_BUILDID"
+  "body"="# NIGHTLY BUILD`n## Visual Studio`n* Name of the Build Definition: $Env:BUILD_DEFINITIONNAME`n* Build number: [$Env:BUILD_BUILDNUMBER]($Env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$Env:SYSTEM_TEAMPROJECT/_build#_a=summary&buildId=$Env:BUILD_BUILDID)"
   "draft"=[System.Convert]::ToBoolean($Env:GitDraft)
   "prerelease"=[System.Convert]::ToBoolean($Env:GitPreRelease)
 }
