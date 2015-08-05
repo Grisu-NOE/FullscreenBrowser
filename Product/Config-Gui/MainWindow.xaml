@@ -8,7 +8,7 @@
         xmlns:prop="clr-namespace:At.FF.Krems.Config_Gui.Properties"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-        Title="Config-Gui" Height="462" Width="695"
+        Title="Config-Gui" Height="498" Width="695"
         Name="ConfigGuiWindow"
         MinHeight="{Binding Height, ElementName=ConfigGuiWindow}" MaxHeight="{Binding Height, ElementName=ConfigGuiWindow}"
         MinWidth="{Binding Width, ElementName=ConfigGuiWindow}" MaxWidth="{Binding Width, ElementName=ConfigGuiWindow}" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
@@ -23,7 +23,7 @@
         <converters:IntMinusOne x:Key="IntMinusOne"/>
         <converters:IntToBool x:Key="IntToBool"/>
         <converters:PrioFirstValueMulti x:Key="PrioFirstValueMulti"/>
-        <system:Double x:Key="WindowHeight">420</system:Double>
+        <system:Double x:Key="WindowHeight">458</system:Double>
         <system:Double x:Key="ExpanderHeight">290</system:Double>
         <system:Double x:Key="ExpanderWidth">300</system:Double>
         <!--Use with Validation.ErrorTemplate="{StaticResource ValidationTemplate}"-->
