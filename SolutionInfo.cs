@@ -28,7 +28,7 @@ using System.Reflection;
 
 [assembly: AssemblyCompany("Freiwillige Feuerwehr Krems/Donau")]
 [assembly: AssemblyProduct("WASTL Infoscreen - FullscreenBrowser")]
-[assembly: AssemblyCopyright("Copyright © Freiwillige Feuerwehr Krems/Donau 2014")]
+[assembly: AssemblyCopyright("Copyright © Freiwillige Feuerwehr Krems/Donau 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

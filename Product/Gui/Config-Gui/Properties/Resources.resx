@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Autostart_DE_AT" xml:space="preserve">
+    <value>Autostart</value>
+  </data>
+  <data name="Cancel_DE_AT" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="DisableScreensaverPermanently_DE_AT" xml:space="preserve">
+    <value>Screensaver dauerhaft deaktivieren</value>
+  </data>
+  <data name="DisplayName_DE_AT" xml:space="preserve">
+    <value>Anzeigename</value>
+  </data>
+  <data name="Duration_DE_AT" xml:space="preserve">
+    <value>Dauer</value>
+  </data>
+  <data name="Enable_DE_AT" xml:space="preserve">
+    <value>Aktivieren</value>
+  </data>
+  <data name="ExpirationDate_DE_AT" xml:space="preserve">
+    <value>Ablaufdatum</value>
+  </data>
+  <data name="Front_DE_AT" xml:space="preserve">
+    <value>&lt;-- Vordergrund</value>
+  </data>
+  <data name="General_DE_AT" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="Height_DE_AT" xml:space="preserve">
+    <value>Höhe</value>
+  </data>
+  <data name="Host_DE_AT" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="Interval_DE_AT" xml:space="preserve">
+    <value>Intervall</value>
+  </data>
+  <data name="IsAlternativeWindow_DE_AT" xml:space="preserve">
+    <value>Alternatives Fenster</value>
+  </data>
+  <data name="IsHttpOnly_DE_AT" xml:space="preserve">
+    <value>Nur HTTP</value>
+  </data>
+  <data name="IsSecure_DE_AT" xml:space="preserve">
+    <value>Sicher</value>
+  </data>
+  <data name="IsSession_DE_AT" xml:space="preserve">
+    <value>Session</value>
+  </data>
+  <data name="Name_DE_AT" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="No_DE_AT" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="OnTop_DE_AT" xml:space="preserve">
+    <value>Über allen anderen Fenstern azeigen</value>
+  </data>
+  <data name="Path_DE_AT" xml:space="preserve">
+    <value>Pfad</value>
+  </data>
+  <data name="Port_DE_AT" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Print_DE_AT" xml:space="preserve">
+    <value>Drucken</value>
+  </data>
+  <data name="Proxy_DE_AT" xml:space="preserve">
+    <value>Proxy</value>
+  </data>
+  <data name="Reload_DE_AT" xml:space="preserve">
+    <value>Neu laden</value>
+  </data>
+  <data name="Restart_DE_AT" xml:space="preserve">
+    <value>Neustart</value>
+  </data>
+  <data name="RunAtStartup_DE_AT" xml:space="preserve">
+    <value>Beim Start Ausführen</value>
+  </data>
+  <data name="Runtime_DE_AT" xml:space="preserve">
+    <value>Runtime</value>
+  </data>
+  <data name="ScreenRefresher_DE_AT" xml:space="preserve">
+    <value>Screen Refresher</value>
+  </data>
+  <data name="Server_DE_AT" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="ShowOnScreen_DE_AT" xml:space="preserve">
+    <value>Bildschirm</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ToolsIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ToolsIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Type_DE_AT" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Url_DE_AT" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="Value_DE_AT" xml:space="preserve">
+    <value>Wert</value>
+  </data>
+  <data name="Width_DE_AT" xml:space="preserve">
+    <value>Breite</value>
+  </data>
+  <data name="WindowDimension_DE_AT" xml:space="preserve">
+    <value>Fenstergröße</value>
+  </data>
+  <data name="WindowPosition_DE_AT" xml:space="preserve">
+    <value>Fensterposition</value>
+  </data>
+  <data name="X_DE_AT" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="Yes_DE_AT" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Y_DE_AT" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="EnterName_DE_AT" xml:space="preserve">
+    <value>Namen eintragen</value>
+  </data>
+  <data name="Restore_DE_AT" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="SaveContent_DE_AT" xml:space="preserve">
+    <value>Änderungen wurden noch nicht gespeichert!
+Wollen Sie jetzt speichern?</value>
+  </data>
+  <data name="Save_DE_AT" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="ZoomLevel_DE_AT" xml:space="preserve">
+    <value>Zoom-Level</value>
+  </data>
+  <data name="Add_DE_AT" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="Add_ToolTip_DE_AT" xml:space="preserve">
+    <value>Element zu Liste hinzufügen.</value>
+  </data>
+  <data name="Autostart_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an ob das Fenster beim Programmstart geöffnet werden soll.</value>
+  </data>
+  <data name="ClearCookiesAtStartup_DE_AT" xml:space="preserve">
+    <value>Cookies beim Start löschen</value>
+  </data>
+  <data name="ClearCookiesAtStartup_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an ob die gespeicherten Cookies bei jedem Programmstart gelöscht werden sollen.
+(Ist nur beim Testen sinnvoll.)
+ACHTUNG: Hierbei wird auch der Token gelöscht!</value>
+  </data>
+  <data name="CookieList_ToolTip_DE_AT" xml:space="preserve">
+    <value>Liste aller definierten Cookies.
+Reihenfolge der Elemente ist egal.</value>
+  </data>
+  <data name="CookieName_ToolTip_DE_AT" xml:space="preserve">
+    <value>Name des Cookies.</value>
+  </data>
+  <data name="DisableScreensaverPermanently_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an ob der Screensaver permanent deaktiviert werden soll.</value>
+  </data>
+  <data name="DisplayName_ToolTip_DE_AT" xml:space="preserve">
+    <value>Anzeigename des Tray-Icons.</value>
+  </data>
+  <data name="Duration_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an wie lange der Balken pro durchlauf benötigt um einmal über den gesamten Bildschirm zu scrollen.</value>
+  </data>
+  <data name="Enable_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an ob die Funktion zum refreshen der LCD-Pixel aktiviert ist.</value>
+  </data>
+  <data name="ExpirationDate_ToolTip_DE_AT" xml:space="preserve">
+    <value>Datum bis wann das Cookie gültig ist.</value>
+  </data>
+  <data name="Height_ToolTip_DE_AT" xml:space="preserve">
+    <value>max für vollen Bildschirm oder eine beliebige Zahl für eine bestimmte Höhe des Fensters.</value>
+  </data>
+  <data name="Host_ToolTip_DE_AT" xml:space="preserve">
+    <value>Host bzw. Domain wofür das Cookie gültig ist.</value>
+  </data>
+  <data name="Interval_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt die Zeitspanne zwischen zwei Durchgängen an.</value>
+  </data>
+  <data name="IsAlternativeWindow_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an ob das Fenster dargestellt werden soll wenn kein Einsatz aktiv ist.</value>
+  </data>
+  <data name="IsHttpOnly_ToolTip_DE_AT" xml:space="preserve">
+    <value>Cookie wird nicht über Nicht-HTTP Verbindungen übertragen.</value>
+  </data>
+  <data name="IsSecure_ToolTip_DE_AT" xml:space="preserve">
+    <value>Cookie darf nur über eine sichere Verbindung (sprich HTTPS) zurückgeschickt werden.</value>
+  </data>
+  <data name="IsSession_ToolTip_DE_AT" xml:space="preserve">
+    <value>Cookie ist nur für die aktuelle Sitzung gültig.</value>
+  </data>
+  <data name="MoveDown_ToolTip_DE_AT" xml:space="preserve">
+    <value>Element nach unten verschieben.</value>
+  </data>
+  <data name="MoveUp_ToolTip_DE_AT" xml:space="preserve">
+    <value>Element nach oben verschieben.</value>
+  </data>
+  <data name="Name_ToolTip_DE_AT" xml:space="preserve">
+    <value>Beliebiger Text - Gibt den Namen des Fensters im Tray-Icon an.</value>
+  </data>
+  <data name="OnTop_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an ob das Fenster immer im Vordergrund sein soll.</value>
+  </data>
+  <data name="Path_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gültigkeit des Cookies auf einen bestimmten Pfad oder Pfadpräfix beschränken.</value>
+  </data>
+  <data name="Port_ToolTip_DE_AT" xml:space="preserve">
+    <value>Port des Proxyservers</value>
+  </data>
+  <data name="Print_ToolTip_DE_AT" xml:space="preserve">
+    <value>Einstellung vom Infoscreen-Depeschen-Druckservice - nicht verändern!</value>
+  </data>
+  <data name="ProxyUrl_ToolTip_DE_AT" xml:space="preserve">
+    <value>URL auf eine Proxy-Config http://.../xyz.PAC</value>
+  </data>
+  <data name="Reload_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt die Zeitspanne an wann der Fensterinhalt komplett neu geladen werden soll.
+Bei 0 wird der Fensterinhalt nur zu Beginn geladen.</value>
+  </data>
+  <data name="Remove_DE_AT" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Remove_ToolTip_DE_AT" xml:space="preserve">
+    <value>Element von Liste entfernen.</value>
+  </data>
+  <data name="Restart_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt die Zeitspanne  an wann das Fenster automatisch wieder gestartet werden soll, wenn es geschlossen wurde.
+Bei 0 wird es nicht automatisch neu gestartet.</value>
+  </data>
+  <data name="RunAtStartup_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an ob die Funktion beim Starten der Applikation ausgeführt werden soll.</value>
+  </data>
+  <data name="Runtime_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt den Pfad zur Applikation "xulrunner" an.</value>
+  </data>
+  <data name="ScreenRefresherHeight_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt die Höhe des Balkens an.
+-&gt; Desto Breiter, desto mehr wird die CPU belastet.
+-&gt; Besser den Wert von "Dauer" erhöhen.</value>
+  </data>
+  <data name="ScreenRefresher_ToolTip_DE_AT" xml:space="preserve">
+    <value>Der Screenrefresher ist ein Balken in verschiedenen Farben, in einer definierten Zeitspanne,
+quer über den Schirm läuft und so ein Einbrennen des Bildes verhindert.</value>
+  </data>
+  <data name="Server_ToolTip_DE_AT" xml:space="preserve">
+    <value>IP-Adresse oder Hostname des Proxyservers</value>
+  </data>
+  <data name="ShowOnScreen_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an auf welchem Schirm das Fenster gezeigt werden soll.</value>
+  </data>
+  <data name="Type_ToolTip_DE_AT" xml:space="preserve">
+    <value>NoProxy = kein Proxy
+Manual = manuell (Server und Port erforderlich)
+AutoConfigurationPac = automatisch (PAC, URL erforderlich)
+AutoDetect = automatisch erkennen
+SystemProxy = Systemproxy</value>
+  </data>
+  <data name="Url_ToolTip_DE_AT" xml:space="preserve">
+    <value>Eine beliebige URL - Adobe Flash auf der Webseite wird nicht unterstützt.</value>
+  </data>
+  <data name="Value_ToolTip_DE_AT" xml:space="preserve">
+    <value>Inhalt des Cookies.</value>
+  </data>
+  <data name="Width_ToolTip_DE_AT" xml:space="preserve">
+    <value>max für vollen Bildschirm, max2 für Vollbild über alle Bildschirme oder
+eine beliebige Zahl für eine bestimmte Breite des Fensters.</value>
+  </data>
+  <data name="WindowDimension_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt die Größe des Fensters an.</value>
+  </data>
+  <data name="WindowList_ToolTip_DE_AT" xml:space="preserve">
+    <value>Liste aller definierten Fenster.
+Elemente können auch mittels Drag &amp; Drop verschoben werden.</value>
+  </data>
+  <data name="WindowPosition_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt an wo auf dem Schirm das Fenster gezeigt werden soll,
+es können damit auch mehrere Fenster auf einem Schirm angzeigt werden.</value>
+  </data>
+  <data name="ZoomLevel_ToolTip_DE_AT" xml:space="preserve">
+    <value>Gibt die Zoomstufe des Browser-Textes an.
+0 und 1 ist 100% Ansicht</value>
+  </data>
+  <data name="MapType_DE_AT" xml:space="preserve">
+    <value>Kartentype</value>
+  </data>
+  <data name="PageNumberClick_DE_AT" xml:space="preserve">
+    <value>Klick/Seitenanzahl</value>
+  </data>
+  <data name="PageNumberEmergency_DE_AT" xml:space="preserve">
+    <value>Einsatz/Seitenanzahl</value>
+  </data>
+  <data name="PrintOnEmergency_DE_AT" xml:space="preserve">
+    <value>Bei Einsatz automatisch drucken</value>
+  </data>
+  <data name="MaxHydrants_DE_AT" xml:space="preserve">
+    <value>Hydranten</value>
+  </data>
+  <data name="MaxHydrants_ToolTip_DE_AT" xml:space="preserve">
+    <value>Maximale Anzahl an Hydranten auf Druckseite</value>
+  </data>
+</root>

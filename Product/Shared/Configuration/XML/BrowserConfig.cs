@@ -42,16 +42,10 @@ namespace At.FF.Krems.Configuration.XML
 
         /// <summary>The show closed windows in minutes lock object</summary>
         private readonly object showClosedWindowsInMinutesLockObject = new object();
-
-        /// <summary>The runtime</summary>
-        private string runtime = "xulrunner_31.0";
-
+        
         /// <summary>Gets or sets the cookie field.</summary>
         private Cookie[] cookieField;
-
-        /// <summary>The print settings</summary>
-        private PrintSettings printSettings = new PrintSettings();
-
+        
         /// <summary>The show closed windows in minutes</summary>
         private int showClosedWindowsInMinutes;
 
@@ -64,18 +58,7 @@ namespace At.FF.Krems.Configuration.XML
         public Window[] Window { get; set; }
 
         /// <summary>Gets or sets the runtime.</summary>
-        public string Runtime
-        {
-            get
-            {
-                return this.runtime;
-            }
-
-            set
-            {
-                this.runtime = value;
-            }
-        }
+        public string Runtime { get; set; } = "xulrunner_33.0.3";
 
         /// <summary>Gets or sets a value indicating whether disable screensaver permanently.</summary>
         public bool DisableScreensaverPermanently { get; set; }
@@ -88,18 +71,7 @@ namespace At.FF.Krems.Configuration.XML
 
         /// <summary>Gets or sets the print settings.</summary>
         /// <value>The print settings.</value>
-        public PrintSettings PrintSettings
-        {
-            get
-            {
-                return this.printSettings;
-            }
-
-            set
-            {
-                this.printSettings = value;
-            }
-        }
+        public PrintSettings PrintSettings { get; set; } = new PrintSettings();
 
         /// <summary>Gets or sets the screen refresher.</summary>
         public ScreenRefresher ScreenRefresher { get; set; }
