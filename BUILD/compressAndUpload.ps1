@@ -51,6 +51,7 @@ if (-not $releaseAnswer.StatusCode.Equals(201))
 }
 
 $releaseContent = $releaseAnswer.Content | ConvertFrom-Json
+Write-Host "Upload-URL: $($releaseContent.upload_url)"
 $uri = $releaseContent.upload_url.Replace("{?name}","?name=$compressedFileName")
 
 switch([System.IO.Path]::GetExtension($compressedFileName))
