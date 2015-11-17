@@ -12,8 +12,8 @@ $targetCommitish = "master"
 foreach ($content in $contents) {
   if($content.commit.message -eq "//***NO_CI***//")
   {
-	$targetCommitish = $content.sha
-	break
+    $targetCommitish = $content.sha
+    break
   }
 }
 
@@ -53,8 +53,24 @@ if (-not $releaseAnswer.StatusCode.Equals(201))
 $releaseContent = $releaseAnswer.Content | ConvertFrom-Json
 Write-Host "Upload-URL: $($releaseContent.upload_url)"
 $uri = $releaseContent.upload_url.Replace("{","").Replace("}","")
-$uri = $uri.Replace("?name","?name=$compressedFileName")
-$uri = $uri.Replace(",label","")
+
+$uriParamStart = $uri.IndexOf("?") + 1
+$uriParameters = $uri.Substring($uriParamStart, $uri.Length - $uriParamStart).Split(",")
+
+$paramTable = @{"name" = "$compressedFileName";}
+
+$assinedParameters = @()
+foreach($uriParam in $uriParameters)
+{
+  if(!$paramTable.ContainsKey($uriParam))
+  {
+    continue
+  }
+  
+  $assinedParameters += "$uriParam=${$paramTable[$uriParam]}"
+}
+
+$uri = $uri.Substring(0, $uriParamStart) + ($assinedParameters -join "&")
 
 switch([System.IO.Path]::GetExtension($compressedFileName))
 {
