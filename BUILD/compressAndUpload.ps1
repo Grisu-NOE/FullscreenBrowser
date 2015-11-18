@@ -29,11 +29,21 @@ $compressedFileName = "$fileVersion.exe"
 $compressedFilePath = "$Env:BUILD_STAGINGDIRECTORY\$compressedFileName"
 Start-Process -FilePath $process -ArgumentList "a -t7z -m0=lzma2 -mx=$Env:CompressionLevel -mfb=64 -md=128m -ms=on -sfx ""$compressedFilePath"" ""$binaries""" -Wait -NoNewWindow -PassThru
 
+$bodyContent = "# NIGHTLY BUILD`n## Visual Studio`n* Name of the Build Definition: $Env:BUILD_DEFINITIONNAME`n* Build number: [$Env:BUILD_BUILDNUMBER]($Env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$Env:SYSTEM_TEAMPROJECT/_build#_a=summary&buildId=$Env:BUILD_BUILDID)`n`n## GitHub`n### Changes since last release"
+foreach ($content in $contents) {
+  if($content.commit.message -eq "//***NO_CI***//")
+  {
+    continue
+  }
+  
+  $bodyContent += "`n* $($content.sha) $($content.commit.message)"
+}
+
 $body = @{
   "tag_name"="v$fileVersion"
   "target_commitish"=$targetCommitish
   "name"="v$fileVersion"
-  "body"="# NIGHTLY BUILD`n## Visual Studio`n* Name of the Build Definition: $Env:BUILD_DEFINITIONNAME`n* Build number: [$Env:BUILD_BUILDNUMBER]($Env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$Env:SYSTEM_TEAMPROJECT/_build#_a=summary&buildId=$Env:BUILD_BUILDID)"
+  "body"=$bodyContent
   "draft"=[System.Convert]::ToBoolean($Env:GitDraft)
   "prerelease"=[System.Convert]::ToBoolean($Env:GitPreRelease)
 }
