@@ -67,10 +67,12 @@ foreach($uriParam in $uriParameters)
     continue
   }
   
-  $assinedParameters += "$uriParam=${$paramTable[$uriParam]}"
+  $assinedParameters += "$uriParam=$($paramTable[$uriParam])"
 }
 
 $uri = $uri.Substring(0, $uriParamStart) + ($assinedParameters -join "&")
+
+Write-Host "Upload-URL with parameters: $uri"
 
 switch([System.IO.Path]::GetExtension($compressedFileName))
 {
