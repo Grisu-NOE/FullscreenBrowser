@@ -200,7 +200,7 @@ namespace At.FF.Krems.FullscreenBrowser
                             continue;
                         }
 
-                        dict.Add(splittedItem[0], splittedItem.Count() > 1 ? splittedItem[1] : string.Empty);
+                        dict.Add(splittedItem[0], splittedItem.Length > 1 ? splittedItem[1] : string.Empty);
                     }
 
                     string action;

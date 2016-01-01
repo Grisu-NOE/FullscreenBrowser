@@ -25,12 +25,12 @@
 //  --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.FullscreenBrowser.CustomBootstrapper
 {
-    using At.FF.Krems.FullscreenBrowser.Print;
-    using At.FF.Krems.Interfaces;
-    using At.FF.Krems.Utils;
-    using At.FF.Krems.Utils.Logging;
+    using Print;
+    using Interfaces;
+    using Utils;
+    using Utils.Logging;
 
-    using StructureMap.Configuration.DSL;
+    using StructureMap;
     using StructureMap.Pipeline;
 
     /// <summary>The structure map registry.</summary>
@@ -39,6 +39,7 @@ namespace At.FF.Krems.FullscreenBrowser.CustomBootstrapper
         /// <summary>Initializes a new instance of the <see cref="StructureMapRegistry"/> class.</summary>
         public StructureMapRegistry()
         {
+            
             // Pay attention to the order of the startup tasks!
             this.ForSingletonOf<IProcessStateLogging>().Use<ProcessStateLogging>();
             this.ForSingletonOf<ILoggingConfigurator>().Use<LoggingConfigurator>();

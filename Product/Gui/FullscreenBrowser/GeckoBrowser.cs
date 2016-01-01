@@ -66,9 +66,6 @@ namespace At.FF.Krems.FullscreenBrowser
         /// <summary>The reload lock object</summary>
         private readonly object reloadLockObject = new object();
 
-        /// <summary>The document cookies</summary>
-        private readonly List<Cookie> documentCookies = new List<Cookie>();
-
         /// <summary>The initialize called</summary>
         private bool initializeCalled;
 
@@ -105,13 +102,7 @@ namespace At.FF.Krems.FullscreenBrowser
 
         /// <summary>Gets the document cookie.</summary>
         /// <value>The document cookie.</value>
-        public List<Cookie> DocumentCookies
-        {
-            get
-            {
-                return this.documentCookies;
-            }
-        }
+        public List<Cookie> DocumentCookies { get; } = new List<Cookie>();
 
         /// <summary>Gets or sets a value indicating whether [DOM content loaded].</summary>
         /// <value><c>true</c> if [DOM content loaded]; otherwise, <c>false</c>.</value>
@@ -375,10 +366,7 @@ namespace At.FF.Krems.FullscreenBrowser
             if (browserConfig.ClearCookiesAtStartup)
             {
                 var cookieManager = Xpcom.GetService<nsICookieManager>("@mozilla.org/cookiemanager;1");
-                if (cookieManager != null)
-                {
-                    cookieManager.RemoveAll();
-                }
+                cookieManager?.RemoveAll();
             }
 
             if (browserConfig.Cookie != null && browserConfig.Cookie.Any())
@@ -503,7 +491,7 @@ namespace At.FF.Krems.FullscreenBrowser
 
             if (this.InvokeRequired || this.browser.InvokeRequired)
             {
-                this.BeginInvoke(new StringDelegate(this.NavigateToUrl), new object[] { url });
+                this.BeginInvoke(new StringDelegate(this.NavigateToUrl), url);
                 return;
             }
 
@@ -556,10 +544,10 @@ namespace At.FF.Krems.FullscreenBrowser
                             var allScreens = Screen.AllScreens;
                             foreach (var screen in allScreens)
                             {
-                                stringBuilder.AppendLine(string.Format("Screen #{0} ({1})", num++, screen.DeviceName));
+                                stringBuilder.AppendLine($"Screen #{num++} ({screen.DeviceName})");
                                 stringBuilder.AppendLine("Primary display: " + screen.Primary);
-                                stringBuilder.AppendLine(string.Format("Display resolution: {0} x {1}", screen.Bounds.Width, screen.Bounds.Height));
-                                stringBuilder.AppendLine(string.Format("Position: x={0}, y={1}", screen.Bounds.Left, screen.Bounds.Top));
+                                stringBuilder.AppendLine($"Display resolution: {screen.Bounds.Width} x {screen.Bounds.Height}");
+                                stringBuilder.AppendLine($"Position: x={screen.Bounds.Left}, y={screen.Bounds.Top}");
                                 stringBuilder.AppendLine(string.Empty);
                             }
 

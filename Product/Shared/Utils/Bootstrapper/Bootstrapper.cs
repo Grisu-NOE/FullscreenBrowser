@@ -28,7 +28,6 @@ namespace At.FF.Krems.Utils.Bootstrapper
     using System.Diagnostics;
 
     using StructureMap;
-    using StructureMap.Configuration.DSL;
 
     /// <summary>The BOOTSTRAPPER.</summary>
     public static class Bootstrapper

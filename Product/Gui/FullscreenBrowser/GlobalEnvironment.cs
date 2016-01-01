@@ -93,12 +93,6 @@ namespace At.FF.Krems.FullscreenBrowser
         }
 
         /// <summary>Gets a value indicating whether is main thread.</summary>
-        public static bool IsMainThread
-        {
-            get
-            {
-                return Thread.CurrentThread.ManagedThreadId == MainThreadManagedId;
-            }
-        }
+        public static bool IsMainThread => Thread.CurrentThread.ManagedThreadId == MainThreadManagedId;
     }
 }

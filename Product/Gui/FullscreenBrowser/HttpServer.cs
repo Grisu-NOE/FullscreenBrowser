@@ -137,16 +137,10 @@ namespace At.FF.Krems.FullscreenBrowser
             }
 
             this.initializeCalled = true;
-            if (this.cancellationTokenSource != null)
-            {
-                this.cancellationTokenSource.Cancel();
-            }
+            this.cancellationTokenSource?.Cancel();
 
             this.cancellationTokenSource = new CancellationTokenSource();
-            if (this.listener != null)
-            {
-                this.listener.Stop();
-            }
+            this.listener?.Stop();
 
             var token = this.cancellationTokenSource.Token;
             this.listenTask = Task.Factory.StartNew(
