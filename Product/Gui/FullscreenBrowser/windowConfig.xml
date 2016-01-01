@@ -58,7 +58,7 @@
     <Url>https://infoscreen.florian10.info/ows/infoscreen/v3/?demo=1</Url>
     <!--<Url>https://infoscreen.florian10.info/</Url>-->
     <!--mögliche Werte für showOnScreen: 0, 1, 2,... je nach Anzahl der vorhandenen Bildschirme beginnend bei 0 für den ersten Schirm - gibt an auf welchem Schirm das Fenster gezeigt werden soll-->
-    <ShowOnScreen>1</ShowOnScreen>
+    <ShowOnScreen>0</ShowOnScreen>
     <Position>
       <!--mögliche Werte für PosX und PosY: beliebige Zahl in Pixel - gibt an, wo auf dem Schirm das Fenster gezeigt werden soll, es können damit auch mehrere Fenster auf einem Schirm angzeigt werden-->
       <PosX>0</PosX>

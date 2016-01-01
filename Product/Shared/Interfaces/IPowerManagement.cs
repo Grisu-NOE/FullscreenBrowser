@@ -68,6 +68,14 @@ namespace At.FF.Krems.Interfaces
         HoldSystemAndDisplay = HoldSystem | HoldDisplay | ReleaseHold,
     }
 
+    /// <summary>The power management state of the monitor.</summary>
+    public enum MonitorState
+    {
+        On = -1,
+        Off = 2,
+        Standby = 1
+    }
+
     #endregion
     /// <summary>The PowerManagement interface.</summary>
     public interface IPowerManagement
@@ -142,6 +150,25 @@ namespace At.FF.Krems.Interfaces
         /// <summary>Hibernate system.</summary>
         /// <param name="force">Inform system to force operation.</param>
         void Hibernate(bool force = false);
+
+        /// <summary>
+        /// Sets the power management state of the monitor (needed since Windows 8)
+        /// </summary>
+        /// <param name="state">The power management state of the monitor.</param>
+        void SetMonitorState(MonitorState state);
+
+        /// <summary>
+        /// Sets the power management state of the monitor (needed since Windows 8)
+        /// </summary>
+        /// <param name="state">The power management state of the monitor.</param>
+        /// <param name="windowHandle">A handle to the window whose window procedure will receive the message.
+        /// If this parameter is <see cref="NativeMethods.HwndBroadcast"/>,
+        /// the message is sent to all top-level windows in the system,
+        /// including disabled or invisible unowned windows, overlapped windows,
+        /// and pop-up windows; but the message is not sent to child windows.
+        /// 
+        /// Message sending is subject to UIPI. The thread of a process can send messages only to message queues of threads in processes of lesser or equal integrity level.</param>
+        void SetMonitorState(MonitorState state, IntPtr windowHandle);
 
         #endregion
     }

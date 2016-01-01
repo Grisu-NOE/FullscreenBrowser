@@ -28,10 +28,11 @@ namespace At.FF.Krems.FullscreenBrowser
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Timers;
     using System.Windows.Controls;
+    using System.Windows.Forms;
 
     using Gecko;
     using Gecko.Cache;
@@ -42,11 +43,15 @@ namespace At.FF.Krems.FullscreenBrowser
 
     using Utils.Bootstrapper;
 
+    using Application = System.Windows.Application;
     using Cookie = System.Net.Cookie;
+    using MenuItem = System.Windows.Controls.MenuItem;
+    using Timer = System.Timers.Timer;
 
     /// <summary>The window manager.</summary>
     public class WindowManager : IWindowManager
     {
+        private int counter = 0;
         #region Fields
 
         /// <summary>The gecko browsers</summary>
@@ -87,6 +92,11 @@ namespace At.FF.Krems.FullscreenBrowser
         /// <summary>Activates the WASTL display.</summary>
         public void ActivateWastlDisplay()
         {
+            Debug.WriteLine("WASTL_DISPLAY_ACTIVATE count={0}", counter);
+            if (counter++ < 10)
+            {
+                return;
+            }
             this.windowTimer.Interval = this.windowTimeout;
             Parallel.ForEach(this.geckoBrowsers, browser => browser.CloseBrowser(true));
             this.geckoBrowsers.ForEach(browser => browser.StartOrResetBrowser(true, true, true));
@@ -98,7 +108,9 @@ namespace At.FF.Krems.FullscreenBrowser
 
             if (!this.disableScreensaverPermanently)
             {
-                Bootstrapper.GetInstance<IPowerManagement>().SetPowerReq(PowerThreadRequirements.HoldSystemAndDisplay);
+                var powerManagement = Bootstrapper.GetInstance<IPowerManagement>();
+                powerManagement.SetPowerReq(PowerThreadRequirements.HoldSystemAndDisplay);
+                powerManagement.SetMonitorState(MonitorState.On);
             }
 
             var screensaver = Bootstrapper.GetInstance<IScreensaver>();
@@ -215,22 +227,22 @@ namespace At.FF.Krems.FullscreenBrowser
                 var zoomItem = new MenuItem { Header = Resources.Zoom_DE_AT };
                 zoomItem.Items.Add(
                     new MenuItem
-                        {
-                            Header = Resources.ZoomIn_DE_AT,
-                            Command = new DelegateCommand { CommandAction = geckoBrowser.ZoomIn }
-                        });
+                    {
+                        Header = Resources.ZoomIn_DE_AT,
+                        Command = new DelegateCommand { CommandAction = geckoBrowser.ZoomIn }
+                    });
                 zoomItem.Items.Add(
                     new MenuItem
-                        {
-                            Header = Resources.ZoomOut_DE_AT,
-                            Command = new DelegateCommand { CommandAction = geckoBrowser.ZoomOut }
-                        });
+                    {
+                        Header = Resources.ZoomOut_DE_AT,
+                        Command = new DelegateCommand { CommandAction = geckoBrowser.ZoomOut }
+                    });
                 zoomItem.Items.Add(
                     new MenuItem
-                        {
-                            Header = Resources.ResetZoom_DE_AT,
-                            Command = new DelegateCommand { CommandAction = geckoBrowser.ResetZoom }
-                        });
+                    {
+                        Header = Resources.ResetZoom_DE_AT,
+                        Command = new DelegateCommand { CommandAction = geckoBrowser.ResetZoom }
+                    });
                 menuItem.Items.Add(zoomItem);
                 taskbar.ContextMenu.Items.Insert(0, menuItem);
                 geckoBrowser.VisibleChanged += (sender, args) =>

@@ -337,6 +337,31 @@ namespace At.FF.Krems.FullscreenBrowser
             NativeMethods.SetSuspendState(1, force ? 1 : 0, 0);
         }
 
+        /// <summary>
+        /// Sets the power management state of the monitor (needed since Windows 8)
+        /// </summary>
+        /// <param name="state">The power management state of the monitor.</param>
+        public void SetMonitorState(MonitorState state)
+        {
+            this.SetMonitorState(state, NativeMethods.HwndBroadcast);
+        }
+
+        /// <summary>
+        /// Sets the power management state of the monitor (needed since Windows 8)
+        /// </summary>
+        /// <param name="state">The power management state of the monitor.</param>
+        /// <param name="windowHandle">A handle to the window whose window procedure will receive the message.
+        /// If this parameter is <see cref="NativeMethods.HwndBroadcast"/>,
+        /// the message is sent to all top-level windows in the system,
+        /// including disabled or invisible unowned windows, overlapped windows,
+        /// and pop-up windows; but the message is not sent to child windows.
+        /// 
+        /// Message sending is subject to UIPI. The thread of a process can send messages only to message queues of threads in processes of lesser or equal integrity level.</param>
+        public void SetMonitorState(MonitorState state, IntPtr windowHandle)
+        {
+            NativeMethods.SendMessage(windowHandle, NativeMethods.WmSysCommand, NativeMethods.ScMonitorPower, (int)state);
+        }
+
         #endregion
 
         #region Private

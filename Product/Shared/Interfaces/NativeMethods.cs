@@ -34,6 +34,24 @@ namespace At.FF.Krems.Interfaces
     {
         #region Fields
 
+        #region PowerManagement
+
+        /// <summary>The system command for monitor power.</summary>
+        public const int ScMonitorPower = 0xF170;
+
+        /// <summary>The system command message.</summary>
+        public const int WmSysCommand = 0x0112;
+
+        /// <summary>
+        /// The message is sent to all top-level windows in the system,
+        /// including disabled or invisible unowned windows,
+        /// overlapped windows, and pop-up windows;
+        /// but the message is not sent to child windows
+        /// </summary>
+        public static readonly IntPtr HwndBroadcast = new IntPtr(0XFFFF);
+
+        #endregion
+
         #region WindowManagement
 
         /// <summary>The SWP no size.</summary>
@@ -344,6 +362,30 @@ namespace At.FF.Krems.Interfaces
         /// <returns>The <see cref="int"/>.</returns>
         [DllImport("powrprof.dll", EntryPoint = "SetSuspendState", CharSet = CharSet.Ansi)]
         public static extern int SetSuspendState(int hibernate, int forceCritical, int disableWakeEvent);
+
+        /// <summary>
+        /// Sends the specified message to a window or windows.
+        /// The SendMessage function calls the window procedure for the specified window and does not return until the window procedure has processed the message.
+        /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms644950(v=vs.85).aspx
+        /// </summary>
+        /// <param name="hWnd">
+        /// A handle to the window whose window procedure will receive the message.
+        /// If this parameter is <see cref="HwndBroadcast"/>,
+        /// the message is sent to all top-level windows in the system,
+        /// including disabled or invisible unowned windows, overlapped windows,
+        /// and pop-up windows; but the message is not sent to child windows.
+        /// 
+        /// Message sending is subject to UIPI. The thread of a process can send messages only to message queues of threads in processes of lesser or equal integrity level.
+        /// </param>
+        /// <param name="msg">The message to be sent.
+        /// For lists of the system-provided messages, see System-Defined Messages[https://msdn.microsoft.com/en-us/library/windows/desktop/ms644927(v=vs.85).aspx#system_defined].
+        /// </param>
+        /// <param name="wParam">Additional message-specific information.</param>
+        /// <param name="lParam">Additional message-specific information.</param>
+        /// <returns>The return value specifies the result of the message processing;
+        /// it depends on the message sent.</returns>
+        [DllImport("user32.dll",SetLastError = true)]
+        public static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
         #endregion
 
