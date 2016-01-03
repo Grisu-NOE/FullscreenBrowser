@@ -26,6 +26,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
 
     using At.FF.Krems.Configuration.Google.StaticMaps.Entities;
@@ -59,7 +60,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                 parametersList.Add("center", centerLocation);
             }
 
-            if (request.Zoom != default(int))
+            if (request.Zoom != default(byte))
             {
                 parametersList.Add("zoom", request.Zoom.ToString());
             }
@@ -78,7 +79,6 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
             if (request.ImageFormat != default(ImageFormat))
             {
                 string format;
-
                 switch (request.ImageFormat)
                 {
                     case ImageFormat.Png8:
@@ -106,7 +106,6 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
             if (request.MapType != null)
             {
                 string type;
-
                 switch (request.MapType)
                 {
                     case MapType.Roadmap:
@@ -143,14 +142,104 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                             case MapFeature.All:
                                 mapFeature = "all";
                                 break;
-                            case MapFeature.Road:
-                                mapFeature = "road";
+                            case MapFeature.Administrative:
+                                mapFeature = "administrative";
+                                break;
+                            case MapFeature.AdministrativeCountry:
+                                mapFeature = "administrative.country";
+                                break;
+                            case MapFeature.AdministrativeLandParcel:
+                                mapFeature = "administrative.land_parcel";
+                                break;
+                            case MapFeature.AdministrativeLocality:
+                                mapFeature = "administrative.locality";
+                                break;
+                            case MapFeature.AdministrativeNeighborhood:
+                                mapFeature = "administrative.neighborhood";
+                                break;
+                            case MapFeature.AdministrativeProvince:
+                                mapFeature = "administrative.province";
                                 break;
                             case MapFeature.Landscape:
                                 mapFeature = "landscape";
                                 break;
+                            case MapFeature.LandscapeManMade:
+                                mapFeature = "landscape.man_made";
+                                break;
+                            case MapFeature.LandscapeNatural:
+                                mapFeature = "landscape.natural";
+                                break;
+                            case MapFeature.LandscapeNaturalLandcover:
+                                mapFeature = "landscape.natural.landcover";
+                                break;
+                            case MapFeature.LandscapeNaturalTerrain:
+                                mapFeature = "landscape.natural.terrain";
+                                break;
+                            case MapFeature.Poi:
+                                mapFeature = "poi";
+                                break;
+                            case MapFeature.PoiAttraction:
+                                mapFeature = "poi.attraction";
+                                break;
+                            case MapFeature.PoiBusiness:
+                                mapFeature = "poi.business";
+                                break;
+                            case MapFeature.PoiGovernment:
+                                mapFeature = "poi.government";
+                                break;
+                            case MapFeature.PoiMedical:
+                                mapFeature = "poi.medical";
+                                break;
+                            case MapFeature.PoiPark:
+                                mapFeature = "poi.park";
+                                break;
+                            case MapFeature.PoiPlaceOfWorship:
+                                mapFeature = "poi.place_of_worship";
+                                break;
+                            case MapFeature.PoiSchool:
+                                mapFeature = "poi.school";
+                                break;
+                            case MapFeature.PoiSportsComplex:
+                                mapFeature = "poi.sports_complex";
+                                break;
+                            case MapFeature.Road:
+                                mapFeature = "road";
+                                break;
+                            case MapFeature.RoadArterial:
+                                mapFeature = "road.arterial";
+                                break;
+                            case MapFeature.RoadHighway:
+                                mapFeature = "road.highway";
+                                break;
+                            case MapFeature.RoadHighwayControlledAccess:
+                                mapFeature = "road.highway.controlled_access";
+                                break;
+                            case MapFeature.RoadLocal:
+                                mapFeature = "road.local";
+                                break;
+                            case MapFeature.Transit:
+                                mapFeature = "transit";
+                                break;
+                            case MapFeature.TransitLine:
+                                mapFeature = "transit.line";
+                                break;
+                            case MapFeature.TransitStation:
+                                mapFeature = "transit.station";
+                                break;
+                            case MapFeature.TransitStationAirport:
+                                mapFeature = "transit.station.airport";
+                                break;
+                            case MapFeature.TransitStationBus:
+                                mapFeature = "transit.station.bus";
+                                break;
+                            case MapFeature.TransitStationRail:
+                                mapFeature = "transit.station.rail";
+                                break;
+                            case MapFeature.Water:
+                                mapFeature = "water";
+                                break;
                             default:
-                                throw new ArgumentOutOfRangeException();
+                                throw new ArgumentOutOfRangeException(nameof(style.MapFeature));
                         }
 
                         styleComponents.Add("feature:" + mapFeature);
@@ -168,25 +257,47 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                             case MapElement.Geometry:
                                 element = "geometry";
                                 break;
+                            case MapElement.GeometryFill:
+                                element = "geometry.fill";
+                                break;
+                            case MapElement.GeometryStroke:
+                                element = "geometry.stroke";
+                                break;
                             case MapElement.Labels:
                                 element = "lables";
                                 break;
+                            case MapElement.LabelsIcon:
+                                element = "labels.icon";
+                                break;
+                            case MapElement.LabelsText:
+                                element = "labels.text";
+                                break;
+                            case MapElement.LabelsTextFill:
+                                element = "labels.text.fill";
+                                break;
+                            case MapElement.LabelsTextStroke:
+                                element = "labels.text.stroke";
+                                break;
                             default:
-                                throw new ArgumentOutOfRangeException();
+                                throw new ArgumentOutOfRangeException(nameof(style.MapElement));
                         }
 
                         styleComponents.Add("element:" + element);
                     }
-
-                    var hue = style.HUE;
-                    if (hue != null)
+                    
+                    if (style.HUE != default(Color))
                     {
-                        styleComponents.Add("hue:" + hue);
+                        styleComponents.Add("hue:0x" + ColorToHexConverter(style.HUE));
                     }
 
                     var lightness = style.Lightness;
                     if (lightness != null)
                     {
+                        if (lightness < -100 || lightness > 100)
+                        {
+                            throw new ArgumentOutOfRangeException(nameof(style.Lightness));
+                        }
+
                         styleComponents.Add("lightness:" + lightness);
                     }
 
@@ -194,22 +305,42 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                     var saturation = style.Saturation;
                     if (saturation != null)
                     {
+                        if (saturation < -100 || saturation > 100)
+                        {
+                            throw new ArgumentOutOfRangeException(nameof(style.Saturation));
+                        }
+
                         styleComponents.Add("saturation:" + saturation);
                     }
 
                     var gamma = style.Gamma;
-                    if (gamma != null)
+                    if (gamma != null && gamma != 1.0)
                     {
-                        styleComponents.Add("hue:" + gamma);
+                        if (gamma < 0.01 || gamma > 10.0)
+                        {
+                            throw new ArgumentOutOfRangeException(nameof(style.Gamma));
+                        }
+
+                        styleComponents.Add("gamma:" + gamma);
                     }
 
-                    bool inverseLightness = style.InverseLightness;
+                    var inverseLightness = style.InvertLightness;
                     if (inverseLightness)
                     {
                         styleComponents.Add("inverse_lightnes:true");
                     }
 
-                    MapVisibility mapVisibility = style.MapVisibility;
+                    if (style.Weight != default(int))
+                    {
+                        styleComponents.Add("weight:" + style.Weight);
+                    }
+
+                    if (style.Color != default(Color))
+                    {
+                        styleComponents.Add("color:0x" + ColorToHexConverter(style.Color));
+                    }
+
+                    var mapVisibility = style.Visibility;
 
                     if (mapVisibility != default(MapVisibility))
                     {
@@ -227,7 +358,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                                 visibility = "simplified";
                                 break;
                             default:
-                                throw new ArgumentOutOfRangeException();
+                                throw new ArgumentOutOfRangeException(nameof(style.Visibility));
                         }
 
                         styleComponents.Add("visibility:" + visibility);
@@ -328,6 +459,14 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
             parametersList.Add("sensor", request.Sensor ? "true" : "false");
 
             return scheme + BaseUrl + "?" + parametersList.GetQueryStringPostfix();
+        }
+
+        /// <summary>Convert <see cref="Color"/> to hex <see cref="string"/>.</summary>
+        /// <param name="color">The color for conversion.</param>
+        /// <returns>The <see cref="Color"/> as hex <see cref="string"/> in the format RRGGBB.</returns>
+        private static string ColorToHexConverter(Color color)
+        {
+            return color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
         }
     }
 }

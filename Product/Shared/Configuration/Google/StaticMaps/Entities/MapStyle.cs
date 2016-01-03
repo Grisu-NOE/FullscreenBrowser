@@ -24,6 +24,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.Configuration.Google.StaticMaps.Entities
 {
+    using System.Drawing;
+
     using At.FF.Krems.Configuration.Google.StaticMaps.Enums;
 
     /// <summary>
@@ -34,27 +36,30 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Entities
     /// Additional styles are specified by passing additional style parameters.
     /// A style consists of a selection(s) and a set of rules to apply to that selection.
     /// The rules indicate what visual modification to make to the selection.
+    /// Mix of https://developers.google.com/maps/documentation/javascript/reference#MapTypeStyler and https://developers.google.com/maps/documentation/javascript/reference#MapTypeStyle
     /// </summary>
     public class MapStyle
     {
-        /// <summary>
-        /// (optional) indicates what features to select for this style modification. (See Map Features below.) If no feature argument is passed, all features will be selected.
-        /// </summary>
-        public MapFeature MapFeature { get; set; }
+        /// <summary>Sets the color of the feature. Valid values: An RGB hex string, i.e. '#ff0000'.</summary>
+        public Color Color { get; set; }
 
         /// <summary>
-        /// (optional) indicates what sub-set of the selected features to select. (See Map Elements below.) If no element argument is passed, all elements of the given feature will be selected.
+        /// Modifies the gamma by raising the lightness to the given power. Valid values: Floating point numbers, [0.01, 10], with 1.0 representing no change.
+        /// indicates the amount of gamma correction to apply to the element. Gammas modify the lightness of hues in a non-linear fashion, while unaffecting white or black values. Gammas are typically used to modify the contrast of multiple elements. For example, you could modify the gamma to increase or decrease the contrast between the edges and interiors of elements. Low gamma values (less than 1) increase contrast, while high values (> 1) decrease contrast.
         /// </summary>
-        public MapElement MapElement { get; set; }
+        public float? Gamma { get; set; }
 
         /// <summary>
-        /// (an RGB hex string of format 0xRRGGBB) indicates the basic color to apply to the selection. 
+        /// Sets the hue of the feature to match the hue of the color supplied. Note that the saturation and lightness of the feature is conserved, which means that the feature will not match the color supplied exactly. Valid values: An RGB hex string, i.e. '#ff0000'.
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public string HUE { get; set; }
+        public Color HUE { get; set; }
+
+        /// <summary>A value of <c>true</c> will invert the lightness of the feature while preserving the <see cref="HUE"/> and <see cref="Saturation"/>.</summary>
+        public bool InvertLightness { get; set; }
 
         /// <summary>
-        /// (a floating point value between -100 and 100) indicates the percentage change in brightness of the element. Negative values increase darkness (where -100 specifies black) while positive values increase brightness (where +100 specifies white).
+        /// A floating point value between -100 and 100 indicates the percentage change in brightness of the element. Negative values increase darkness (where -100 specifies black) while positive values increase brightness (where +100 specifies white).
         /// </summary>
         public float? Lightness { get; set; }
 
@@ -64,18 +69,21 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Entities
         public float? Saturation { get; set; }
 
         /// <summary>
-        /// (a floating point value between 0.01 and 10.0, where 1.0 applies no correction) indicates the amount of gamma correction to apply to the element. Gammas modify the lightness of hues in a non-linear fashion, while unaffecting white or black values. Gammas are typically used to modify the contrast of multiple elements. For example, you could modify the gamma to increase or decrease the contrast between the edges and interiors of elements. Low gamma values (less than 1) increase contrast, while high values (> 1) decrease contrast.
-        /// </summary>
-        public float? Gamma { get; set; }
-
-        /// <summary>
-        ///  simply inverts the existing lightness.
-        /// </summary>
-        public bool InverseLightness { get; set; }
-
-        /// <summary>
         /// indicates whether and how the element appears on the map. visibility:simplified indicates that the map should simplify the presentation of those elements as it sees fit. (A simplified road structure may show fewer roads, for example.)
         /// </summary>
-        public MapVisibility MapVisibility { get; set; }
+        public MapVisibility Visibility { get; set; }
+
+        /// <summary>Sets the weight of the feature, in pixels. Valid values: Integers greater than or equal to zero.</summary>
+        public int Weight { get; set; }
+
+        /// <summary>
+        /// (optional) indicates what features to select for this style modification. (See Map Features below.) If no feature argument is passed, all features will be selected.
+        /// </summary>
+        public MapFeature MapFeature { get; set; }
+
+        /// <summary>
+        /// (optional) indicates what sub-set of the selected features to select. (See Map Elements below.) If no element argument is passed, all elements of the given feature will be selected.
+        /// </summary>
+        public MapElement MapElement { get; set; }
     }
 }

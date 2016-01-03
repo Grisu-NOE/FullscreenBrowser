@@ -26,11 +26,35 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Enums
 {
     /// <summary>
     /// Additionally, some features on a map typically consist of different elements. A road, for example, consists of not only the graphical line (geometry) on the map, but the text denoting its name (labels) attached the map. Elements within features are selected by declaring an element argument
+    /// https://developers.google.com/maps/documentation/javascript/reference#MapTypeStyleElementType
     /// </summary>
     public enum MapElement
     {
+        /// <summary>Apply the rule to all elements of the specified feature.</summary>
         All,
+
+        /// <summary>Apply the rule to the feature's geometry.</summary>
         Geometry,
-        Labels
+
+        /// <summary>Apply the rule to the fill of the feature's geometry.</summary>
+        GeometryFill,
+
+        /// <summary>Apply the rule to the stroke of the feature's geometry.</summary>
+        GeometryStroke,
+
+        /// <summary>Apply the rule to the feature's labels.</summary>
+        Labels,
+
+        /// <summary>Apply the rule to icons within the feature's labels.</summary>
+        LabelsIcon,
+
+        /// <summary>Apply the rule to the text in the feature's label.</summary>
+        LabelsText,
+
+        /// <summary>Apply the rule to the fill of the text in the feature's labels.</summary>
+        LabelsTextFill,
+
+        /// <summary>Apply the rule to the stroke of the text in the feature's labels.</summary>
+        LabelsTextStroke
     }
 }

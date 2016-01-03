@@ -53,7 +53,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Entities
         /// Note: not all zoom levels appear at all locations on the earth. Zoom levels vary depending on location, as data in some parts of the globe is more granular than in other locations.
         /// If you send a request for a zoom level in which no map tiles exist, the Static Maps API will return a blank image instead.
         /// </summary>
-        public int Zoom { get; set; }
+        public byte Zoom { get; set; }
 
         /// <summary>
         /// (required) defines the rectangular dimensions of the map image. 
@@ -123,9 +123,9 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Entities
         public bool Sensor { get; set; }
 
         // ReSharper disable once InconsistentNaming
-        public bool IsSSL { get; set; }
+        public bool IsSSL { get; set; } = true;
 
-        public StaticMapRequest(ILocationString center, int zoom, ImageSize imageSize)
+        public StaticMapRequest(ILocationString center, byte zoom, ImageSize imageSize)
         {
             this.Center = center;
             this.Zoom = zoom;
