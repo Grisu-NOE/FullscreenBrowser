@@ -332,6 +332,11 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
 
                     if (style.Weight != default(int))
                     {
+                        if (style.Weight < 0)
+                        {
+                            throw new ArgumentOutOfRangeException(nameof(style.Weight));
+                        }
+
                         styleComponents.Add("weight:" + style.Weight);
                     }
 
