@@ -30,21 +30,7 @@ namespace At.FF.Krems.Configuration.XML
     using System.Diagnostics;
     using System.Xml.Serialization;
 
-    /// <summary>The map types for google maps API.</summary>
-    public enum MapType
-    {
-        /// <summary>The roadmap is default</summary>
-        Roadmap,
-
-        /// <summary>The satellite</summary>
-        Satellite,
-
-        /// <summary>The terrain</summary>
-        Terrain,
-
-        /// <summary>The hybrid</summary>
-        Hybrid
-    }
+    using At.FF.Krems.Configuration.Google.StaticMaps.Enums;
 
     /// <summary>The print settings.</summary>
     [GeneratedCode("xsd", "2.0.50727.3038"), DesignerCategory("code"), DebuggerStepThrough, XmlType(AnonymousType = true)]

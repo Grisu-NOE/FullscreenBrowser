@@ -47,6 +47,22 @@
     <Compile Include="..\..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Google\ILocationString.cs" />
+    <Compile Include="Google\QueryStringParametersList.cs" />
+    <Compile Include="Google\StaticMaps\Entities\ImageSize.cs" />
+    <Compile Include="Google\StaticMaps\Entities\MapStyle.cs" />
+    <Compile Include="Google\StaticMaps\Entities\Marker.cs" />
+    <Compile Include="Google\StaticMaps\Entities\MarkerStyle.cs" />
+    <Compile Include="Google\StaticMaps\Entities\Path.cs" />
+    <Compile Include="Google\StaticMaps\Entities\PathStyle.cs" />
+    <Compile Include="Google\StaticMaps\Entities\StaticMapRequest.cs" />
+    <Compile Include="Google\StaticMaps\Enums\ImageFormat.cs" />
+    <Compile Include="Google\StaticMaps\Enums\MapElement.cs" />
+    <Compile Include="Google\StaticMaps\Enums\MapFeature.cs" />
+    <Compile Include="Google\StaticMaps\Enums\MapType.cs" />
+    <Compile Include="Google\StaticMaps\Enums\MapVisibility.cs" />
+    <Compile Include="Google\StaticMaps\Enums\MarkerSize.cs" />
+    <Compile Include="Google\StaticMaps\StaticMapsEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XML\BrowserConfig.cs" />
     <Compile Include="XML\Cookie.cs" />
@@ -57,6 +73,7 @@
     <Compile Include="XML\WindowPosition.cs" />
     <Compile Include="XML\WindowProxy.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

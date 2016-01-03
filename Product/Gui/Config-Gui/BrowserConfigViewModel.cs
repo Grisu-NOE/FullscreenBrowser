@@ -32,6 +32,7 @@ namespace At.FF.Krems.Config_Gui
     using System.Linq;
     using System.Runtime.CompilerServices;
 
+    using At.FF.Krems.Configuration.Google.StaticMaps.Enums;
     using At.FF.Krems.Config_Gui.Annotations;
     using At.FF.Krems.Configuration.XML;
 

@@ -232,6 +232,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
 
                     if (string.IsNullOrWhiteSpace(item.MapUrl))
                     {
+                        // Google Static Maps Developer Guide: https://developers.google.com/maps/documentation/static-maps/intro
                         var mapData =
                             this.GetData(
                                 $"https://secure.florian10.info/ows/infoscreen/geo/staticmap.ashx?address={item.Strasse}{(string.IsNullOrWhiteSpace(item.Nummer1) ? string.Empty : "%20" + item.Nummer1)},%20{item.Plz}%20{item.Ort}");
