@@ -258,7 +258,7 @@ namespace At.FF.Krems.FullscreenBrowser
                 Logger.Warn(exception);
             }
         }
-
+        
         /// <summary>Starts or resets the browser.</summary>
         /// <param name="ignoreAutoStart">if set to <c>true</c> ignores flag of automatic start.</param>
         /// <param name="disableReload">if set to <c>true</c> disable reload.</param>
@@ -362,9 +362,10 @@ namespace At.FF.Krems.FullscreenBrowser
                 PromptFactory.PromptServiceCreator = () => new FilteredPromptService();
                 Xpcom.Initialize(Path.GetFullPath(browserConfig.Runtime));
             }
-
+            
             if (browserConfig.ClearCookiesAtStartup)
             {
+                // https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface
                 var cookieManager = Xpcom.GetService<nsICookieManager>("@mozilla.org/cookiemanager;1");
                 cookieManager?.RemoveAll();
             }
@@ -477,9 +478,18 @@ namespace At.FF.Krems.FullscreenBrowser
                 this.DocumentCookies.Add(new Cookie(name, value, "/", document.Domain));
             }
 
+            // Code for possible future work
+            //if (!this.DomContentLoaded)
+            //{
+            //    // https://developer.mozilla.org/en-US/docs/Web/Events
+            //    // https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+            //    ((GeckoWebBrowser)sender).AddMessageEventListener("message", this.Action, false);
+            //    ((GeckoWebBrowser)sender).AddMessageEventListener("onmessage", this.Action, false);
+            //}
+
             this.DomContentLoaded = true;
         }
-
+        
         /// <summary>The async navigate thread.</summary>
         /// <param name="url">The url.</param>
         private void NavigateToUrl(string url)

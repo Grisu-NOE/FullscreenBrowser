@@ -26,6 +26,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
 {
     using System;
     using System.Collections.Generic;
+    //using System.Drawing;
     using System.IO;
     using System.Linq;
     using System.Net;
@@ -34,6 +35,9 @@ namespace At.FF.Krems.FullscreenBrowser.Print
     using System.Windows.Documents;
     using System.Windows.Markup;
 
+    //using At.FF.Krems.Configuration.Google.StaticMaps;
+    //using At.FF.Krems.Configuration.Google.StaticMaps.Entities;
+    //using At.FF.Krems.Configuration.Google.StaticMaps.Enums;
     using At.FF.Krems.Interfaces;
     using At.FF.Krems.Utils.Bootstrapper;
     using At.FF.Krems.Utils.Extensions;
@@ -233,6 +237,73 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                     if (string.IsNullOrWhiteSpace(item.MapUrl))
                     {
                         // Google Static Maps Developer Guide: https://developers.google.com/maps/documentation/static-maps/intro
+                        //#if DEBUG
+                        //                        var greyMap = new StaticMapRequest(new List<Marker>(), new ImageSize(640, 640));
+                        //                        greyMap.Style = new List<MapStyle>
+                        //                                             {
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature = MapFeature.Landscape,
+                        //                                                         Saturation = -100,
+                        //                                                         Lightness = 65
+                        //                                                     },
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature = MapFeature.Poi,
+                        //                                                         Saturation = -100,
+                        //                                                         Lightness = 51,
+                        //                                                         Visibility = MapVisibility.Simplified
+                        //                                                     },
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature = MapFeature.RoadHighway,
+                        //                                                         Saturation = -100,
+                        //                                                         Visibility = MapVisibility.Simplified
+                        //                                                     },
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature = MapFeature.RoadArterial,
+                        //                                                         Saturation = -100,
+                        //                                                         Lightness = 30
+                        //                                                     },
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature = MapFeature.RoadLocal,
+                        //                                                         Saturation = -100,
+                        //                                                         Lightness = 40
+                        //                                                     },
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature = MapFeature.Transit,
+                        //                                                         Saturation = -100,
+                        //                                                         Visibility = MapVisibility.Simplified
+                        //                                                     },
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature =
+                        //                                                             MapFeature.AdministrativeProvince,
+                        //                                                         Visibility = MapVisibility.Off
+                        //                                                     },
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature = MapFeature.Water,
+                        //                                                         MapElement = MapElement.Labels,
+                        //                                                         Saturation = -100,
+                        //                                                         Lightness = -25
+                        //                                                     },
+                        //                                                 new MapStyle
+                        //                                                     {
+                        //                                                         MapFeature = MapFeature.Water,
+                        //                                                         MapElement = MapElement.Geometry,
+                        //                                                         Saturation = -97,
+                        //                                                         Lightness = -25,
+                        //                                                         HUE = Color.FromArgb(255, 255, 0)
+                        //                                                     }
+                        //                                             };
+
+                        //                        var engine = new StaticMapsEngine();
+                        //                        var url = engine.GenerateStaticMapUrl(greyMap);
+                        //#endif
                         var mapData =
                             this.GetData(
                                 $"https://secure.florian10.info/ows/infoscreen/geo/staticmap.ashx?address={item.Strasse}{(string.IsNullOrWhiteSpace(item.Nummer1) ? string.Empty : "%20" + item.Nummer1)},%20{item.Plz}%20{item.Ort}");

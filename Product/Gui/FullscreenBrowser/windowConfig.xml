@@ -3,8 +3,8 @@
   <Runtime>xulrunner_33.0.3</Runtime>
   <PrintSettings>
     <!--URL zum Infoscreen-Depeschen-Druckservice - nicht verändern!-->
-    <!--<PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/einsatz.ashx</PrintUrl>-->
-    <PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/demo.ashx?demo=4</PrintUrl>
+    <PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/einsatz.ashx</PrintUrl>
+    <!--<PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/demo.ashx?demo=1</PrintUrl>-->
     <!--Port zum Infoscreen-Depeschen-Druckservice - nicht verändern!-->
     <PrintPort>121</PrintPort>
     <!--Mögliche Werte für printEnabled: "true" oder "false" - Gib an ob das Infoscreen-Depeschen-Druckservice verwendet wird-->
@@ -55,8 +55,8 @@
     <!--mögliche Werte für name: beliebiger Text - gibt den Namen des Fensters im Trayicon an-->
     <Name>Infoscreen</Name>
     <!--mögliche Werte für URL: eine beliebige URL - Adobe Flash auf der Webseite wird nicht unterstützt-->
-    <Url>https://infoscreen.florian10.info/ows/infoscreen/v3/?demo=1</Url>
-    <!--<Url>https://infoscreen.florian10.info/</Url>-->
+    <!--<Url>https://infoscreen.florian10.info/ows/infoscreen/v3/?demo=1</Url>-->
+    <Url>https://infoscreen.florian10.info/</Url>
     <!--mögliche Werte für showOnScreen: 0, 1, 2,... je nach Anzahl der vorhandenen Bildschirme beginnend bei 0 für den ersten Schirm - gibt an auf welchem Schirm das Fenster gezeigt werden soll-->
     <ShowOnScreen>1</ShowOnScreen>
     <Position>
