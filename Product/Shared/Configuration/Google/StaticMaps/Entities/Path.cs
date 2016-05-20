@@ -26,10 +26,15 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Entities
 {
     using System.Collections.Generic;
 
+    /// <summary>The path</summary>
     public class Path
     {
+        /// <summary>Gets or sets the style.</summary>
+        /// <value>The style.</value>
         public PathStyle Style { get; set; }
 
+        /// <summary>Gets or sets the locations.</summary>
+        /// <value>The locations.</value>
         public IList<ILocationString> Locations { get; set; }
     }
 }

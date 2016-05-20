@@ -24,10 +24,16 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.Configuration.Google.StaticMaps.Enums
 {
+    /// <summary>The marker size</summary>
     public enum MarkerSize
     {
+        /// <summary>The marker size is mid</summary>
         Mid,
+
+        /// <summary>The marker size is tiny</summary>
         Tiny,
+
+        /// <summary>The marker size is small</summary>
         Small
     }
 }

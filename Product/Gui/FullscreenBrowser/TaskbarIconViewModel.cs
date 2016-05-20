@@ -44,18 +44,30 @@ namespace At.FF.Krems.FullscreenBrowser
     {
         /// <summary>Gets the logging directory.</summary>
         /// <value>The open logging directory command.</value>
-        public ICommand OpenLoggingDirectoryCommand => new DelegateCommand { CommandAction = () => Process.Start(Bootstrapper.GetInstance<ILoggingConfigurator>().LoggingDirectory) };
+        public ICommand OpenLoggingDirectoryCommand => new DelegateCommand
+                                                           {
+                                                               CommandAction = () => Process.Start(Bootstrapper.GetInstance<ILoggingConfigurator>().LoggingDirectory)
+                                                           };
 
         /// <summary>Gets the clear browser cache command.</summary>
         /// <value>The clear browser cache command.</value>
-        public ICommand ClearBrowserCacheCommand => new DelegateCommand { CommandAction = Bootstrapper.GetInstance<IWindowManager>().ClearBrowserCache };
+        public ICommand ClearBrowserCacheCommand => new DelegateCommand
+                                                        {
+                                                            CommandAction = Bootstrapper.GetInstance<IWindowManager>().ClearBrowserCache
+                                                        };
 
         /// <summary>Gets the save configuration command.</summary>
         /// <value>The save configuration command.</value>
-        public ICommand SaveConfigurationCommand => new DelegateCommand { CommandAction = Bootstrapper.GetInstance<IBrowserConfiguration>().Save };
+        public ICommand SaveConfigurationCommand => new DelegateCommand
+                                                        {
+                                                            CommandAction = Bootstrapper.GetInstance<IBrowserConfiguration>().Save
+                                                        };
 
         /// <summary>Gets the shut down for the application.</summary>
         /// <value>The exit application command.</value>
-        public ICommand ExitApplicationCommand => new DelegateCommand { CommandAction = Application.Current.Shutdown };
+        public ICommand ExitApplicationCommand => new DelegateCommand
+                                                      {
+                                                          CommandAction = Application.Current.Shutdown
+                                                      };
     }
 }

@@ -24,16 +24,20 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.Configuration.Google.StaticMaps.Enums
 {
+    /// <summary>The map type</summary>
     public enum MapType
     {
         /// <summary>
-        ///  (default) This map type displays a normal street map. If no maptype value is specified, the Static Maps API serves roadmap tiles by default.
+        ///  (default) This map type displays a normal street map. If no map type value is specified, the Static Maps API serves roadmap tiles by default.
         /// </summary>
         Roadmap,
+
         /// <summary>This map type displays satellite images.</summary>
         Satellite,
+
         /// <summary>This map type displays maps with physical features such as terrain and vegetation.</summary>
         Terrain,
+        
         /// <summary>This map type displays a transparent layer of major streets on satellite images.</summary>
         Hybrid
     }

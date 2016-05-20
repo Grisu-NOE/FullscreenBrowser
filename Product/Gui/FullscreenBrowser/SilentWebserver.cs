@@ -28,18 +28,15 @@ namespace At.FF.Krems.FullscreenBrowser
     using System.Reflection;
 
     using Interfaces;
-    using Utils.Bootstrapper;
-
     using log4net;
-
     using Microsoft.Win32;
+    using Utils.Bootstrapper;
 
     /// <summary>The silent webserver.</summary>
     public class SilentWebserver
     {
         #region Fields
         
-
         /// <summary>The logger.</summary>
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 

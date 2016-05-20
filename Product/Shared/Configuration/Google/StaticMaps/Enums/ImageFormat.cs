@@ -40,18 +40,22 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Enums
         /// (default) specifies the 8-bit PNG format.
         /// </summary>
         Png8,
+
         /// <summary>
         /// specifies the 32-bit PNG format.
         /// </summary>
         Png32,
+        
         /// <summary>
         /// specifies the Gif format.
         /// </summary>
         Gif,
+        
         /// <summary>
         /// specifies the JPEG compression format.
         /// </summary>
         Jpg,
+        
         /// <summary>
         /// specifies a non-progressive JPEG compression format.
         /// </summary>

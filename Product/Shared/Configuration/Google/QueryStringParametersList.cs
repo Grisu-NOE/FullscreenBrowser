@@ -28,15 +28,23 @@ namespace At.FF.Krems.Configuration.Google
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>The query string parameter list</summary>
     public class QueryStringParametersList
     {
+        /// <summary>Gets the list.</summary>
+        /// <value>The list.</value>
         private List<KeyValuePair<string, string>> List { get; } = new List<KeyValuePair<string, string>>();
 
+        /// <summary>Adds the specified key.</summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public void Add(string key, string value)
         {
             this.List.Add(new KeyValuePair<string, string>(key, value));
         }
 
+        /// <summary>Gets the query string postfix.</summary>
+        /// <returns>The <see cref="string"/></returns>
         public string GetQueryStringPostfix()
         {
             return string.Join("&", this.List.Select(p => Uri.EscapeDataString(p.Key) + "=" + Uri.EscapeDataString(p.Value)));

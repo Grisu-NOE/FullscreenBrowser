@@ -26,7 +26,6 @@ namespace At.FF.Krems.FullscreenBrowser.Print
 {
     using System;
     using System.Collections.Generic;
-    //using System.Drawing;
     using System.IO;
     using System.Linq;
     using System.Net;
@@ -35,9 +34,9 @@ namespace At.FF.Krems.FullscreenBrowser.Print
     using System.Windows.Documents;
     using System.Windows.Markup;
 
-    //using At.FF.Krems.Configuration.Google.StaticMaps;
-    //using At.FF.Krems.Configuration.Google.StaticMaps.Entities;
-    //using At.FF.Krems.Configuration.Google.StaticMaps.Enums;
+    // using At.FF.Krems.Configuration.Google.StaticMaps;
+    // using At.FF.Krems.Configuration.Google.StaticMaps.Entities;
+    // using At.FF.Krems.Configuration.Google.StaticMaps.Enums;
     using At.FF.Krems.Interfaces;
     using At.FF.Krems.Utils.Bootstrapper;
     using At.FF.Krems.Utils.Extensions;
@@ -237,7 +236,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                     if (string.IsNullOrWhiteSpace(item.MapUrl))
                     {
                         // Google Static Maps Developer Guide: https://developers.google.com/maps/documentation/static-maps/intro
-                        //#if DEBUG
+                        // #if DEBUG
                         //                        var greyMap = new StaticMapRequest(new List<Marker>(), new ImageSize(640, 640));
                         //                        greyMap.Style = new List<MapStyle>
                         //                                             {
@@ -300,10 +299,9 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                         //                                                         HUE = Color.FromArgb(255, 255, 0)
                         //                                                     }
                         //                                             };
-
                         //                        var engine = new StaticMapsEngine();
                         //                        var url = engine.GenerateStaticMapUrl(greyMap);
-                        //#endif
+                        // #endif
                         var mapData =
                             this.GetData(
                                 $"https://secure.florian10.info/ows/infoscreen/geo/staticmap.ashx?address={item.Strasse}{(string.IsNullOrWhiteSpace(item.Nummer1) ? string.Empty : "%20" + item.Nummer1)},%20{item.Plz}%20{item.Ort}");
@@ -323,7 +321,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                                     .Select(x => x.Replace("center=", string.Empty))
                                     .ToList();
 
-                            if (latLng.Count() >= 2)
+                            if (latLng.Count >= 2)
                             {
                                 var areaJson =
                                     this.GetData(

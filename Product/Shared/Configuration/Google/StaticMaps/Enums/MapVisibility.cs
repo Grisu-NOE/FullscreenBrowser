@@ -24,10 +24,16 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.Configuration.Google.StaticMaps.Enums
 {
+    /// <summary>The map visibility</summary>
     public enum MapVisibility
     {
+        /// <summary>The visibility is on</summary>
         On,
+
+        /// <summary>The visibility is off</summary>
         Off,
+
+        /// <summary>The visibility is simplified</summary>
         Simplified
     }
 }

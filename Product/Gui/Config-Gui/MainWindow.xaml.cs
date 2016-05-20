@@ -37,11 +37,10 @@ namespace At.FF.Krems.Config_Gui
     using System.Xml.Serialization;
 
     using Configuration.XML;
+    using KellermanSoftware.CompareNetObjects;
     using Utils;
     using Utils.Extensions;
-
-    using KellermanSoftware.CompareNetObjects;
-
+    
     using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
     /// <summary>Interaction logic for MainWindow.XAML</summary>

@@ -38,13 +38,28 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
     /// </summary>
     public class StaticMapsEngine
     {
+        /// <summary>The base URL</summary>
         protected static readonly string BaseUrl;
 
+        /// <summary>Initializes static members of the <see cref="StaticMapsEngine"/> class.</summary>
         static StaticMapsEngine()
         {
             BaseUrl = @"maps.google.com/maps/api/staticmap";
         }
 
+        /// <summary>Generates the static map URL.</summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The <see cref="string"/></returns>
+        /// <exception cref="System.ArgumentException">
+        /// Size is invalid
+        /// or
+        /// Marker style color can't be empty
+        /// or
+        /// Path style color can't be empty
+        /// </exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// Request image format is unknown.
+        /// </exception>
         public string GenerateStaticMapUrl(StaticMapRequest request)
         {
             var scheme = request.IsSSL ? "https://" : "http://";
@@ -300,7 +315,6 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
 
                         styleComponents.Add("lightness:" + lightness);
                     }
-
 
                     var saturation = style.Saturation;
                     if (saturation != null)

@@ -24,8 +24,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.Configuration.Google
 {
+    /// <summary>The interface for the location string</summary>
     public interface ILocationString
     {
+        /// <summary>Gets the location string.</summary>
+        /// <value>The location string.</value>
         string LocationString { get; }
     }
 }

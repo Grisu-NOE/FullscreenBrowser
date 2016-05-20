@@ -32,9 +32,15 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Entities
     /// </summary>
     public struct ImageSize
     {
+        /// <summary>The width</summary>
         public readonly int Width;
+
+        /// <summary>The height</summary>
         public readonly int Height;
 
+        /// <summary>Initializes a new instance of the <see cref="ImageSize"/> struct.</summary>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
         public ImageSize(int width, int height)
         {
             this.Width = width;

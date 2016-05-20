@@ -425,7 +425,8 @@ namespace At.FF.Krems.FullscreenBrowser
                 return;
             }
 
-            var documentViewer = this.browser.GetMarkupDocumentViewer();
+            // https://bitbucket.org/geckofx/geckofx-45.0/issues/32/problem-wiath-a-zoom
+            var documentViewer = this.browser.GetDocShellAttribute().GetContentViewerAttribute();
             if (documentViewer == null)
             {
                 return;
@@ -479,14 +480,13 @@ namespace At.FF.Krems.FullscreenBrowser
             }
 
             // Code for possible future work
-            //if (!this.DomContentLoaded)
-            //{
+            // if (!this.DomContentLoaded)
+            // {
             //    // https://developer.mozilla.org/en-US/docs/Web/Events
             //    // https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
             //    ((GeckoWebBrowser)sender).AddMessageEventListener("message", this.Action, false);
             //    ((GeckoWebBrowser)sender).AddMessageEventListener("onmessage", this.Action, false);
-            //}
-
+            // }
             this.DomContentLoaded = true;
         }
         
@@ -519,7 +519,7 @@ namespace At.FF.Krems.FullscreenBrowser
                 return;
             }
 
-            this.config.ZoomLevel = this.browser.GetMarkupDocumentViewer().GetTextZoomAttribute();
+            this.config.ZoomLevel = this.browser.GetDocShellAttribute().GetContentViewerAttribute().GetTextZoomAttribute();
         }
 
         /// <summary>The browser on dom key down.</summary>

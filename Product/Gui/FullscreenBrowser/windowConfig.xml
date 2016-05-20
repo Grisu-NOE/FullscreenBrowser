@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <BrowserConfig>
-  <Runtime>xulrunner_33.0.3</Runtime>
+  <Runtime>Firefox</Runtime>
   <PrintSettings>
     <!--URL zum Infoscreen-Depeschen-Druckservice - nicht verändern!-->
     <PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/einsatz.ashx</PrintUrl>

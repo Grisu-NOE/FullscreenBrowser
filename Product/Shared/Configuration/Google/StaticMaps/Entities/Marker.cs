@@ -31,11 +31,12 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps.Entities
     /// </summary>
     public class Marker
     {
-        /// <summary>
-        /// Marker's style
-        /// </summary>
+        /// <summary>Gets or sets the <see cref="MarkerStyle" /></summary>
+        /// <value>The style.</value>
         public MarkerStyle Style { get; set; }
 
+        /// <summary>Gets or sets the locations.</summary>
+        /// <value>The locations.</value>
         public IList<ILocationString> Locations { get; set; }
     }
 }
