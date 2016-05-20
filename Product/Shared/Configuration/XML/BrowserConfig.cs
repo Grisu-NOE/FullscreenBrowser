@@ -136,9 +136,9 @@ namespace At.FF.Krems.Configuration.XML
             }
         }
 
-        /// <summary>Gets or sets the configuration dictionary.</summary>
-        /// <value>The configuration dictionary.</value>
-        public ObservableCollection<BrowserRegistry> BrowserRegistry { get; private set; } = new ObservableCollection<BrowserRegistry> { new BrowserRegistry { Name = "intl.accept_languages", Value = "de, en-US, en" }, new BrowserRegistry { Name = "intl.locale.matchOS", Value = false } };
+        /// <summary>Gets the browser registry.</summary>
+        /// <value>The browser registry.</value>
+        public ObservableCollection<BrowserRegistry> BrowserRegistry { get; private set; } = new ObservableCollection<BrowserRegistry> { new BrowserRegistry { Name = "intl.accept_languages", Value = "de, en-US, en", Type = BrowserRegistryType.String }, new BrowserRegistry { Name = "intl.locale.matchOS", Value = false, Type = BrowserRegistryType.Boolean } };
 
         #endregion
     }

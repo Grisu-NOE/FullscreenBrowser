@@ -419,7 +419,37 @@ namespace At.FF.Krems.FullscreenBrowser
                 {
                     try
                     {
-                        GeckoPreferences.User[item.Name] = item.Value;
+                        object value;
+                        switch (item.Type)
+                        {
+                            case BrowserRegistryType.Boolean:
+                                bool parsedBool;
+                                if (! bool.TryParse(item.Value.ToString(), out parsedBool))
+                                {
+                                    throw new InvalidDataException("Value could not be parsed as boolean");
+                                }
+
+                                value = parsedBool;
+                                break;
+
+                            case BrowserRegistryType.Integer:
+                                int parsedInt;
+                                if (!int.TryParse(item.Value.ToString(), out parsedInt))
+                                {
+                                    throw new InvalidDataException("Value could not be parsed as integer");
+                                }
+
+                                value = parsedInt;
+                                break;
+
+                            case BrowserRegistryType.String:
+                                value = item.Value.ToString();
+                                break;
+                            default:
+                                throw new NotSupportedException($"Registry type {item.Type} is not supported");
+                        }
+
+                        GeckoPreferences.User[item.Name] = value;
                     }
                     catch (Exception exception)
                     {

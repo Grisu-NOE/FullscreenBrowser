@@ -67,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XML\BrowserConfig.cs" />
     <Compile Include="XML\BrowserRegistry.cs" />
+    <Compile Include="XML\BrowserRegistryType.cs" />
     <Compile Include="XML\Cookie.cs" />
     <Compile Include="XML\PrintSettings.cs" />
     <Compile Include="XML\ScreenRefresher.cs" />
