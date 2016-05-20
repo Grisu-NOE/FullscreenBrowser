@@ -28,6 +28,7 @@ namespace At.FF.Krems.Configuration.XML
     using System;
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Linq;
@@ -42,10 +43,10 @@ namespace At.FF.Krems.Configuration.XML
 
         /// <summary>The show closed windows in minutes lock object</summary>
         private readonly object showClosedWindowsInMinutesLockObject = new object();
-        
+
         /// <summary>Gets or sets the cookie field.</summary>
         private Cookie[] cookieField;
-        
+
         /// <summary>The show closed windows in minutes</summary>
         private int showClosedWindowsInMinutes;
 
@@ -58,7 +59,7 @@ namespace At.FF.Krems.Configuration.XML
         public Window[] Window { get; set; }
 
         /// <summary>Gets or sets the runtime.</summary>
-        public string Runtime { get; set; } = "xulrunner_33.0.3";
+        public string Runtime { get; set; } = "Firefox";
 
         /// <summary>Gets or sets a value indicating whether disable screensaver permanently.</summary>
         public bool DisableScreensaverPermanently { get; set; }
@@ -134,6 +135,10 @@ namespace At.FF.Krems.Configuration.XML
                 }
             }
         }
+
+        /// <summary>Gets or sets the configuration dictionary.</summary>
+        /// <value>The configuration dictionary.</value>
+        public ObservableCollection<BrowserRegistry> BrowserRegistry { get; private set; } = new ObservableCollection<BrowserRegistry> { new BrowserRegistry { Name = "intl.accept_languages", Value = "de, en-US, en" }, new BrowserRegistry { Name = "intl.locale.matchOS", Value = false } };
 
         #endregion
     }
