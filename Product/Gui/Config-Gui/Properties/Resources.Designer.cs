@@ -577,6 +577,24 @@ namespace At.FF.Krems.Config_Gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registry.
+        /// </summary>
+        public static string Registry_DE_AT {
+            get {
+                return ResourceManager.GetString("Registry_DE_AT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firefox Konfigurationen von about:config.
+        /// </summary>
+        public static string Registry_ToolTip_DE_AT {
+            get {
+                return ResourceManager.GetString("Registry_ToolTip_DE_AT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Neu laden.
         /// </summary>
         public static string Reload_DE_AT {

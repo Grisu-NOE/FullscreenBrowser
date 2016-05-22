@@ -64,6 +64,7 @@
     <Compile Include="Google\StaticMaps\Enums\MapVisibility.cs" />
     <Compile Include="Google\StaticMaps\Enums\MarkerSize.cs" />
     <Compile Include="Google\StaticMaps\StaticMapsEngine.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XML\BrowserConfig.cs" />
     <Compile Include="XML\BrowserRegistry.cs" />

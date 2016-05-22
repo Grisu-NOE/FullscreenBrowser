@@ -423,4 +423,10 @@ es können damit auch mehrere Fenster auf einem Schirm angzeigt werden.</value>
   <data name="MaxHydrants_ToolTip_DE_AT" xml:space="preserve">
     <value>Maximale Anzahl an Hydranten auf Druckseite</value>
   </data>
+  <data name="Registry_DE_AT" xml:space="preserve">
+    <value>Registry</value>
+  </data>
+  <data name="Registry_ToolTip_DE_AT" xml:space="preserve">
+    <value>Firefox Konfigurationen von about:config</value>
+  </data>
 </root>

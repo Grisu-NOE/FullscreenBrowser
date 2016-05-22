@@ -8,6 +8,7 @@
         xmlns:prop="clr-namespace:At.FF.Krems.Config_Gui.Properties"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:xmlConf="clr-namespace:At.FF.Krems.Configuration.XML;assembly=At.FF.Krems.Configuration"
         Title="Config-Gui" Height="498" Width="695"
         Name="ConfigGuiWindow"
         MinHeight="{Binding Height, ElementName=ConfigGuiWindow}" MaxHeight="{Binding Height, ElementName=ConfigGuiWindow}"
@@ -165,6 +166,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
@@ -264,7 +266,62 @@
                             </Grid>
                         </GroupBox>
                     </StackPanel>
-                    <StackPanel Grid.Row="7" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <GroupBox Grid.Row="7" Header="{x:Static prop:Resources.Registry_DE_AT}" FontSize="16" ToolTip="{x:Static prop:Resources.Registry_ToolTip_DE_AT}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <ListBox Grid.Column="0" ItemsSource="{Binding Config.BrowserRegistry}" SelectedItem="{Binding SelectedBrowserRegistry, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" FontSize="12">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <StackPanel Grid.Column="1" Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" Content="{x:Static prop:Resources.Add_DE_AT}" FontSize="12" VerticalAlignment="Center" ToolTip="{x:Static prop:Resources.Add_ToolTip_DE_AT}" Click="ButtonRegistryAddOnClick" />
+                                        <Button Grid.Column="1" Content="{x:Static prop:Resources.Remove_DE_AT}" FontSize="12" VerticalAlignment="Center" ToolTip="{x:Static prop:Resources.Remove_ToolTip_DE_AT}" Click="ButtonRegistryRemoveOnClick" IsEnabled="{Binding BrowserRegistryButtonRemoveIsEnabled}" />
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0">Type:</Label>
+                                        <ComboBox Grid.Column="1" ItemsSource="{Binding BrowserRegistryTypeList}" SelectedItem="{Binding SelectedBrowserRegistry.Type}" />
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0">Wert:</Label>
+                                        <configGui:RegistryUserControl Grid.Column="1" />
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0">Einstellungsname:</Label>
+                                <TextBox Grid.Column="1" Text="{Binding SelectedBrowserRegistry.Name, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
+                    <StackPanel Grid.Row="8" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                         <Button Name="Reset" Content="{x:Static prop:Resources.Restore_DE_AT}" Width="90" Click="ResetOnClick"/>
                         <Button Name="Save" Content="{x:Static prop:Resources.Save_DE_AT}" Width="80" Click="SaveOnClick"/>
                     </StackPanel>
@@ -368,155 +425,155 @@
                             </Grid>
                         </Grid>
                     </GroupBox>
-                <GroupBox Grid.Row="3" Header="{x:Static prop:Resources.ScreenRefresher_DE_AT}" FontSize="16" ToolTip="{x:Static prop:Resources.ScreenRefresher_ToolTip_DE_AT}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <CheckBox Grid.Row="0" Name="ScreenRefresherEnable" Content="{x:Static prop:Resources.Enable_DE_AT}" VerticalAlignment="Center" IsChecked="{Binding ScreenRefresherEnabled}" FontSize="16" ToolTip="{x:Static prop:Resources.Enable_ToolTip_DE_AT}"/>
-                        <CheckBox Grid.Row="1" Content="{x:Static prop:Resources.RunAtStartup_DE_AT}" VerticalAlignment="Center" IsChecked="{Binding ScreenRefresherRunAtStartup}" FontSize="16" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ToolTip="{x:Static prop:Resources.RunAtStartup_ToolTip_DE_AT}"/>
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="{x:Static prop:Resources.Duration_DE_AT}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ContentStringFormat="{}{0} [s]:" ToolTip="{x:Static prop:Resources.Duration_ToolTip_DE_AT}"/>
-                            <xceed:IntegerUpDown Grid.Column="1" Value="{Binding ScreenRefresherDuration}" VerticalAlignment="Center" Minimum="1" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ToolTip="{x:Static prop:Resources.Duration_ToolTip_DE_AT}"/>
+                    <GroupBox Grid.Row="3" Header="{x:Static prop:Resources.ScreenRefresher_DE_AT}" FontSize="16" ToolTip="{x:Static prop:Resources.ScreenRefresher_ToolTip_DE_AT}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <CheckBox Grid.Row="0" Name="ScreenRefresherEnable" Content="{x:Static prop:Resources.Enable_DE_AT}" VerticalAlignment="Center" IsChecked="{Binding ScreenRefresherEnabled}" FontSize="16" ToolTip="{x:Static prop:Resources.Enable_ToolTip_DE_AT}"/>
+                            <CheckBox Grid.Row="1" Content="{x:Static prop:Resources.RunAtStartup_DE_AT}" VerticalAlignment="Center" IsChecked="{Binding ScreenRefresherRunAtStartup}" FontSize="16" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ToolTip="{x:Static prop:Resources.RunAtStartup_ToolTip_DE_AT}"/>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="{x:Static prop:Resources.Duration_DE_AT}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ContentStringFormat="{}{0} [s]:" ToolTip="{x:Static prop:Resources.Duration_ToolTip_DE_AT}"/>
+                                <xceed:IntegerUpDown Grid.Column="1" Value="{Binding ScreenRefresherDuration}" VerticalAlignment="Center" Minimum="1" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ToolTip="{x:Static prop:Resources.Duration_ToolTip_DE_AT}"/>
+                            </Grid>
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="{x:Static prop:Resources.Interval_DE_AT}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ContentStringFormat="{}{0} [min]:" ToolTip="{x:Static prop:Resources.Interval_ToolTip_DE_AT}"/>
+                                <xceed:IntegerUpDown Grid.Column="1" Value="{Binding ScreenRefresherInterval}" VerticalAlignment="Center" Minimum="1" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ToolTip="{x:Static prop:Resources.Interval_ToolTip_DE_AT}"/>
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="{x:Static prop:Resources.Height_DE_AT}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ContentStringFormat="{}{0} [px]:" ToolTip="{x:Static prop:Resources.ScreenRefresherHeight_ToolTip_DE_AT}"/>
+                                <xceed:IntegerUpDown Grid.Column="1" Value="{Binding ScreenRefresherHeight}" VerticalAlignment="Center" Minimum="1" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ToolTip="{x:Static prop:Resources.ScreenRefresherHeight_ToolTip_DE_AT}"/>
+                            </Grid>
                         </Grid>
-                        <Grid Grid.Row="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="{x:Static prop:Resources.Interval_DE_AT}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ContentStringFormat="{}{0} [min]:" ToolTip="{x:Static prop:Resources.Interval_ToolTip_DE_AT}"/>
-                            <xceed:IntegerUpDown Grid.Column="1" Value="{Binding ScreenRefresherInterval}" VerticalAlignment="Center" Minimum="1" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ToolTip="{x:Static prop:Resources.Interval_ToolTip_DE_AT}"/>
-                        </Grid>
-                        <Grid Grid.Row="4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Content="{x:Static prop:Resources.Height_DE_AT}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ContentStringFormat="{}{0} [px]:" ToolTip="{x:Static prop:Resources.ScreenRefresherHeight_ToolTip_DE_AT}"/>
-                            <xceed:IntegerUpDown Grid.Column="1" Value="{Binding ScreenRefresherHeight}" VerticalAlignment="Center" Minimum="1" IsEnabled="{Binding IsChecked, ElementName=ScreenRefresherEnable}" ToolTip="{x:Static prop:Resources.ScreenRefresherHeight_ToolTip_DE_AT}"/>
-                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Visibility="{Binding IsExpanded, ElementName=CookieExpander, Converter={StaticResource BoolToVis}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="120" />
+            </Grid.RowDefinitions>
+            <Line Grid.Row="0" Margin="0,5,0,5" StrokeThickness="5" X1="0" Y1="0" X2="1" Y2="0" Stretch="Uniform">
+                <Shape.Stroke>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="Transparent" Offset="0" />
+                        <GradientStop Color="#1BA1E2" Offset="0.5" />
+                        <GradientStop Color="Transparent" Offset="1" />
+                    </LinearGradientBrush>
+                </Shape.Stroke>
+            </Line>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ListBox Grid.Row="0" ItemsSource="{Binding Cookies}" SelectedItem="{Binding SelectedCookie, Mode=TwoWay}" Width="235" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontSize="16" Height="115" PreviewMouseLeftButtonDown="ListBoxOnPreviewMouseLeftButtonDown" ToolTip="{x:Static prop:Resources.CookieList_ToolTip_DE_AT}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="{x:Static prop:Resources.Add_DE_AT}" VerticalAlignment="Center" Width="80" Click="AddCookieOnClick" ToolTip="{x:Static prop:Resources.Add_ToolTip_DE_AT}"/>
+                        <Button Content="{x:Static prop:Resources.Remove_DE_AT}" VerticalAlignment="Center" Width="80" Click="RemoveCookieOnClick" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Remove_ToolTip_DE_AT}"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="{x:Static prop:Resources.Name_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.CookieName_ToolTip_DE_AT}"/>
+                        <controls:TextBoxWithEllipsis Grid.Column="1" IsEllipsisEnabled="True" TextWrapping="NoWrap" Text="{Binding SelectedCookie.Name}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding Cookies.Count}"/>
                     </Grid>
-                </GroupBox>
-            </Grid>
-        </Grid>
-    </Grid>
-    <Grid Grid.Row="1" Visibility="{Binding IsExpanded, ElementName=CookieExpander, Converter={StaticResource BoolToVis}}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="120" />
-        </Grid.RowDefinitions>
-        <Line Grid.Row="0" Margin="0,5,0,5" StrokeThickness="5" X1="0" Y1="0" X2="1" Y2="0" Stretch="Uniform">
-            <Shape.Stroke>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="Transparent" Offset="0" />
-                    <GradientStop Color="#1BA1E2" Offset="0.5" />
-                    <GradientStop Color="Transparent" Offset="1" />
-                </LinearGradientBrush>
-            </Shape.Stroke>
-        </Line>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <ListBox Grid.Row="0" ItemsSource="{Binding Cookies}" SelectedItem="{Binding SelectedCookie, Mode=TwoWay}" Width="235" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" FontSize="16" Height="115" PreviewMouseLeftButtonDown="ListBoxOnPreviewMouseLeftButtonDown" ToolTip="{x:Static prop:Resources.CookieList_ToolTip_DE_AT}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate >
-                            <TextBlock Text="{Binding Name}" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="{x:Static prop:Resources.Add_DE_AT}" VerticalAlignment="Center" Width="80" Click="AddCookieOnClick" ToolTip="{x:Static prop:Resources.Add_ToolTip_DE_AT}"/>
-                    <Button Content="{x:Static prop:Resources.Remove_DE_AT}" VerticalAlignment="Center" Width="80" Click="RemoveCookieOnClick" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Remove_ToolTip_DE_AT}"/>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="{x:Static prop:Resources.Name_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.CookieName_ToolTip_DE_AT}"/>
-                    <controls:TextBoxWithEllipsis Grid.Column="1" IsEllipsisEnabled="True" TextWrapping="NoWrap" Text="{Binding SelectedCookie.Name}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding Cookies.Count}"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="{x:Static prop:Resources.Host_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Host_ToolTip_DE_AT}"/>
+                        <controls:TextBoxWithEllipsis Grid.Column="1" IsEllipsisEnabled="True" TextWrapping="NoWrap" Text="{Binding SelectedCookie.Host}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding Cookies.Count}"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="{x:Static prop:Resources.Path_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Path_ToolTip_DE_AT}"/>
+                        <controls:TextBoxWithEllipsis Grid.Column="1" IsEllipsisEnabled="True" TextWrapping="NoWrap" Text="{Binding SelectedCookie.Path}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding Cookies.Count}"/>
+                    </Grid>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <CheckBox Margin="5,0,0,0" Content="{x:Static prop:Resources.IsSecure_DE_AT}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding SelectedCookie.IsSecure}" FontSize="16" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.IsSecure_ToolTip_DE_AT}"/>
+                        <CheckBox Margin="5,0,0,0" Content="{x:Static prop:Resources.IsHttpOnly_DE_AT}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding SelectedCookie.IsHttpOnly}" FontSize="16" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.IsHttpOnly_ToolTip_DE_AT}"/>
+                        <CheckBox Margin="5,0,0,0" Content="{x:Static prop:Resources.IsSession_DE_AT}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding SelectedCookie.IsSession}" FontSize="16" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.IsSession_ToolTip_DE_AT}"/>
+                    </StackPanel>
                 </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="{x:Static prop:Resources.Host_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Host_ToolTip_DE_AT}"/>
-                    <controls:TextBoxWithEllipsis Grid.Column="1" IsEllipsisEnabled="True" TextWrapping="NoWrap" Text="{Binding SelectedCookie.Host}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding Cookies.Count}"/>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="{x:Static prop:Resources.Path_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Path_ToolTip_DE_AT}"/>
-                    <controls:TextBoxWithEllipsis Grid.Column="1" IsEllipsisEnabled="True" TextWrapping="NoWrap" Text="{Binding SelectedCookie.Path}" VerticalAlignment="Center" FontSize="16" IsEnabled="{Binding Cookies.Count}"/>
-                </Grid>
-                <StackPanel Grid.Row="3" Orientation="Horizontal">
-                    <CheckBox Margin="5,0,0,0" Content="{x:Static prop:Resources.IsSecure_DE_AT}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding SelectedCookie.IsSecure}" FontSize="16" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.IsSecure_ToolTip_DE_AT}"/>
-                    <CheckBox Margin="5,0,0,0" Content="{x:Static prop:Resources.IsHttpOnly_DE_AT}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding SelectedCookie.IsHttpOnly}" FontSize="16" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.IsHttpOnly_ToolTip_DE_AT}"/>
-                    <CheckBox Margin="5,0,0,0" Content="{x:Static prop:Resources.IsSession_DE_AT}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding SelectedCookie.IsSession}" FontSize="16" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.IsSession_ToolTip_DE_AT}"/>
-                </StackPanel>
             </Grid>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0" Content="{x:Static prop:Resources.ClearCookiesAtStartup_DE_AT}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding ClearCookiesAtStartup}" FontSize="16" ToolTip="{x:Static prop:Resources.ClearCookiesAtStartup_ToolTip_DE_AT}"/>
-            <Label Grid.Column="1" Content="{x:Static prop:Resources.ExpirationDate_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" ToolTip="{x:Static prop:Resources.ExpirationDate_ToolTip_DE_AT}">
-                <Label.IsEnabled>
-                    <MultiBinding Converter="{StaticResource PrioFirstValueMulti}">
-                        <Binding Path="Cookies.Count"/>
-                        <Binding Path="SelectedCookie.IsSession"/>
-                    </MultiBinding>
-                </Label.IsEnabled>
-            </Label>
-            <xceed:DateTimePicker Grid.Column="2" VerticalAlignment="Center" Value="{Binding SelectedCookie.ExpirationDate}" ToolTip="{x:Static prop:Resources.ExpirationDate_ToolTip_DE_AT}">
-                <xceed:DateTimePicker.IsEnabled>
-                    <MultiBinding Converter="{StaticResource PrioFirstValueMulti}">
-                        <Binding Path="Cookies.Count"/>
-                        <Binding Path="SelectedCookie.IsSession"/>
-                    </MultiBinding>
-                </xceed:DateTimePicker.IsEnabled>
-            </xceed:DateTimePicker>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" Content="{x:Static prop:Resources.ClearCookiesAtStartup_DE_AT}" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding ClearCookiesAtStartup}" FontSize="16" ToolTip="{x:Static prop:Resources.ClearCookiesAtStartup_ToolTip_DE_AT}"/>
+                <Label Grid.Column="1" Content="{x:Static prop:Resources.ExpirationDate_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" ToolTip="{x:Static prop:Resources.ExpirationDate_ToolTip_DE_AT}">
+                    <Label.IsEnabled>
+                        <MultiBinding Converter="{StaticResource PrioFirstValueMulti}">
+                            <Binding Path="Cookies.Count"/>
+                            <Binding Path="SelectedCookie.IsSession"/>
+                        </MultiBinding>
+                    </Label.IsEnabled>
+                </Label>
+                <xceed:DateTimePicker Grid.Column="2" VerticalAlignment="Center" Value="{Binding SelectedCookie.ExpirationDate}" ToolTip="{x:Static prop:Resources.ExpirationDate_ToolTip_DE_AT}">
+                    <xceed:DateTimePicker.IsEnabled>
+                        <MultiBinding Converter="{StaticResource PrioFirstValueMulti}">
+                            <Binding Path="Cookies.Count"/>
+                            <Binding Path="SelectedCookie.IsSession"/>
+                        </MultiBinding>
+                    </xceed:DateTimePicker.IsEnabled>
+                </xceed:DateTimePicker>
 
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="{x:Static prop:Resources.Value_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Value_ToolTip_DE_AT}"/>
+                <TextBox Grid.Column="1" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedCookie.Value}" FontSize="16" VerticalScrollBarVisibility="Visible" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Value_ToolTip_DE_AT}"/>
+            </Grid>
         </Grid>
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="{x:Static prop:Resources.Value_DE_AT}" VerticalAlignment="Center" FontSize="16" ContentStringFormat="{}{0}:" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Value_ToolTip_DE_AT}"/>
-            <TextBox Grid.Column="1" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedCookie.Value}" FontSize="16" VerticalScrollBarVisibility="Visible" IsEnabled="{Binding Cookies.Count}" ToolTip="{x:Static prop:Resources.Value_ToolTip_DE_AT}"/>
-        </Grid>
-    </Grid>
     </Grid>
 </Window>

@@ -140,7 +140,9 @@ namespace At.FF.Krems.Config_Gui
         /// <summary>The set browser config default.</summary>
         private void SetBrowserConfigDefault()
         {
+            ((BrowserConfigViewModel)this.DataContext).DisableEventHandler();
             this.browserConfigDefault = ((BrowserConfigViewModel)this.DataContext).Config.Clone();
+            ((BrowserConfigViewModel)this.DataContext).EnableEventHandler();
         }
 
         /// <summary>Sets the view model properties.</summary>
@@ -259,6 +261,11 @@ namespace At.FF.Krems.Config_Gui
         private void ResetOnClick(object sender, RoutedEventArgs e)
         {
             this.SetViewModelProperties(this.browserConfigDefault);
+            this.ViewModel.Config.BrowserRegistry.Clear();
+            foreach (var browserRegistry in this.browserConfigDefault.BrowserRegistry)
+            {
+                this.ViewModel.Config.BrowserRegistry.Add(browserRegistry.Clone());
+            }
         }
 
         /// <summary>The save on click.</summary>
@@ -430,6 +437,27 @@ namespace At.FF.Krems.Config_Gui
             {
                 e.Handled = true;
             }
+        }
+
+        /// <summary>Buttons the registry add on click.</summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void ButtonRegistryAddOnClick(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Config.BrowserRegistry.Add(new BrowserRegistry());
+        }
+
+        /// <summary>Buttons the registry remove on click.</summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void ButtonRegistryRemoveOnClick(object sender, RoutedEventArgs e)
+        {
+            if (this.ViewModel.SelectedBrowserRegistry == null)
+            {
+                return;
+            }
+
+            this.ViewModel.Config.BrowserRegistry.Remove(this.ViewModel.SelectedBrowserRegistry);
         }
 
         #endregion

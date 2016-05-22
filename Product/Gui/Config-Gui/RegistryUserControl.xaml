@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="At.FF.Krems.Config_Gui.RegistryUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:At.FF.Krems.Config_Gui"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:converters="clr-namespace:At.FF.Krems.Config_Gui.Converters"
+             xmlns:xmlConf="clr-namespace:At.FF.Krems.Configuration.XML;assembly=At.FF.Krems.Configuration"
+             x:Name="RegistryUc"
+             mc:Ignorable="d"
+             d:DesignHeight="100" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:RegistryTypeToVisibilityConverter x:Key="RegistryTypeToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <TextBox Text="{Binding SelectedBrowserRegistry.Value, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding SelectedBrowserRegistry.Type, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RegistryTypeToVisibilityConverter}, ConverterParameter={x:Static xmlConf:BrowserRegistryType.String}}" VerticalContentAlignment="Center" />
+        <xctk:IntegerUpDown Value="{Binding SelectedBrowserRegistry.Value, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding SelectedBrowserRegistry.Type, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RegistryTypeToVisibilityConverter}, ConverterParameter={x:Static xmlConf:BrowserRegistryType.Integer}}" />
+        <ComboBox ItemsSource="{Binding BooleanList}" SelectedValue="{Binding SelectedBrowserRegistry.Value, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding SelectedBrowserRegistry.Type, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RegistryTypeToVisibilityConverter}, ConverterParameter={x:Static xmlConf:BrowserRegistryType.Boolean}}" VerticalContentAlignment="Center" />
+    </Grid>
+</UserControl>

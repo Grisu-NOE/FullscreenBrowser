@@ -28,6 +28,7 @@ namespace At.FF.Krems.Config_Gui
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
@@ -41,11 +42,22 @@ namespace At.FF.Krems.Config_Gui
     {
         #region Fields
 
+        /// <summary>
+        /// The event handler is enabled synchronize object
+        /// </summary>
+        private readonly object eventHandlerIsEnabledLockObject = new object();
+
         /// <summary>The selected window.</summary>
         private Window selectedWindow;
 
         /// <summary>The selected cookie</summary>
         private Cookie selectedCookie;
+
+        /// <summary>The selected browser registry</summary>
+        private BrowserRegistry selectedBrowserRegistry;
+
+        /// <summary>The event handler is enabled</summary>
+        private bool eventHandlerIsEnabled;
 
         #endregion
 
@@ -65,6 +77,7 @@ namespace At.FF.Krems.Config_Gui
             this.SelectedWindow = this.Windows[0];
             this.Cookies = new ObservableCollection<Cookie>();
             this.Cookies.CollectionChanged += (sender, args) => this.Config.Cookie = ((ObservableCollection<Cookie>)sender).ToArray();
+            this.EnableEventHandler();
         }
 
         #endregion
@@ -567,9 +580,79 @@ namespace At.FF.Krems.Config_Gui
             }
         }
 
+        /// <summary>Gets or sets the selected browser registry.</summary>
+        /// <value>The selected browser registry.</value>
+        public BrowserRegistry SelectedBrowserRegistry
+        {
+            get
+            {
+                return this.selectedBrowserRegistry;
+            }
+
+            set
+            {
+                if (this.selectedBrowserRegistry == value)
+                {
+                    return;
+                }
+
+                this.selectedBrowserRegistry = value;
+                this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.BrowserRegistryButtonRemoveIsEnabled));
+            }
+        }
+
+        /// <summary>Gets the browser registry type list.</summary>
+        /// <value>The browser registry type list.</value>
+        public IEnumerable<BrowserRegistryType> BrowserRegistryTypeList => Enum.GetValues(typeof(BrowserRegistryType)).Cast<BrowserRegistryType>();
+
+        /// <summary>
+        /// Gets a value indicating whether [browser registry button remove is enabled].
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if [browser registry button remove is enabled]; otherwise, <c>false</c>.
+        /// </value>
+        public bool BrowserRegistryButtonRemoveIsEnabled => this.SelectedBrowserRegistry != null;
+
+        /// <summary>Gets the boolean list.</summary>
+        /// <value>The boolean list.</value>
+        public IEnumerable<bool> BooleanList => new List<bool> { true, false };
+
         #endregion
 
         #region Methods
+
+        /// <summary>Enables the event handler.</summary>
+        public void EnableEventHandler()
+        {
+            lock (this.eventHandlerIsEnabledLockObject)
+            {
+                if (this.eventHandlerIsEnabled)
+                {
+                    return;
+                }
+
+                this.eventHandlerIsEnabled = true;
+            }
+
+            this.Config.BrowserRegistry.CollectionChanged += this.BrowserRegistryOnCollectionChanged;
+        }
+
+        /// <summary>Disables the event handler.</summary>
+        public void DisableEventHandler()
+        {
+            lock (this.eventHandlerIsEnabledLockObject)
+            {
+                if (!this.eventHandlerIsEnabled)
+                {
+                    return;
+                }
+
+                this.eventHandlerIsEnabled = false;
+            }
+
+            this.Config.BrowserRegistry.CollectionChanged -= this.BrowserRegistryOnCollectionChanged;
+        }
 
         /// <summary>Called when [property changed].</summary>
         /// <param name="propertyName">Name of the property.</param>
@@ -578,6 +661,29 @@ namespace At.FF.Krems.Config_Gui
         {
             var handler = this.PropertyChanged;
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>Browsers the registry on collection changed.</summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="notifyCollectionChangedEventArgs">The <see cref="NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
+        private void BrowserRegistryOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+        {
+            var collection = sender as ObservableCollection<BrowserRegistry>;
+            if (collection == null)
+            {
+                return;
+            }
+
+            switch (notifyCollectionChangedEventArgs.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    this.SelectedBrowserRegistry = notifyCollectionChangedEventArgs.NewItems.Cast<BrowserRegistry>().First();
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    this.SelectedBrowserRegistry = collection.Any() ? collection.FirstOrDefault() : null;
+                    break;
+            }
         }
 
         #endregion
