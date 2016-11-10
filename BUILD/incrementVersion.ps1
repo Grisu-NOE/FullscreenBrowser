@@ -1,4 +1,4 @@
-$baseUri = "https://api.github.com/repos/Grisu-NOE/Infoscreen"
+$baseUri = "https://api.github.com/repos/Grisu-NOE/FullscreenBrowser"
 
 Write-Host "BUILD_SOURCESDIRECTORY: $Env:BUILD_SOURCESDIRECTORY"
 $fileName = "Version.txt"
