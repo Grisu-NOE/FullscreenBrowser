@@ -1,4 +1,4 @@
-$baseUri = "https://api.github.com/repos/Grisu-NOE/Infoscreen"
+$baseUri = "https://api.github.com/repos/Grisu-NOE/FullscreenBrowser"
 
 $latestRelease = Invoke-WebRequest -UseBasicParsing -Uri "$baseUri/releases/latest" -Method Get
 Write-Host "Latest release status code is $($latestRelease.StatusCode) $($latestRelease.StatusDescription)"
