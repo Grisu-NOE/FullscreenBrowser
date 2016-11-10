@@ -7,7 +7,7 @@ This project aims to build a desktop-based application to improve and extend the
 Licencing
 ---------
 
-Grisu NÖ - Infoscreen is licenced under the [MIT License (MIT)](LICENSE).
+Grisu NÖ - FullscreenBrowser is licenced under the [MIT License (MIT)](LICENSE).
 
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
