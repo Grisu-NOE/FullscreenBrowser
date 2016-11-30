@@ -1,6 +1,6 @@
 Grisu NÖ - FullscreenBrowser
 ============
-[![License][license-image]][license-url] [![Build Status][vsonline-image]][vsonline-url] [![Join the chat at https://gitter.im/Grisu-NOE/FullscreenBrowser][gitter-image]][gitter-url][![Stories in Ready][waffle-ready-image]][waffle-url][![Stories in Progress][waffle-inProgress-image]][waffle-url][![Stories in Done][waffle-done-image]][waffle-url][![Coverity Scan][coverity-image]][coverity-url]
+[![License][license-image]][license-url] [![Build Status][vsonline-image]][vsonline-url] [![Join the chat at https://gitter.im/Grisu-NOE/FullscreenBrowser][gitter-image]][gitter-url] [![Stories in Ready][waffle-ready-image]][waffle-url] [![Stories in Progress][waffle-inProgress-image]][waffle-url] [![Stories in Done][waffle-done-image]][waffle-url] [![Coverity Scan][coverity-image]][coverity-url]
 
 This project aims to build a desktop-based application to improve and extend the functionality of https://infoscreen.florian10.info/.
 
