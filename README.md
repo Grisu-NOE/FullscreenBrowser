@@ -1,6 +1,6 @@
 Grisu NÖ - FullscreenBrowser
 ============
-[![MIT License][license-image]][license-url] [![Build Status][vsonline-image]][vsonline-url] [![Join the chat at https://gitter.im/Grisu-NOE/FullscreenBrowser](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Grisu-NOE/FullscreenBrowser?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![MIT License][license-image]][license-url] [![Build Status][vsonline-image]][vsonline-url] [![Join the chat at https://gitter.im/Grisu-NOE/FullscreenBrowser](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Grisu-NOE/FullscreenBrowser?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)[![Stories in Ready](https://badge.waffle.io/Grisu-NOE/FullscreenBrowser.svg?label=ready&title=Ready)](http://waffle.io/Grisu-NOE/FullscreenBrowser)[![Stories in Progress](https://badge.waffle.io/Grisu-NOE/FullscreenBrowser.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/Grisu-NOE/FullscreenBrowser)[![Stories in Done](https://badge.waffle.io/Grisu-NOE/FullscreenBrowser.svg?label=done&title=Done)](http://waffle.io/Grisu-NOE/FullscreenBrowser)
 
 This project aims to build a desktop-based application to improve and extend the functionality of https://infoscreen.florian10.info/.
 
