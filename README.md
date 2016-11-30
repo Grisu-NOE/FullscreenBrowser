@@ -9,7 +9,7 @@ Licencing
 
 Grisu NÖ - FullscreenBrowser is licenced under the [MIT License (MIT)](LICENSE).
 
-[license-image]: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square
+[license-image]: https://img.shields.io/github/license/grisu-noe/FullscreenBrowser.svg?style=flat-square
 [license-url]: LICENSE
 
 
