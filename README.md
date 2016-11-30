@@ -4,10 +4,10 @@ Grisu NÖ - FullscreenBrowser
 
 This project aims to build a desktop-based application to improve and extend the functionality of https://infoscreen.florian10.info/.
 
-Licencing
+Licensing
 ---------
 
-Grisu NÖ - FullscreenBrowser is licenced under the [MIT License (MIT)](LICENSE).
+Grisu NÖ - FullscreenBrowser is licensed under the [MIT License (MIT)](LICENSE).
 
 [license-image]: https://img.shields.io/github/license/grisu-noe/FullscreenBrowser.svg?style=flat-square
 [license-url]: LICENSE
