@@ -41,6 +41,7 @@ namespace At.FF.Krems.FullscreenBrowser
     using Properties;
 
     using Utils.Bootstrapper;
+    using Utils.Extensions;
 
     using Cookie = System.Net.Cookie;
 
@@ -132,7 +133,36 @@ namespace At.FF.Krems.FullscreenBrowser
                             x => x.Domain.Equals(hostFilter, StringComparison.OrdinalIgnoreCase)));
             }
 
-            return data;
+            // BUG: Cookie may contain multiple values -> needs to be split into separate cookies. Looks like a bug of Firefox.
+            var result = new List<Cookie>();
+            foreach (var cookie in data)
+            {
+                if (!cookie.Value.Contains(";"))
+                {
+                    result.Add(cookie);
+                    continue;
+                }
+
+                var split = cookie.Value.Split(';');
+                for (var i = 0; i < split.Length; i++)
+                {
+                    var clone = cookie.Clone();
+                    var baseValue = split[i].Trim();
+                    if (i == 0)
+                    {
+                        clone.Value = baseValue;
+                        result.Add(clone);
+                        continue;
+                    }
+
+                    var splitIndex = baseValue.IndexOf('='); // May contain BASE64 data, only get the first occurrence
+                    clone.Name = baseValue.Substring(0, splitIndex).Trim();
+                    clone.Value = baseValue.Substring(splitIndex + 1).Trim();
+                    result.Add(clone);
+                }
+            }
+
+            return result;
         }
 
         /// <summary>Clears the browser cache.</summary>
