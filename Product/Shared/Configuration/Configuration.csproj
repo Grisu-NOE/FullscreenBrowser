@@ -1,89 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{42FE87AD-CAE1-4710-85B2-E4EB6A7AD6B0}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net461</TargetFramework>
     <RootNamespace>At.FF.Krems.Configuration</RootNamespace>
     <AssemblyName>At.FF.Krems.Configuration</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\..\SolutionInfo.cs">
-      <Link>Properties\SolutionInfo.cs</Link>
-    </Compile>
-    <Compile Include="Google\ILocationString.cs" />
-    <Compile Include="Google\QueryStringParametersList.cs" />
-    <Compile Include="Google\StaticMaps\Entities\ImageSize.cs" />
-    <Compile Include="Google\StaticMaps\Entities\MapStyle.cs" />
-    <Compile Include="Google\StaticMaps\Entities\Marker.cs" />
-    <Compile Include="Google\StaticMaps\Entities\MarkerStyle.cs" />
-    <Compile Include="Google\StaticMaps\Entities\Path.cs" />
-    <Compile Include="Google\StaticMaps\Entities\PathStyle.cs" />
-    <Compile Include="Google\StaticMaps\Entities\StaticMapRequest.cs" />
-    <Compile Include="Google\StaticMaps\Enums\ImageFormat.cs" />
-    <Compile Include="Google\StaticMaps\Enums\MapElement.cs" />
-    <Compile Include="Google\StaticMaps\Enums\MapFeature.cs" />
-    <Compile Include="Google\StaticMaps\Enums\MapType.cs" />
-    <Compile Include="Google\StaticMaps\Enums\MapVisibility.cs" />
-    <Compile Include="Google\StaticMaps\Enums\MarkerSize.cs" />
-    <Compile Include="Google\StaticMaps\StaticMapsEngine.cs" />
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XML\BrowserConfig.cs" />
-    <Compile Include="XML\BrowserRegistry.cs" />
-    <Compile Include="XML\BrowserRegistryType.cs" />
-    <Compile Include="XML\Cookie.cs" />
-    <Compile Include="XML\PrintSettings.cs" />
-    <Compile Include="XML\ScreenRefresher.cs" />
-    <Compile Include="XML\Window.cs" />
-    <Compile Include="XML\WindowDimensions.cs" />
-    <Compile Include="XML\WindowPosition.cs" />
-    <Compile Include="XML\WindowProxy.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

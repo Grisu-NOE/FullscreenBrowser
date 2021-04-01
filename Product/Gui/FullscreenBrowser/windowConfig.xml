@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <BrowserConfig>
-  <Runtime>Firefox</Runtime>
+  <Runtime>Firefox64</Runtime>
   <PrintSettings>
     <!--URL zum Infoscreen-Depeschen-Druckservice - nicht verändern!-->
     <PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/einsatz.ashx</PrintUrl>
@@ -66,9 +66,9 @@
     </Position>
     <Dimensions>
       <!--mögliche Werte für width: max für vollen Bildschirm, max2 für Vollbild über 2 Bildschirm oder eine beliebige Zahl für eine bestimmte Breite des Fensters-->
-      <Width>max2</Width>
+      <Width>1024</Width>
       <!--mögliche Werte für height: max für vollen Bildschirm oder eine beliebige Zahl für eine bestimmte Höhe des Fensters-->
-      <Height>max</Height>
+      <Height>1024</Height>
     </Dimensions>
     <!--Mögliche Werte für ReloadInSeconds: integer(ganze Zahl) in Sekunden >0 - Gibt an nach wievielen Sekunden der Browser ein Reload/Refresh durchführen soll-->
     <ReloadInSeconds>86400</ReloadInSeconds>
@@ -93,9 +93,9 @@
     </Position>
     <Dimensions>
       <!--mögliche Werte für width: max für vollen Bildschirm, max2 für Vollbild über 2 Bildschirm oder eine beliebige Zahl für eine bestimmte Breite des Fensters-->
-      <Width>max2</Width>
+      <Width>1024</Width>
       <!--mögliche Werte für height: max für vollen Bildschirm oder eine beliebige Zahl für eine bestimmte Höhe des Fensters-->
-      <Height>max</Height>
+      <Height>1024</Height>
     </Dimensions>
   </Window>
   <!-- Um weitere Fenster zu erzeugen muss an dieser Stelle ein weiterer <window>-Block eingefügt werden - siehe folgende Vorlage-->

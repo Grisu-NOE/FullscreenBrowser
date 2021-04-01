@@ -151,7 +151,7 @@ namespace At.FF.Krems.FullscreenBrowser
                 var ret = this.powerStatus.BatteryLifeTime;
                 if (ret == -1)
                 {
-                    ret = 0; // if -1 (error), state as 0               
+                    ret = 0; // if -1 (error), state as 0
                 }
 
                 return ret;
@@ -251,9 +251,9 @@ namespace At.FF.Krems.FullscreenBrowser
         public bool DriveAsleep(int deviceId)
         {
             // call power state api and return if drive is asleep
-            bool fOn, ret = true;
+            bool ret = true;
             var handle = GetDeviceHandle(deviceId);
-            if (handle != IntPtr.Zero && NativeMethods.GetDevicePowerState(handle, out fOn))
+            if (handle != IntPtr.Zero && NativeMethods.GetDevicePowerState(handle, out var fOn))
             {
                 ret = fOn;
             }
@@ -378,7 +378,7 @@ namespace At.FF.Krems.FullscreenBrowser
             // if force append to flag
             if (force)
             {
-                shutdownFlag = shutdownFlag | ShutdownFlags.Force;
+                shutdownFlag |= ShutdownFlags.Force;
             }
 
             // open current process tokens

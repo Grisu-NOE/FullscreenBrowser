@@ -203,8 +203,7 @@ namespace At.FF.Krems.FullscreenBrowser
                         dict.Add(splittedItem[0], splittedItem.Length > 1 ? splittedItem[1] : string.Empty);
                     }
 
-                    string action;
-                    if (dict.TryGetValue("action", out action))
+                    if (dict.TryGetValue("action", out var action))
                     {
                         switch (action.ToUpper())
                         {

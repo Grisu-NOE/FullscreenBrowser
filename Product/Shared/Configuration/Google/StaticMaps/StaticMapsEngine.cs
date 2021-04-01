@@ -7,7 +7,7 @@
 //      Tel.:   +43 (0)2732 85522
 //      Fax.:   +43 (0)2732 85522 40
 //      E-mail: office@feuerwehr-krems.at
-// 
+//
 //      This software is furnished under a license and may be
 //      used  and copied only in accordance with the terms of
 //      such  license  and  with  the  inclusion of the above
@@ -15,11 +15,11 @@
 //      thereof   may  not  be  provided  or  otherwise  made
 //      available  to  any  other  person.  No  title  to and
 //      ownership of the software is hereby transferred.
-// 
+//
 //      The information in this software is subject to change
 //      without  notice  and  should  not  be  construed as a
 //      commitment by Freiwillige Feuerwehr Krems/Donau.
-// 
+//
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.Configuration.Google.StaticMaps
@@ -80,7 +80,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                 parametersList.Add("zoom", request.Zoom.ToString());
             }
 
-            if (request.Size.Width != default(int) || request.Size.Height != default(int))
+            if (request.Size.Width != default || request.Size.Height != default)
             {
                 var imageSize = request.Size;
 
@@ -91,7 +91,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                 throw new ArgumentException("Size is invalid");
             }
 
-            if (request.ImageFormat != default(ImageFormat))
+            if (request.ImageFormat != default)
             {
                 string format;
                 switch (request.ImageFormat)
@@ -148,7 +148,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                 {
                     var styleComponents = new List<string>();
 
-                    if (style.MapFeature != default(MapFeature))
+                    if (style.MapFeature != default)
                     {
                         string mapFeature;
 
@@ -260,7 +260,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                         styleComponents.Add("feature:" + mapFeature);
                     }
 
-                    if (style.MapElement != default(MapElement))
+                    if (style.MapElement != default)
                     {
                         string element;
 
@@ -299,8 +299,8 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
 
                         styleComponents.Add("element:" + element);
                     }
-                    
-                    if (style.HUE != default(Color))
+
+                    if (style.HUE != default)
                     {
                         styleComponents.Add("hue:0x" + ColorToHexConverter(style.HUE));
                     }
@@ -344,7 +344,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                         styleComponents.Add("inverse_lightnes:true");
                     }
 
-                    if (style.Weight != default(int))
+                    if (style.Weight != default)
                     {
                         if (style.Weight < 0)
                         {
@@ -354,14 +354,14 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                         styleComponents.Add("weight:" + style.Weight);
                     }
 
-                    if (style.Color != default(Color))
+                    if (style.Color != default)
                     {
                         styleComponents.Add("color:0x" + ColorToHexConverter(style.Color));
                     }
 
                     var mapVisibility = style.Visibility;
 
-                    if (mapVisibility != default(MapVisibility))
+                    if (mapVisibility != default)
                     {
                         string visibility;
 
@@ -410,7 +410,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                             markerStyleParams.Add("label:" + markerStyle.Label);
                         }
 
-                        if (markerStyle.Size != default(MarkerSize))
+                        if (markerStyle.Size != default)
                         {
                             switch (markerStyle.Size)
                             {
@@ -461,7 +461,7 @@ namespace At.FF.Krems.Configuration.Google.StaticMaps
                             pathStyleParams.Add("fillcolor:" + pathStyle.FillColor);
                         }
 
-                        if (pathStyle.Weight != default(int))
+                        if (pathStyle.Weight != default)
                         {
                             pathStyleParams.Add("weight:" + pathStyle.Weight);
                         }

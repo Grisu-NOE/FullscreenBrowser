@@ -7,7 +7,7 @@
 //      Tel.:   +43 (0)2732 85522
 //      Fax.:   +43 (0)2732 85522 40
 //      E-mail: office@feuerwehr-krems.at
-// 
+//
 //      This software is furnished under a license and may be
 //      used  and copied only in accordance with the terms of
 //      such  license  and  with  the  inclusion of the above
@@ -15,13 +15,16 @@
 //      thereof   may  not  be  provided  or  otherwise  made
 //      available  to  any  other  person.  No  title  to and
 //      ownership of the software is hereby transferred.
-// 
+//
 //      The information in this software is subject to change
 //      without  notice  and  should  not  be  construed as a
 //      commitment by Freiwillige Feuerwehr Krems/Donau.
-// 
+//
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+
+using JetBrains.Annotations;
+
 namespace At.FF.Krems.Configuration.XML
 {
     using System;
@@ -30,8 +33,6 @@ namespace At.FF.Krems.Configuration.XML
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
     using System.Xml.Serialization;
-
-    using At.FF.Krems.Configuration.Annotations;
 
     /// <summary>The browser registry, see about:config</summary>
     [GeneratedCode("xsd", "2.0.50727.3038"), DesignerCategory("code"), DebuggerStepThrough, XmlRoot(Namespace = "", IsNullable = false), XmlType(AnonymousType = true)]

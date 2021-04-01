@@ -7,7 +7,7 @@
 //      Tel.:   +43 (0)2732 85522
 //      Fax.:   +43 (0)2732 85522 40
 //      E-mail: office@feuerwehr-krems.at
-// 
+//
 //      This software is furnished under a license and may be
 //      used  and copied only in accordance with the terms of
 //      such  license  and  with  the  inclusion of the above
@@ -15,11 +15,11 @@
 //      thereof   may  not  be  provided  or  otherwise  made
 //      available  to  any  other  person.  No  title  to and
 //      ownership of the software is hereby transferred.
-// 
+//
 //      The information in this software is subject to change
 //      without  notice  and  should  not  be  construed as a
 //      commitment by Freiwillige Feuerwehr Krems/Donau.
-// 
+//
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -370,25 +370,27 @@ namespace At.FF.Krems.FullscreenBrowser
                 cookieManager?.RemoveAll();
             }
 
-            if (browserConfig.Cookie != null && browserConfig.Cookie.Any())
-            {
-                var cookieManager2 = Xpcom.GetService<nsICookieManager2>("@mozilla.org/cookiemanager;1");
-                if (cookieManager2 != null)
-                {
-                    foreach (var cookie in browserConfig.Cookie.Where(cookie => cookie != null && (cookie.IsSession || cookie.ExpirationDate > DateTime.Now)))
-                    {
-                        cookieManager2.Add(
-                            new nsAUTF8String(cookie.Host),
-                            new nsAUTF8String(cookie.Path),
-                            new nsACString(cookie.Name),
-                            new nsACString(cookie.Value),
-                            cookie.IsSecure,
-                            cookie.IsHttpOnly,
-                            cookie.IsSession,
-                            (long)cookie.ExpirationDate.Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds);
-                    }
-                }
-            }
+            // Cookie injection at startup not supported anymore
+            //if (browserConfig.Cookie != null && browserConfig.Cookie.Any())
+            //{
+            //    var cookieManager = Xpcom.GetService<nsICookieManager>("@mozilla.org/cookiemanager;1");
+            //    if (cookieManager != null)
+            //    {
+            //        foreach (var cookie in browserConfig.Cookie.Where(cookie => cookie != null && (cookie.IsSession || cookie.ExpirationDate > DateTime.Now)))
+            //        {
+            //            cookieManager.Add(
+            //                new nsAUTF8String(cookie.Host),
+            //                new nsAUTF8String(cookie.Path),
+            //                new nsACString(cookie.Name),
+            //                new nsACString(cookie.Value),
+            //                cookie.IsSecure,
+            //                cookie.IsHttpOnly,
+            //                cookie.IsSession,
+            //                (long)cookie.ExpirationDate.Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds,
+            //                , );
+            //        }
+            //    }
+            //}
 
             if (browserConfig.Proxy != null)
             {

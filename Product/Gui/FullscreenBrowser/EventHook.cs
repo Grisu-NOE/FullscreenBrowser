@@ -161,7 +161,6 @@ namespace At.FF.Krems.FullscreenBrowser
         /// <param name="idChild">The id child.</param>
         /// <param name="dwEventThread">The DW event thread.</param>
         /// <param name="dwmsEventTime">The DWMS event time.</param>
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed. Suppression is OK here.")]
         private void WinEventProc(
             IntPtr hWinEventHook,
             uint eventType,

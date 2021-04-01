@@ -140,7 +140,7 @@ namespace At.FF.Krems.FullscreenBrowser
         {
             var historyManager = Xpcom.GetService<nsIBrowserHistory>(Contracts.NavHistoryService);
             historyManager = Xpcom.QueryInterface<nsIBrowserHistory>(historyManager);
-            historyManager.RemoveAllPages();
+            historyManager.RemovePagesByTimeframe(0, DateTimeOffset.Now.ToUnixTimeMilliseconds()); // Remove all pages, defined in milliseconds from UNIX epoch, aBeginTime <= time-frame <= aEndTime
 
             ImageCache.ClearCache(true);
             ImageCache.ClearCache(false);
