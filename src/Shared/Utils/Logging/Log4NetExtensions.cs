@@ -66,7 +66,6 @@ namespace At.FF.Krems.Utils.Logging
         /// </remarks>
         /// <seealso cref="M:log4net.ILog.Debug(System.Object,System.Exception)" />
         /// <seealso cref="P:log4net.ILog.IsDebugEnabled" />
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public static void DebugFast(this ILog logger, object message)
         {
             if (logger.IsDebugEnabled)
@@ -269,7 +268,6 @@ namespace At.FF.Krems.Utils.Logging
         /// </remarks>
         /// <seealso cref="M:log4net.ILog.Info(System.Object,System.Exception)" />
         /// <seealso cref="P:log4net.ILog.IsInfoEnabled" />
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public static void InfoFast(this ILog logger, object message)
         {
             if (logger.IsInfoEnabled)
@@ -472,7 +470,6 @@ namespace At.FF.Krems.Utils.Logging
         /// </remarks>
         /// <seealso cref="M:log4net.ILog.Warn(System.Object,System.Exception)" />
         /// <seealso cref="P:log4net.ILog.IsWarnEnabled" />
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public static void WarnFast(this ILog logger, object message)
         {
             if (logger.IsWarnEnabled)
@@ -675,7 +672,6 @@ namespace At.FF.Krems.Utils.Logging
         /// </remarks>
         /// <seealso cref="M:log4net.ILog.Error(System.Object,System.Exception)" />
         /// <seealso cref="P:log4net.ILog.IsErrorEnabled" />
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public static void ErrorFast(this ILog logger, object message)
         {
             if (logger.IsErrorEnabled)
@@ -878,7 +874,6 @@ namespace At.FF.Krems.Utils.Logging
         /// </remarks>
         /// <seealso cref="M:log4net.ILog.Fatal(System.Object,System.Exception)" />
         /// <seealso cref="P:log4net.ILog.IsFatalEnabled" />
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public static void FatalFast(this ILog logger, object message)
         {
             if (logger.IsFatalEnabled)
@@ -1081,7 +1076,6 @@ namespace At.FF.Krems.Utils.Logging
         /// </remarks>
         /// <seealso><cref>M:log4net.ILog.Trace(System.Object,System.Exception)</cref></seealso>
         /// <seealso><cref>P:log4net.ILog.IsTraceEnabled</cref></seealso>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public static void TraceFast(this ILog logger, object message)
         {
             if (logger.IsTraceEnabled())
@@ -1284,7 +1278,6 @@ namespace At.FF.Krems.Utils.Logging
         /// </remarks>
         /// <seealso><cref>M:log4net.ILog.Notice(System.Object,System.Exception)</cref></seealso>
         /// <seealso><cref>P:log4net.ILog.IsNoticeEnabled</cref></seealso>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public static void NoticeFast(this ILog logger, object message)
         {
             if (logger.IsNoticeEnabled())
@@ -1503,7 +1496,6 @@ namespace At.FF.Krems.Utils.Logging
         /// </summary>
         /// <param name="logger">log4net logger</param>
         /// <returns>Returns true if enabled.</returns>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1630:DocumentationTextMustContainWhitespace", Justification = "Reviewed. Suppression is OK here.")]
         public static bool IsTraceEnabled(this ILog logger)
         {
             return logger.Logger.IsEnabledFor(Level.Trace);

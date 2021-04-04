@@ -39,7 +39,6 @@ namespace At.FF.Krems.FullscreenBrowser
     /// view model is assigned to the TaskbarIcon in XAML. Alternatively, the startup routing
     /// in App.xaml.cs could have created this view model, and assigned it to the TaskbarIcon.
     /// </summary>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
     public class TaskbarIconViewModel
     {
         /// <summary>Gets the logging directory.</summary>

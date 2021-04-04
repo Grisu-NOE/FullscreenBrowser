@@ -404,7 +404,7 @@ namespace At.FF.Krems.Interfaces
         /// <param name="dwData">The dw data.</param>
         /// <param name="dwExtraInfo">The dw extra information.</param>
         // ReSharper disable once InconsistentNaming
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here."), DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
 
         #endregion

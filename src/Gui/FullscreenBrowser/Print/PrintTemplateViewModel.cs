@@ -36,7 +36,6 @@ namespace At.FF.Krems.FullscreenBrowser.Print
 
         /// <summary>Gets or sets the einsatz data.</summary>
         /// <value>The einsatz data.</value>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public List<EmergencyData> EinsatzData { get; set; } 
     }
 }

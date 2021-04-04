@@ -38,22 +38,18 @@ namespace At.FF.Krems.FullscreenBrowser.Print
         /// <value>
         /// <c>true</c> if this instance is eigenalarmiert; otherwise, <c>false</c>.
         /// </value>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public bool IsEigenalarmiert { get; set; }
 
         /// <summary>Gets or sets the dispo time.</summary>
         /// <value>The dispo time.</value>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public DateTime DispoTime { get; set; }
 
         /// <summary>Gets or sets the aus time.</summary>
         /// <value>The aus time.</value>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public DateTime AusTime { get; set; }
 
         /// <summary>Gets or sets the ein time.</summary>
         /// <value>The ein time.</value>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         public DateTime EinTime { get; set; }
 
         /// <summary>Gets or sets a value indicating whether this instance is background.</summary>
