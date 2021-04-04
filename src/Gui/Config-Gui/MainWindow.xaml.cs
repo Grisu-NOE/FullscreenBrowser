@@ -4,11 +4,11 @@
 //     Austraße 33
 //     A-3500 Krems/Donau
 //     Austria
-// 
+//
 //     Tel.:   +43 (0)2732 85522
 //     Fax.:   +43 (0)2732 85522 40
 //     E-mail: office@feuerwehr-krems.at
-// 
+//
 //     This software is furnished under a license and may be
 //     used  and copied only in accordance with the terms of
 //     such  license  and  with  the  inclusion of the above
@@ -16,11 +16,11 @@
 //     thereof   may  not  be  provided  or  otherwise  made
 //     available  to  any  other  person.  No  title  to and
 //     ownership of the software is hereby transferred.
-// 
+//
 //     The information in this software is subject to change
 //     without  notice  and  should  not  be  construed as a
 //     commitment by Freiwillige Feuerwehr Krems/Donau.
-// 
+//
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ namespace At.FF.Krems.Config_Gui
     using KellermanSoftware.CompareNetObjects;
     using Utils;
     using Utils.Extensions;
-    
+
     using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
     /// <summary>Interaction logic for MainWindow.XAML</summary>
@@ -107,8 +107,7 @@ namespace At.FF.Krems.Config_Gui
         /// <returns>The <see cref="object"/>.</returns>
         private static object GetDataFromListBox(ListBox source, Point point)
         {
-            var element = source.InputHitTest(point) as UIElement;
-            if (element == null)
+            if (!(source.InputHitTest(point) is UIElement element))
             {
                 return null;
             }
@@ -171,17 +170,6 @@ namespace At.FF.Krems.Config_Gui
             this.ViewModel.ProxyServer = config.Proxy.Server;
             this.ViewModel.ProxyType = config.Proxy.Type;
             this.ViewModel.ProxyUrl = config.Proxy.Url;
-            this.ViewModel.Cookies.Clear();
-            if (config.Cookie != null && config.Cookie.Any())
-            {
-                foreach (var cookie in config.Cookie)
-                {
-                    this.ViewModel.Cookies.Add(cookie);
-                }
-
-                this.ViewModel.SelectedCookie = this.ViewModel.Cookies.First();
-            }
-
             this.ViewModel.Windows.Clear();
             if (config.Window != null && config.Window.Any())
             {
@@ -233,14 +221,14 @@ namespace At.FF.Krems.Config_Gui
         {
             this.ViewModel.Windows.Add(new Configuration.XML.Window
                                        {
-                                           Name = Properties.Resources.EnterName_DE_AT, 
-                                           Autostart = true, 
-                                           OnTop = true, 
-                                           ShowOnScreen = 1, 
-                                           Position = new WindowPosition { PosX = 0, PosY = 0 }, 
-                                           Dimensions = new WindowDimensions { Height = "max", Width = "max2" }, 
-                                           IsAlternativeWindow = false, 
-                                           ReloadInSeconds = 0, 
+                                           Name = Properties.Resources.EnterName_DE_AT,
+                                           Autostart = true,
+                                           OnTop = true,
+                                           ShowOnScreen = 1,
+                                           Position = new WindowPosition { PosX = 0, PosY = 0 },
+                                           Dimensions = new WindowDimensions { Height = "max", Width = "max2" },
+                                           IsAlternativeWindow = false,
+                                           ReloadInSeconds = 0,
                                            ZoomLevel = 1f
                                        });
             this.ViewModel.SelectedWindow = this.ViewModel.Windows.Last();
@@ -307,8 +295,7 @@ namespace At.FF.Krems.Config_Gui
         private void ElementListOnDrop(object sender, DragEventArgs e)
         {
             var droppedData = e.Data.GetData(typeof(Configuration.XML.Window)) as Configuration.XML.Window;
-            var listBox = sender as ListBox;
-            if (listBox == null)
+            if (!(sender is ListBox listBox))
             {
                 return;
             }
@@ -360,24 +347,6 @@ namespace At.FF.Krems.Config_Gui
             this.ViewModel.SelectedWindow = this.ViewModel.Windows[oldIndex + 1];
         }
 
-        /// <summary>Adds the cookie on click.</summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void AddCookieOnClick(object sender, RoutedEventArgs e)
-        {
-            this.ViewModel.Cookies.Add(new Cookie { Name = Properties.Resources.EnterName_DE_AT });
-            this.ViewModel.SelectedCookie = this.ViewModel.Cookies.Last();
-        }
-
-        /// <summary>Removes the cookie on click.</summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void RemoveCookieOnClick(object sender, RoutedEventArgs e)
-        {
-            this.ViewModel.Cookies.Remove(this.ViewModel.SelectedCookie);
-            this.ViewModel.SelectedCookie = (this.ViewModel.Cookies != null && this.ViewModel.Cookies.Any()) ? this.ViewModel.Cookies.First() : null;
-        }
-
         /// <summary>The main window on closing.</summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="CancelEventArgs"/> instance containing the event data.</param>
@@ -419,14 +388,12 @@ namespace At.FF.Krems.Config_Gui
         /// <param name="e">The <see cref="MouseButtonEventArgs"/> instance containing the event data.</param>
         private void ListBoxOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var listBox = sender as ListBox;
-            if (listBox == null || listBox.SelectedItems.Count != 1)
+            if (!(sender is ListBox listBox) || listBox.SelectedItems.Count != 1)
             {
                 return;
             }
 
-            var container = listBox.ItemContainerGenerator.ContainerFromItem(listBox.SelectedItems[0]) as UIElement;
-            if (container == null)
+            if (!(listBox.ItemContainerGenerator.ContainerFromItem(listBox.SelectedItems[0]) is UIElement container))
             {
                 return;
             }

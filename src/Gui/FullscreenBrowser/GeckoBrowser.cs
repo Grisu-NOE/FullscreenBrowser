@@ -370,28 +370,6 @@ namespace At.FF.Krems.FullscreenBrowser
                 cookieManager?.RemoveAll();
             }
 
-            // Cookie injection at startup not supported anymore
-            //if (browserConfig.Cookie != null && browserConfig.Cookie.Any())
-            //{
-            //    var cookieManager = Xpcom.GetService<nsICookieManager>("@mozilla.org/cookiemanager;1");
-            //    if (cookieManager != null)
-            //    {
-            //        foreach (var cookie in browserConfig.Cookie.Where(cookie => cookie != null && (cookie.IsSession || cookie.ExpirationDate > DateTime.Now)))
-            //        {
-            //            cookieManager.Add(
-            //                new nsAUTF8String(cookie.Host),
-            //                new nsAUTF8String(cookie.Path),
-            //                new nsACString(cookie.Name),
-            //                new nsACString(cookie.Value),
-            //                cookie.IsSecure,
-            //                cookie.IsHttpOnly,
-            //                cookie.IsSession,
-            //                (long)cookie.ExpirationDate.Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds,
-            //                , );
-            //        }
-            //    }
-            //}
-
             if (browserConfig.Proxy != null)
             {
                 GeckoPreferences.User["network.proxy.no_proxies_on"] = "localhost, 127.0.0.1";

@@ -52,9 +52,6 @@ namespace At.FF.Krems.Config_Gui
         /// <summary>The selected window.</summary>
         private Window selectedWindow;
 
-        /// <summary>The selected cookie</summary>
-        private Cookie selectedCookie;
-
         /// <summary>The selected browser registry</summary>
         private BrowserRegistry selectedBrowserRegistry;
 
@@ -77,8 +74,6 @@ namespace At.FF.Krems.Config_Gui
             this.Windows.Add(new Window { Autostart = true, OnTop = true, Name = "Infoscreen", Url = "https://infoscreen.florian10.info", ShowOnScreen = 1, ZoomLevel = 1f, Position = new WindowPosition { PosX = 0, PosY = 0 }, Dimensions = new WindowDimensions { Width = "max2", Height = "max" }, ReloadInSeconds = 86400 });
             this.Windows.Add(new Window { Autostart = true, OnTop = true, Name = "Infoscreen Ruhebildschirm", Url = "http://www.feuerwehr-krems.at/Warnung/teaser_noe_all.asp", IsAlternativeWindow = true, ShowOnScreen = 1, ZoomLevel = 1f, Position = new WindowPosition { PosX = 0, PosY = 0 }, Dimensions = new WindowDimensions { Width = "max2", Height = "max" } });
             this.SelectedWindow = this.Windows[0];
-            this.Cookies = new ObservableCollection<Cookie>();
-            this.Cookies.CollectionChanged += (sender, args) => this.Config.Cookie = ((ObservableCollection<Cookie>)sender).ToArray();
             this.EnableEventHandler();
         }
 
@@ -557,31 +552,6 @@ namespace At.FF.Krems.Config_Gui
             }
         }
 
-        /// <summary>Gets the cookies.</summary>
-        /// <value>The cookies.</value>
-        public ObservableCollection<Cookie> Cookies { get; }
-
-        /// <summary>Gets or sets the selected cookie.</summary>
-        /// <value>The selected cookie.</value>
-        public Cookie SelectedCookie
-        {
-            get
-            {
-                return this.selectedCookie;
-            }
-
-            set
-            {
-                if (this.selectedCookie == value)
-                {
-                    return;
-                }
-
-                this.selectedCookie = value;
-                this.OnPropertyChanged();
-            }
-        }
-
         /// <summary>Gets or sets the selected browser registry.</summary>
         /// <value>The selected browser registry.</value>
         public BrowserRegistry SelectedBrowserRegistry
@@ -670,8 +640,7 @@ namespace At.FF.Krems.Config_Gui
         /// <param name="notifyCollectionChangedEventArgs">The <see cref="NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
         private void BrowserRegistryOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
         {
-            var collection = sender as ObservableCollection<BrowserRegistry>;
-            if (collection == null)
+            if (!(sender is ObservableCollection<BrowserRegistry> collection))
             {
                 return;
             }

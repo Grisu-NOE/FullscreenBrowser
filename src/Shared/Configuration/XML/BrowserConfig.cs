@@ -27,11 +27,9 @@ namespace At.FF.Krems.Configuration.XML
 {
     using System;
     using System.CodeDom.Compiler;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Linq;
     using System.Xml.Serialization;
 
     /// <summary>The browser config.</summary>
@@ -43,9 +41,6 @@ namespace At.FF.Krems.Configuration.XML
 
         /// <summary>The show closed windows in minutes lock object</summary>
         private readonly object showClosedWindowsInMinutesLockObject = new object();
-
-        /// <summary>Gets or sets the cookie field.</summary>
-        private Cookie[] cookieField;
 
         /// <summary>The show closed windows in minutes</summary>
         private int showClosedWindowsInMinutes;
@@ -82,38 +77,6 @@ namespace At.FF.Krems.Configuration.XML
 
         /// <summary>Gets or sets a value indicating whether to clear cookies at startup.</summary>
         public bool ClearCookiesAtStartup { get; set; }
-
-        /// <summary>Gets or sets the setting.</summary>
-        [XmlElement]
-        public Cookie[] Cookie
-        {
-            get
-            {
-                var result = new List<Cookie>();
-                if (this.cookieField != null && this.cookieField.Any())
-                {
-                    foreach (
-                        var cookie in
-                            this.cookieField.Where(
-                                cookie =>
-                                !result.Any(
-                                    cookie1 =>
-                                    cookie1.Host != null
-                                    && cookie1.Host.Equals(cookie.Host, StringComparison.OrdinalIgnoreCase)
-                                    && cookie1.Name.Equals(cookie.Name))))
-                    {
-                        result.Add(cookie);
-                    }
-                }
-
-                return result.Any() ? result.ToArray() : null;
-            }
-
-            set
-            {
-                this.cookieField = value;
-            }
-        }
 
         /// <summary>Gets or sets the show closed windows in minutes.</summary>
         /// <value>The show closed windows in minutes.</value>
