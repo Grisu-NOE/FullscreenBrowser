@@ -3,8 +3,8 @@
   <Runtime>Firefox64</Runtime>
   <PrintSettings>
     <!--URL zum Infoscreen-Depeschen-Druckservice - nicht verändern!-->
-    <!--<PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/einsatz.ashx</PrintUrl>-->
-    <PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/demo.ashx?demo=1</PrintUrl>
+    <PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/einsatz.ashx</PrintUrl>
+    <!--<PrintUrl>https://infoscreen.florian10.info/ows/infoscreen/demo.ashx?demo=1</PrintUrl>-->
     <!--Port zum Infoscreen-Depeschen-Druckservice - nicht verändern!-->
     <PrintPort>121</PrintPort>
     <!--Mögliche Werte für printEnabled: "true" oder "false" - Gib an ob das Infoscreen-Depeschen-Druckservice verwendet wird-->
@@ -55,8 +55,8 @@
     <!--mögliche Werte für name: beliebiger Text - gibt den Namen des Fensters im Trayicon an-->
     <Name>Infoscreen</Name>
     <!--mögliche Werte für URL: eine beliebige URL - Adobe Flash auf der Webseite wird nicht unterstützt-->
-    <Url>https://infoscreen.florian10.info/ows/infoscreen/v3/?demo=1</Url>
-    <!--<Url>https://infoscreen.florian10.info/</Url>-->
+    <!--<Url>https://infoscreen.florian10.info/ows/infoscreen/v3/?demo=1</Url>-->
+    <Url>https://infoscreen.florian10.info/</Url>
     <!--mögliche Werte für showOnScreen: 0, 1, 2,... je nach Anzahl der vorhandenen Bildschirme beginnend bei 0 für den ersten Schirm - gibt an auf welchem Schirm das Fenster gezeigt werden soll-->
     <ShowOnScreen>1</ShowOnScreen>
     <Position>
@@ -66,9 +66,9 @@
     </Position>
     <Dimensions>
       <!--mögliche Werte für width: max für vollen Bildschirm, max2 für Vollbild über 2 Bildschirm oder eine beliebige Zahl für eine bestimmte Breite des Fensters-->
-      <Width>1024</Width>
+      <Width>max2</Width>
       <!--mögliche Werte für height: max für vollen Bildschirm oder eine beliebige Zahl für eine bestimmte Höhe des Fensters-->
-      <Height>1024</Height>
+      <Height>max</Height>
     </Dimensions>
     <!--Mögliche Werte für ReloadInSeconds: integer(ganze Zahl) in Sekunden >0 - Gibt an nach wievielen Sekunden der Browser ein Reload/Refresh durchführen soll-->
     <ReloadInSeconds>86400</ReloadInSeconds>
@@ -93,9 +93,9 @@
     </Position>
     <Dimensions>
       <!--mögliche Werte für width: max für vollen Bildschirm, max2 für Vollbild über 2 Bildschirm oder eine beliebige Zahl für eine bestimmte Breite des Fensters-->
-      <Width>1024</Width>
+      <Width>max2</Width>
       <!--mögliche Werte für height: max für vollen Bildschirm oder eine beliebige Zahl für eine bestimmte Höhe des Fensters-->
-      <Height>1024</Height>
+      <Height>max</Height>
     </Dimensions>
   </Window>
   <!-- Um weitere Fenster zu erzeugen muss an dieser Stelle ein weiterer <window>-Block eingefügt werden - siehe folgende Vorlage-->
