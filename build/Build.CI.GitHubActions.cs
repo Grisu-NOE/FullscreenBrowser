@@ -22,7 +22,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [GitHubActions(
     "create-release",
-    GitHubActionsImage.UbuntuLatest,
+    GitHubActionsImage.WindowsLatest,
     OnPushBranches = new []{ MainBranch },
     PublishArtifacts = false,
     InvokedTargets = new[] { nameof(PublishGitHubRelease) },
