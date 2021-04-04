@@ -9,6 +9,7 @@
     <AssemblyName>At.FF.Krems.FullscreenBrowser</AssemblyName>
     <AssemblyTitle>WASTL Infoscreen - FullscreenBrowser</AssemblyTitle>
     <ApplicationIcon>TrayIcon.ico</ApplicationIcon>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <StartupObject>At.FF.Krems.FullscreenBrowser.Program</StartupObject>
   </PropertyGroup>
 
@@ -17,8 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Geckofx60.64" Version="60.0.55" />
+    <PackageReference Include="Geckofx60.64" Version="60.0.55" GeneratePathProperty="true" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,9 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Firefox\*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="$(PkgGeckofx60_64)\content\Firefox\**\*" Link="Firefox64\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
