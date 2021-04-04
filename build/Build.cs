@@ -111,7 +111,7 @@ partial class Build : NukeBuild
             //    .Aggregate((c, n) => c + Environment.NewLine + n);
             //var completeChangeLog = $"## {releaseTag}" + Environment.NewLine + latestChangeLog;
 
-            var files = GlobFiles(ArtifactsDirectory).NotEmpty().ToArray();
+            var files = GlobFiles(ArtifactsDirectory, "*.*").NotEmpty().ToArray();
 
             var gitHubName = GitRepository.GetGitHubName();
             var gitHubOwner = GitRepository.GetGitHubOwner();
