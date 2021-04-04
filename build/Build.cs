@@ -80,6 +80,7 @@ partial class Build : NukeBuild
                 .SetAssemblyVersion(GitVersion.AssemblySemVer)
                 .SetFileVersion(GitVersion.AssemblySemFileVer)
                 .SetInformationalVersion(GitVersion.InformationalVersion)
+                .SetCopyright($"Copyright © Freiwillige Feuerwehr Krems/Donau {DateTime.Now.Year}")
                 .SetOutputDirectory(OutputDirectory)
                 .EnableNoRestore());
         });
