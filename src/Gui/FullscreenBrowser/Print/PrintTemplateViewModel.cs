@@ -24,6 +24,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.FullscreenBrowser.Print
 {
+    using Model;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 

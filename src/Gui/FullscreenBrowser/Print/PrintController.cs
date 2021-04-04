@@ -7,7 +7,7 @@
 //      Tel.:   +43 (0)2732 85522
 //      Fax.:   +43 (0)2732 85522 40
 //      E-mail: office@feuerwehr-krems.at
-// 
+//
 //      This software is furnished under a license and may be
 //      used  and copied only in accordance with the terms of
 //      such  license  and  with  the  inclusion of the above
@@ -15,11 +15,11 @@
 //      thereof   may  not  be  provided  or  otherwise  made
 //      available  to  any  other  person.  No  title  to and
 //      ownership of the software is hereby transferred.
-// 
+//
 //      The information in this software is subject to change
 //      without  notice  and  should  not  be  construed as a
 //      commitment by Freiwillige Feuerwehr Krems/Donau.
-// 
+//
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.FullscreenBrowser.Print
@@ -42,7 +42,7 @@ namespace At.FF.Krems.FullscreenBrowser.Print
     using At.FF.Krems.Utils.Extensions;
 
     using log4net;
-
+    using Model;
     using Newtonsoft.Json;
 
     /// <summary>The print controller.</summary>
@@ -302,9 +302,23 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                         //                        var engine = new StaticMapsEngine();
                         //                        var url = engine.GenerateStaticMapUrl(greyMap);
                         // #endif
+
+                        string queryParameter;
+                        var lat = item.Lat;
+                        var lng = item.Lng;
+                        if (lat != null && lng != null)
+                        {
+                            queryParameter = FormattableString.Invariant($"lat={lat}&lng={lng}");
+                        }
+                        else
+                        {
+                            queryParameter =
+                                $"address={item.Strasse}{(string.IsNullOrWhiteSpace(item.Nummer1) ? string.Empty : "%20" + item.Nummer1)},%20{item.Plz}%20{item.Ort}";
+                        }
+
                         var mapData =
                             this.GetData(
-                                $"https://secure.florian10.info/ows/infoscreen/geo/staticmap.ashx?address={item.Strasse}{(string.IsNullOrWhiteSpace(item.Nummer1) ? string.Empty : "%20" + item.Nummer1)},%20{item.Plz}%20{item.Ort}");
+                                $"https://secure.florian10.info/ows/infoscreen/geo/staticmap.ashx?{queryParameter}");
                         if (!string.IsNullOrWhiteSpace(mapData))
                         {
                             var mapUrl =
@@ -314,18 +328,34 @@ namespace At.FF.Krems.FullscreenBrowser.Print
                                     .Replace("2.png", ".png")
                                     .Replace("&markers=icon:http://", "&markers=scale:2|icon:http://");
                             item.MapUrl = $"{mapUrl}&maptype={this.config.MapType.ToString().ToLowerInvariant()}";
-                            var latLng =
-                                mapData.Split('&')
-                                    .First(x => x.StartsWith("center="))
-                                    .Split(',')
-                                    .Select(x => x.Replace("center=", string.Empty))
-                                    .ToList();
 
-                            if (latLng.Count >= 2)
+                            if (lat == null || lng == null)
+                            {
+                                var latLng =
+                                    mapData.Split('&')
+                                        .First(x => x.StartsWith("center="))
+                                        .Split(',')
+                                        .Select(x => x.Replace("center=", string.Empty))
+                                        .ToList();
+                                if (latLng.Count >= 2)
+                                {
+                                    if (double.TryParse(latLng[0], out var latValue))
+                                    {
+                                        lat = latValue;
+                                    }
+
+                                    if (double.TryParse(latLng[1], out var lngValue))
+                                    {
+                                        lng = lngValue;
+                                    }
+                                }
+                            }
+
+                            if (lat != null && lng != null)
                             {
                                 var areaJson =
-                                    this.GetData(
-                                        $"https://secure.florian10.info/ows/infoscreen/geo/umkreis.ashx?lat={latLng[0]}&lng={latLng[1]}");
+                                    this.GetData(FormattableString.Invariant(
+                                        $"https://secure.florian10.info/ows/infoscreen/geo/umkreis.ashx?lat={lat}&lng={lng}"));
                                 item.Area = JsonConvert.DeserializeObject<Area>(areaJson);
                                 item.Area.PointLimit = this.config.MaxHydrants;
                             }

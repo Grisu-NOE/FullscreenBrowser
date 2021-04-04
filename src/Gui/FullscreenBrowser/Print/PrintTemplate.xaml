@@ -5,10 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:print="clr-namespace:At.FF.Krems.FullscreenBrowser.Print"
       xmlns:converters="clr-namespace:At.FF.Krems.Utils.WPF.Converters;assembly=At.FF.Krems.Utils"
+      xmlns:model="clr-namespace:At.FF.Krems.FullscreenBrowser.Print.Model"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="600">
     <UserControl.DataContext>
-        <print:EmergencyData />
+        <model:EmergencyData />
     </UserControl.DataContext>
     <UserControl.Resources>
         <converters:NullOrEmptyStringToVisibilityConverter x:Key="NullOrEmptyStringToVisibilityConverter" />

@@ -22,11 +22,10 @@
 //
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-namespace At.FF.Krems.FullscreenBrowser.Print
+namespace At.FF.Krems.FullscreenBrowser.Print.Model
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Net;
     using System.Windows.Media.Imaging;
@@ -34,90 +33,38 @@ namespace At.FF.Krems.FullscreenBrowser.Print
     /// <summary>The emergency data.</summary>
     public class EmergencyData
     {
-        /// <summary>The map URL</summary>
         private string mapUrl;
 
-        /// <summary>Gets or sets the einsatz identifier.</summary>
-        /// <value>The einsatz identifier.</value>
-        // ReSharper disable once InconsistentNaming
         public string EinsatzID { get; set; }
-
-        /// <summary>Gets or sets the status.</summary>
-        /// <value>The status.</value>
         public int Status { get; set; }
-
-        /// <summary>Gets or sets the alarmstufe.</summary>
-        /// <value>The alarmstufe.</value>
         public string Alarmstufe { get; set; }
-
-        /// <summary>Gets or sets the meldebild.</summary>
-        /// <value>The meldebild.</value>
         public string Meldebild { get; set; }
 
-        /// <summary>Gets or sets the nummer1.</summary>
-        /// <value>The nummer1.</value>
+        public double? Lat { get; set; }
+        public double? Lng { get; set; }
+        public string Accuracy { get; set; }
+
         public string Nummer1 { get; set; }
-
-        /// <summary>Gets or sets the nummer2.</summary>
-        /// <value>The nummer2.</value>
         public string Nummer2 { get; set; }
-
-        /// <summary>Gets or sets the nummer3.</summary>
-        /// <value>The nummer3.</value>
         public string Nummer3 { get; set; }
-
-        /// <summary>Gets or sets the objekt.</summary>
-        /// <value>The objekt.</value>
-        public string Objekt { get; set; }
-
-        /// <summary>Gets or sets the PLZ.</summary>
-        /// <value>The PLZ.</value>
         public string Plz { get; set; }
-
-        /// <summary>Gets or sets the strasse.</summary>
-        /// <value>The strasse.</value>
         public string Strasse { get; set; }
-
-        /// <summary>Gets or sets the ort.</summary>
-        /// <value>The ort.</value>
         public string Ort { get; set; }
-
-        /// <summary>Gets or sets the abschnitt.</summary>
-        /// <value>The abschnitt.</value>
         public string Abschnitt { get; set; }
-
-        /// <summary>Gets or sets the bemerkung.</summary>
-        /// <value>The bemerkung.</value>
+        public string Objekt { get; set; }
+        public string ObjektId { get; set; }
         public string Bemerkung { get; set; }
-
-        /// <summary>Gets or sets the einsatz erzeugt.</summary>
-        /// <value>The einsatz erzeugt.</value>
-        public DateTime EinsatzErzeugt { get; set; }
-
-        /// <summary>Gets or sets the melder.</summary>
-        /// <value>The melder.</value>
+        public DateTime? EinsatzErzeugt { get; set; }
         public string Melder { get; set; }
-
-        /// <summary>Gets or sets the melder telefon.</summary>
-        /// <value>The melder telefon.</value>
         public string MelderTelefon { get; set; }
+        public long EinsatzNummer { get; set; }
+        public List<Disposition> Dispositionen { get; set; } = new List<Disposition>();
+        public List<ResponseRegulation> Ausrueckordnung { get; set; } = new List<ResponseRegulation>();
+        public RSVP Rsvp { get; set; }
 
-        /// <summary>Gets or sets the einsatz nummer.</summary>
-        /// <value>The einsatz nummer.</value>
-        public int EinsatzNummer { get; set; }
-
-        /// <summary>Gets or sets the dispositionen.</summary>
-        /// <value>The dispositionen.</value>
-        public List<Disposition> Dispositionen { get; set; }
-
-        /// <summary>Gets or sets the map URL.</summary>
-        /// <value>The map URL.</value>
         public string MapUrl
         {
-            get
-            {
-                return this.mapUrl;
-            }
+            get => this.mapUrl;
 
             set
             {
@@ -143,12 +90,8 @@ namespace At.FF.Krems.FullscreenBrowser.Print
             }
         }
 
-        /// <summary>Gets the map image.</summary>
-        /// <value>The map image.</value>
         public BitmapImage MapImage { get; private set; }
 
-        /// <summary>Gets or sets the area.</summary>
-        /// <value>The area.</value>
         public Area Area { get; set; }
     }
 }
