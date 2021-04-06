@@ -360,7 +360,17 @@ namespace At.FF.Krems.FullscreenBrowser
             if (!Xpcom.IsInitialized)
             {
                 PromptFactory.PromptServiceCreator = () => new FilteredPromptService();
-                Xpcom.Initialize(Path.GetFullPath(browserConfig.Runtime));
+                var browserConfigRuntime = browserConfig.Runtime;
+                if (Environment.Is64BitProcess)
+                {
+                    browserConfigRuntime += "64";
+                }
+                else
+                {
+                    browserConfigRuntime += "32";
+                }
+
+                Xpcom.Initialize(Path.GetFullPath(browserConfigRuntime));
             }
 
             if (browserConfig.ClearCookiesAtStartup)
@@ -404,7 +414,7 @@ namespace At.FF.Krems.FullscreenBrowser
                         {
                             case BrowserRegistryType.Boolean:
                                 bool parsedBool;
-                                if (! bool.TryParse(item.Value.ToString(), out parsedBool))
+                                if (!bool.TryParse(item.Value.ToString(), out parsedBool))
                                 {
                                     throw new InvalidDataException("Value could not be parsed as boolean");
                                 }
