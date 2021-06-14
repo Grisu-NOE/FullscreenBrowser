@@ -1,11 +1,17 @@
-Grisu NÖ - FullscreenBrowser
-============
+
+# Grisu NÖ - FullscreenBrowser
+
 [![License][license-image]][license-url] [![Join the chat at https://gitter.im/Grisu-NOE/FullscreenBrowser][gitter-image]][gitter-url] [![Coverity Scan][coverity-image]][coverity-url]
 
 This project aims to build a desktop-based application to improve and extend the functionality of https://infoscreen.florian10.info/.
 
-Licensing
----------
+## FAQ
+
+* I am having troubles to start the App, it fails with something like ```System.DllNotFoundException: Die DLL "mozglue": Das angegebene Modul wurde nicht gefunden. (Ausnahme von HRESULT: 0x8007007E) kann nicht geladen werden.```
+  * You may be missing [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/de-at/download/details.aspx?id=48145)
+ on your system. Install and reboot, then try again.
+
+## Licensing
 
 Grisu NÖ - FullscreenBrowser is licensed under the [MIT License (MIT)](LICENSE).
 
