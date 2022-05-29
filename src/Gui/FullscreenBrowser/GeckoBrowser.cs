@@ -373,6 +373,9 @@ namespace At.FF.Krems.FullscreenBrowser
                 Xpcom.Initialize(Path.GetFullPath(browserConfigRuntime));
             }
 
+            GeckoPreferences.User["security.enterprise_roots.enabled"] = true;
+            GeckoPreferences.User["security.enterprise_roots.auto-enabled"] = true;
+
             if (browserConfig.ClearCookiesAtStartup)
             {
                 // https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface
