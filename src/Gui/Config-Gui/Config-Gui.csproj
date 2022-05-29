@@ -12,10 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CompareNETObjects" Version="4.73.0" />
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.2" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
-    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
+    <PackageReference Include="CompareNETObjects" Version="4.77.0" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

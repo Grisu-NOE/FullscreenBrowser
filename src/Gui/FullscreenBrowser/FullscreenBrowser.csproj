@@ -24,7 +24,7 @@
     </PackageReference>
     <PackageReference Include="Geckofx60.64" Version="60.0.55" GeneratePathProperty="true" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
