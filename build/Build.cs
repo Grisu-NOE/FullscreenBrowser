@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Nuke.Common;
 using Nuke.Common.CI;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
@@ -69,7 +70,7 @@ partial class Build : NukeBuild
                 .SetAssemblyVersion(GitVersion.AssemblySemVer)
                 .SetFileVersion(GitVersion.AssemblySemFileVer)
                 .SetInformationalVersion(GitVersion.InformationalVersion)
-                .SetCopyright($"Copyright � Freiwillige Feuerwehr Krems/Donau {DateTime.Now.Year}")
+                .SetCopyright($"Copyright (c) Freiwillige Feuerwehr Krems/Donau {DateTime.Now.Year}")
                 .SetOutputDirectory(OutputDirectory)
                 .EnableNoRestore());
         });
@@ -109,6 +110,7 @@ partial class Build : NukeBuild
                 .SetRepositoryName(gitHubName)
                 .SetRepositoryOwner(gitHubOwner)
                 .SetTag(releaseTag)
+                .SetToken(GitHubActions.Instance.Token)
             );
         });
 
