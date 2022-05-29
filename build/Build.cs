@@ -1,29 +1,20 @@
-using Microsoft.Build.Utilities;
-using NuGet.Frameworks;
 using System;
 using System.Linq;
 using Nuke.Common;
 using Nuke.Common.CI;
-using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitHub;
-using Nuke.Common.Tools.GitReleaseManager;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities;
 using Nuke.Common.Utilities.Collections;
 using Nuke.GitHub;
-using Octokit;
-using System.IO.Compression;
-using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using GitHubTasks = Nuke.Common.Tools.GitHub.GitHubTasks;
 
 [CheckBuildProjectConfigurations]
 [ShutdownDotNetAfterServerBuild]
@@ -42,9 +33,7 @@ partial class Build : NukeBuild
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
-    [GitVersion(Framework = "net5.0")] readonly GitVersion GitVersion;
-
-    [Parameter] string GitHubAuthenticationToken;
+    [GitVersion] readonly GitVersion GitVersion;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath TestsDirectory => RootDirectory / "tests";
@@ -80,7 +69,7 @@ partial class Build : NukeBuild
                 .SetAssemblyVersion(GitVersion.AssemblySemVer)
                 .SetFileVersion(GitVersion.AssemblySemFileVer)
                 .SetInformationalVersion(GitVersion.InformationalVersion)
-                .SetCopyright($"Copyright © Freiwillige Feuerwehr Krems/Donau {DateTime.Now.Year}")
+                .SetCopyright($"Copyright ï¿½ Freiwillige Feuerwehr Krems/Donau {DateTime.Now.Year}")
                 .SetOutputDirectory(OutputDirectory)
                 .EnableNoRestore());
         });
@@ -96,7 +85,6 @@ partial class Build : NukeBuild
     Target PublishGitHubRelease => _ => _
         .DependsOn(Pack)
         .Consumes(Pack)
-        .Requires(() => GitHubAuthenticationToken)
         .OnlyWhenStatic(() => Configuration.Equals(Configuration.Release) && IsOnMainBranch())
         .WhenSkipped(DependencyBehavior.Skip)
         .Executes(async () =>
@@ -121,7 +109,6 @@ partial class Build : NukeBuild
                 .SetRepositoryName(gitHubName)
                 .SetRepositoryOwner(gitHubOwner)
                 .SetTag(releaseTag)
-                .SetToken(GitHubAuthenticationToken)
             );
         });
 
