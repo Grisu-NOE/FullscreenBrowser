@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.14" />
+    <PackageReference Include="Sentry.Log4Net" Version="3.17.1" />
     <PackageReference Include="structuremap" Version="4.7.1" />
   </ItemGroup>
 

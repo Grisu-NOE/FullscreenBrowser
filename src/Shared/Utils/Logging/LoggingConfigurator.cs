@@ -4,11 +4,11 @@
 //     Austraße 33
 //     A-3500 Krems/Donau
 //     Austria
-// 
+//
 //     Tel.:   +43 (0)2732 85522
 //     Fax.:   +43 (0)2732 85522 40
 //     E-mail: office@feuerwehr-krems.at
-// 
+//
 //     This software is furnished under a license and may be
 //     used  and copied only in accordance with the terms of
 //     such  license  and  with  the  inclusion of the above
@@ -16,11 +16,11 @@
 //     thereof   may  not  be  provided  or  otherwise  made
 //     available  to  any  other  person.  No  title  to and
 //     ownership of the software is hereby transferred.
-// 
+//
 //     The information in this software is subject to change
 //     without  notice  and  should  not  be  construed as a
 //     commitment by Freiwillige Feuerwehr Krems/Donau.
-// 
+//
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 namespace At.FF.Krems.Utils.Logging
@@ -45,6 +45,11 @@ namespace At.FF.Krems.Utils.Logging
         /// <summary>Source code backup XML.</summary>
         private const string SourceCodeBackUpXml = @"<?xml version='1.0' encoding='utf-8'?>
     <log4net update='Overwrite'>
+        <appender name='SentryAppender' type='Sentry.Log4Net.SentryAppender, Sentry.Log4Net'>
+            <!--Sends the log event Identity value as the user-->
+            <SendIdentity value='true' />
+            <threshold value='Warn' />
+        </appender>
         <appender name='FILE_TRACE' type='log4net.Appender.RollingFileAppender'>
             <!-- ROLLING TRACE APPENDER -->
             <file type='log4net.Util.PatternString' value='%property{PATHNAME}\%property{FILENAME_TRACE}'/>
@@ -181,16 +186,18 @@ namespace At.FF.Krems.Utils.Logging
         <!-- Setup the root category, add the appenders and set the default level -->
         <root>
             <level value='DEBUG'/>
+            <appender-ref ref='SentryAppender'/>
             <appender-ref ref='FILE_DEBUG'/>
             <appender-ref ref='FILE_NOTICE'/>
             <appender-ref ref='CONSOLE_INFO'/>
         </root>
         <!-- To enable TRACE => change root tag
        <root> 
-        <level value='ALL' /> 
-        <appender-ref ref='FILE_TRACE' /> 
-        <appender-ref ref='FILE_WARN' /> 
-        <appender-ref ref='CONSOLE_TRACE' /> 
+        <level value='ALL' />
+        <appender-ref ref='SentryAppender'/>
+        <appender-ref ref='FILE_TRACE' />
+        <appender-ref ref='FILE_WARN' />
+        <appender-ref ref='CONSOLE_TRACE' />
       </root> -->
     </log4net>";
 

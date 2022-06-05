@@ -37,6 +37,7 @@ namespace At.FF.Krems.FullscreenBrowser
     using At.FF.Krems.Utils.Bootstrapper;
 
     using log4net;
+    using Sentry;
 
     /// <summary>The program.</summary>
     public static class Program
@@ -54,40 +55,51 @@ namespace At.FF.Krems.FullscreenBrowser
         [STAThread]
         public static int Main(string[] args)
         {
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
-            int exitcode;
-
-            try
+            using (SentrySdk.Init(o =>
+                   {
+                       o.Dsn = "https://94d0495b4d06427db9e88714c1350967@o1276505.ingest.sentry.io/6471886";
+                       // When configuring for the first time, to see what the SDK is doing:
+                       o.Debug = true;
+                       // Set traces_sample_rate to 1.0 to capture 100% of transactions for performance monitoring.
+                       // We recommend adjusting this value in production.
+                       o.TracesSampleRate = 1.0;
+                   }))
             {
-                // Ensure the current culture passed into bindings is the OS culture.
-                // By default, WPF uses en-US as the culture, regardless of the system settings.
-                FrameworkElement.LanguageProperty.OverrideMetadata(
-                    typeof(FrameworkElement),
-                      new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
-                var currentDirectory = new FileInfo(typeof(Program).Assembly.Location).DirectoryName;
-                if (currentDirectory != null)
+                AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+                int exitcode;
+
+                try
                 {
-                    Environment.CurrentDirectory = currentDirectory;
+                    // Ensure the current culture passed into bindings is the OS culture.
+                    // By default, WPF uses en-US as the culture, regardless of the system settings.
+                    FrameworkElement.LanguageProperty.OverrideMetadata(
+                        typeof(FrameworkElement),
+                        new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+                    var currentDirectory = new FileInfo(typeof(Program).Assembly.Location).DirectoryName;
+                    if (currentDirectory != null)
+                    {
+                        Environment.CurrentDirectory = currentDirectory;
+                    }
+
+                    // Register and initialize
+                    Bootstrapper.Initialize(new StructureMapRegistry());
+
+                    // Run
+                    exitcode = Bootstrapper.GetInstance<App>().Run();
+                }
+                catch (Exception exception)
+                {
+                    Logger.Info("In case of `System.DllNotFoundException`, try to install `Visual C++ Redistributable for Visual Studio 2015` from https://www.microsoft.com/de-at/download/details.aspx?id=48145");
+                    Logger.Error(exception);
+                    Logger.Debug(Bootstrapper.WhatDoIHave());
+                    exitcode = -1;
                 }
 
-                // Register and initialize
-                Bootstrapper.Initialize(new StructureMapRegistry());
+                var log = Bootstrapper.TryGetInstance<IProcessStateLogging>();
+                log?.LogProcessExited();
 
-                // Run
-                exitcode = Bootstrapper.GetInstance<App>().Run();
+                return exitcode;
             }
-            catch (Exception exception)
-            {
-                Logger.Info("In case of `System.DllNotFoundException`, try to install `Visual C++ Redistributable for Visual Studio 2015` from https://www.microsoft.com/de-at/download/details.aspx?id=48145");
-                Logger.Error(exception);
-                Logger.Debug(Bootstrapper.WhatDoIHave());
-                exitcode = -1;
-            }
-
-            var log = Bootstrapper.TryGetInstance<IProcessStateLogging>();
-            log?.LogProcessExited();
-
-            return exitcode;
         }
 
         /// <summary>
